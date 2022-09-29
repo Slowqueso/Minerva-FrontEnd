@@ -2,7 +2,7 @@ const RadioConfirmation = ({ label, name, href, hyperlink, changeHandler }) => {
   return (
     <div className="flex-together">
       <input
-        type="radio"
+        type={"checkbox"}
         name={name}
         value="1"
         id={name}

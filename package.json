@@ -10,14 +10,24 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@ramonak/react-progress-bar": "^5.0.2",
+    "@walletconnect/web3-provider": "^1.8.0",
+    "@web3auth/web3auth": "^2.1.2",
     "axios": "^0.27.2",
+    "eth-price": "^0.1.5",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.5.1",
+    "magic-sdk": "^9.0.0",
+    "moralis-v1": "^1.11.0",
     "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-moralis": "^1.4.2",
+    "web3uikit": "^1.0.4"
   },
   "devDependencies": {
     "eslint": "8.23.0",

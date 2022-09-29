@@ -1,0 +1,18 @@
+.tag_container{
+    margin: 0.25rem;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    border-radius: 3px;
+    background: #3a3a3a;
+    max-height: 30px;
+    height: fit-content;
+    width: fit-content;
+    h3{
+        color: white;
+    font-family: var(--fs-poppins-200);
+    font-size: 12px;
+    font-weight: 100;
+    }
+}
+

@@ -1,4 +1,4 @@
-const TextBox = ({ label, name, inputUpdate, isPassword }) => {
+const TextBox = ({ label, name, inputUpdate, isPassword, value }) => {
   return (
     <div className="textOnInput">
       <label className="label f-12" htmlFor={name}>
@@ -9,6 +9,7 @@ const TextBox = ({ label, name, inputUpdate, isPassword }) => {
         type={isPassword ? "password" : "text"}
         name={name}
         id={name}
+        // value={value ? value : ""}
         onChange={(e) => {
           inputUpdate(e.target.value);
         }}

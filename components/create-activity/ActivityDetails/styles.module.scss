@@ -1,0 +1,33 @@
+.form_container{
+    background-color: var(--palette-dark-grey);
+    margin: auto;
+    width: 50%;
+    padding: 2rem 2rem 2rem 0rem;
+    .flex_container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .inner_container{
+            margin: 2rem;
+            width: 100%;
+            .tb_aligner{
+                display: flex;
+                margin-bottom: 1rem;
+            }   
+        }
+    }
+}
+.input_divider{
+    margin-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border: 1px solid white;
+}
+
+.flex_end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 2rem;
+}

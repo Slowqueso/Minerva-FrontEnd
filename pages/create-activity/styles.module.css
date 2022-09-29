@@ -1,0 +1,82 @@
+.timeline_container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.timeline_container div {
+  width: 100%;
+}
+
+.timeline_nodes_list {
+  width: 40%;
+  list-style: none;
+  position: absolute;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.node_container:hover h2 {
+  display: block;
+  text-align: center;
+  font-family: var(--fs-montserrat-300);
+  bottom: -2rem;
+  font-size: 12px;
+  width: 25ch;
+  font-weight: 300;
+}
+
+.node_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.node_container h2 {
+  display: none;
+  position: absolute;
+  color: white;
+}
+
+.node_container .node {
+  width: 55px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-radius: 50%;
+}
+
+.node_container .node h3 {
+  color: white;
+  font-weight: 300;
+  cursor: default;
+}
+/*# sourceMappingURL=styles.module.css.map */

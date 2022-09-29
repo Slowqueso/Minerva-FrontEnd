@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import FormError from "../../components/form/formError";
 import { useRouter } from "next/router";
 import axios from "axios";
+import ENV from "../../static_files/hostURL";
 
 const Login = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const Login = () => {
     const token = localStorage.getItem("_USID");
     if (token) {
       axios
-        .get("http://localhost:3001/user/token", {
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/token", {
           headers: {
             "x-access-token": token,
           },
@@ -25,7 +26,7 @@ const Login = () => {
           if (!response.data.authenticated) {
             localStorage.removeItem("_USID");
           } else {
-            router.push("/register");
+            router.push("/explore");
           }
         })
         .catch((err) => {
@@ -35,14 +36,14 @@ const Login = () => {
   });
   const handleSubmit = () => {
     axios
-      .put("http://localhost:3001/user/login", {
+      .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/login", {
         email,
         password,
       })
       .then((response) => {
         if (response.data.status === "ok") {
           localStorage.setItem("_USID", response.data.user);
-          router.back();
+          router.push("/explore");
         }
       })
       .catch((err) => {
@@ -62,13 +63,16 @@ const Login = () => {
           </div>
           <div className="space-between">
             <TextBox
+              isPassword={true}
               label="Password"
               name="Password"
               inputUpdate={setPassword}
             ></TextBox>
           </div>
           <div className="space-between">
-            <FormError errorMessage={errorMessage}></FormError>
+            {errorMessage ? (
+              <FormError errorMessage={errorMessage}></FormError>
+            ) : null}
           </div>
           <SubmitButton
             label={"Login"}

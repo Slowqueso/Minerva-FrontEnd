@@ -1,0 +1,46 @@
+.logo_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  height: 35px;
+}
+
+.logo_container img {
+  height: 25px;
+  position: relative;
+  top: -12px;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.logo_text {
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  font-size: 30px;
+  font-family: var(--fs-cinzel-400);
+  color: white;
+  font-weight: 200;
+}
+
+.logo_container:hover {
+  cursor: pointer;
+}
+
+.logo_container:hover h3 {
+  background: -webkit-gradient(linear, left top, right top, from(#D47AFF), color-stop(21.66%, #FF78BD), color-stop(52.22%, #FFFBFC), color-stop(74.33%, #FF79E2));
+  background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/*# sourceMappingURL=styles.module.css.map */

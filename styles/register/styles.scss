@@ -14,6 +14,17 @@
         color: white;
         font-family: var(--fs-poppins-200);
     }
+    textarea{
+        border: 1px solid transparent;
+        width: 100%;
+        padding: 0.75rem 7px;
+        border-radius: 3px;
+        box-shadow: none;
+        // border: 1px solid var(--palette-light-grey);
+        background-color: var(--palette-mdark-grey);
+        color: white;
+        font-family: var(--fs-poppins-200);
+    }
     width: 100%;
 }
 
@@ -26,15 +37,15 @@ section.form-only{
 
 .textOnInput label {
     position: absolute;
-    top: -14px;
-    left: 23px;
+    top: -20px;
+    left: 0px;
     padding: 2px;
     z-index: 1;
     font-family: var(--fs-poppins-400);
 }
 .textOnInput label:after {
     content: " ";
-    background-image: linear-gradient(180deg, var(--palette-dark-grey) 95%, var(--palette-mdark-grey) 5%);
+    // background-image: linear-gradient(180deg, var(--palette-dark-grey) 95%, var(--palette-mdark-grey) 5%);
     width: 100%;
     height: 15px;
     position: absolute;
@@ -89,8 +100,7 @@ section.form-only{
     -webkit-text-fill-color: transparent;
     background-clip: text;
     // text-fill-color: transparent;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .register-form{
@@ -99,20 +109,24 @@ text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 .submit-button{
     padding: 0.5rem 2.5rem;
-    background: var(--palette-text-green);
+    transition: 0.3s ease-out;
+    // background: var(--palette-text-green);
+    background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
     outline: none;
     border: none;
-    font-size: 1em;
+    font-size: 0.8em;
     font-family: var(--fs-poppins-200);
     border-radius: 3px;
     margin: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 20px 4px rgba(255, 155, 239, 0.26);
 }
 
 .submit-button:hover{
-    background: var(--palette-text-green-active);
+    background: linear-gradient(90deg, #C93232 -14.67%, #C34BD7 16.86%, #C898DF 46.5%, #D763CB 82.45%, #D25151 105.16%);
     cursor: pointer;
 }
 

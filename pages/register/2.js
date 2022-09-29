@@ -8,6 +8,8 @@ import InactiveTextBox from "../../components/form/inActiveTextBox";
 import ImageUpload from "../../components/ImageUpload";
 import SelectMenu from "../../components/form/SelectMenu";
 import occupations from "../../static_files/occupations.js";
+import ENV from "../../static_files/hostURL";
+
 const DetailsForm = () => {
   const router = useRouter();
   const [username, setUsername] = useState();
@@ -27,11 +29,14 @@ const DetailsForm = () => {
     setSelectedOccupation(1);
     if (token) {
       axios
-        .get("http://localhost:3001/user/information/register", {
-          headers: {
-            "x-access-token": token,
-          },
-        })
+        .get(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/information/register",
+          {
+            headers: {
+              "x-access-token": token,
+            },
+          }
+        )
         .then(async (res) => {
           console.log(res);
           if (res.data.completed) {
@@ -62,7 +67,7 @@ const DetailsForm = () => {
       formData.append("occupation", selectedOccupation);
       try {
         const res = await axios.put(
-          "http://localhost:3001/user/information/register",
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/information/register",
           formData,
           {
             headers: {
@@ -78,7 +83,7 @@ const DetailsForm = () => {
     } else {
       try {
         await axios.post(
-          "http://localhost:3001/user/information/register",
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/information/register",
           {
             houseAddress,
             district,

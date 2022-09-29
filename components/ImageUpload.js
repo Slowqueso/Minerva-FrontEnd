@@ -31,8 +31,9 @@ const ImageUpload = ({ setFileName, setImageFile }) => {
           >
             <img
               style={{
-                width: "100%",
+                width: "189px",
                 height: "auto",
+                margin: "auto",
               }}
               src={
                 uploadedImage ? uploadedImage : "/assets/default_profile.svg"

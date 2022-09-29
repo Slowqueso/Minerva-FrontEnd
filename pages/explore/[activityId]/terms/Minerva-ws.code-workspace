@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../minerva-backend"
+		},
+		{
+			"path": "../../../../../Minerva-TY"
+		}
+	],
+	"settings": {}
+}

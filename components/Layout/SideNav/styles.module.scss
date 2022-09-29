@@ -1,0 +1,37 @@
+.nav_list{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    li{
+        display: flex;
+        align-items: center;
+        h3{
+            font-weight: 100;
+            font-size: 16px;
+            // border: 1px solid white;
+            margin-left: 2rem;
+            min-width: 14ch;
+            // max-width: 24ch;
+            // font-size: 15px;
+            transition: 0.2s ease-out;
+            color: white;   
+        }
+        h3:hover{
+            cursor: pointer;
+            color: var(--palette-light-grey);
+        }
+    }
+    align-self: start;
+    margin: 0rem 0rem 0rem 0rem;
+    border-bottom: 1px solid #484848;
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem
+}
+
+
+.side_nav{
+    width: fit-content;
+    height: 92.5vh;
+    position: sticky;
+    border-right: 1px solid #484848;
+}
