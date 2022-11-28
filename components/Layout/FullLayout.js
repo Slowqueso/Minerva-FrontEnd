@@ -7,7 +7,7 @@ const FullLayout = ({ children }) => {
       <Navbar></Navbar>
       <div className="flex">
         <SideNav></SideNav>
-        <Workspace children={children}></Workspace>
+        <Workspace>{children}</Workspace>
       </div>
     </div>
   );

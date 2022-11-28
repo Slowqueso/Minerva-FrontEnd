@@ -68,4 +68,15 @@
 .add_field:hover {
   cursor: pointer;
 }
+
+.textBox_align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
 /*# sourceMappingURL=styles.module.css.map */

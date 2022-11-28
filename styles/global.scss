@@ -113,10 +113,14 @@ input{
   border: 0px solid transparent;
 }
 
-a{
+a, h3.hyperlink{
   text-decoration: none;
   color: var(--palette-text-green);
-
+  margin-left: 1ch;
+  font-weight: 400;
+}
+a, h3.hyperlink:hover{
+  cursor: pointer;
 }
 
 h3, a, label{

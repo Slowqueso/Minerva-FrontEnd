@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import TextArea from "../../form/TextArea";
-import TitleBox from "../../form/TitleBox";
+import TextBox from "../../form/TitleBox";
 import DeleteButton from "./DeleteButton";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,13 +65,13 @@ const ActivityTerms = ({ setProgress }) => {
 
   const handleRemoveFields = (index) => {
     const values = [...inputFields];
-    values.splice(values[index], 1);
+    values.splice(index, 1);
     setInputFields(values);
   };
 
   const handleAddFields = (e) => {
     e.preventDefault();
-    setInputFields([...inputFields, { firstName: "", lastName: "" }]);
+    setInputFields([...inputFields, { termTitle: "", termDescription: "" }]);
   };
 
   const successHandler = async (tx) => {
@@ -110,25 +110,34 @@ const ActivityTerms = ({ setProgress }) => {
       <h1 className={styles.wrapper_title}>Add Terms and Conditions</h1>
       <form className={styles.form_container}>
         {inputFields.map((inputfield, index) => {
+          console.log(inputfield.termDescription);
           return (
             <div key={index} style={{ marginBottom: "1rem" }}>
               <div className={styles.flex_between}>
-                <TitleBox
-                  label={"Term Title"}
-                  name={"termTitle"}
-                  value={inputfield.termTitle}
-                  index={index}
-                  inputUpdate={handleChangeInput}
-                ></TitleBox>
-                <TextArea
-                  label={"Term Description"}
-                  name={"termDescription"}
-                  value={inputfield.termDescription}
-                  index={index}
-                  inputUpdate={handleChangeInput}
-                ></TextArea>
+                <div style={{ width: "100%" }}>
+                  <div className="flex">
+                    <TextBox
+                      label={"Term Title"}
+                      name={"termTitle"}
+                      value={inputfield.termTitle}
+                      index={index}
+                      inputUpdate={handleChangeInput}
+                    ></TextBox>
+                  </div>
+                  <div className="flex">
+                    <TextArea
+                      label={"Term Description"}
+                      name={"termDescription"}
+                      value={inputfield.termDescription}
+                      index={index}
+                      inputUpdate={handleChangeInput}
+                    ></TextArea>
+                  </div>
+                </div>
               </div>
-              <DeleteButton clickHandler={handleRemoveFields}></DeleteButton>
+              <DeleteButton
+                clickHandler={() => handleRemoveFields(index)}
+              ></DeleteButton>
             </div>
           );
         })}

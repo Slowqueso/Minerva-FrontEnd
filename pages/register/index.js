@@ -9,7 +9,7 @@ import SideBanner from "../../components/form/sideBanner";
 import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
 
-const register = () => {
+const Register = () => {
   const router = useRouter();
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -35,7 +35,7 @@ const register = () => {
             localStorage.removeItem("_USID");
             router.replace("/login");
           } else {
-            router.push("/register/2");
+            router.push("/R/2");
           }
         })
         .catch((err) => {
@@ -138,6 +138,7 @@ const register = () => {
                 name="terms"
                 href="/terms-conditions"
                 hyperlink="Terms and Conditions"
+                isChecked={termsApproval}
                 changeHandler={setTermsApproval}
               ></RadioConfirmation>
             </div>
@@ -166,4 +167,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;

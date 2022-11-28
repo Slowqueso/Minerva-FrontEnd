@@ -6,6 +6,8 @@ import FormError from "../../components/form/formError";
 import { useRouter } from "next/router";
 import axios from "axios";
 import ENV from "../../static_files/hostURL";
+import Navbar from "../../components/Layout/Navbar/Navbar";
+import TextWithHyperlink from "../../components/form/TextWithHyperlink";
 
 const Login = () => {
   const router = useRouter();
@@ -51,36 +53,47 @@ const Login = () => {
       });
   };
   return (
-    <section className={`centralise form-only`}>
-      <div className="form-container" style={{ width: "20%" }}>
-        <form className="register-form">
-          <div className="space-between">
-            <TextBox
-              label="Email"
-              name="email"
-              inputUpdate={setEmail}
-            ></TextBox>
-          </div>
-          <div className="space-between">
-            <TextBox
-              isPassword={true}
-              label="Password"
-              name="Password"
-              inputUpdate={setPassword}
-            ></TextBox>
-          </div>
-          <div className="space-between">
-            {errorMessage ? (
-              <FormError errorMessage={errorMessage}></FormError>
-            ) : null}
-          </div>
-          <SubmitButton
-            label={"Login"}
-            submitHandler={handleSubmit}
-          ></SubmitButton>
-        </form>
-      </div>
-    </section>
+    <>
+      <Navbar></Navbar>
+      <section className={`centralise form-only`} style={{ height: "93vh" }}>
+        <div className={styles.form_container} style={{ width: "25%" }}>
+          <h3 className={styles.form_header}>Login to Minerva</h3>
+          <form className={styles.login_form}>
+            <div className="space-between">
+              <TextBox
+                label="Email"
+                name="email"
+                inputUpdate={setEmail}
+              ></TextBox>
+            </div>
+            <div className="space-between">
+              <TextBox
+                isPassword={true}
+                label="Password"
+                name="Password"
+                inputUpdate={setPassword}
+              ></TextBox>
+            </div>
+            <div className="space-between">
+              {errorMessage ? (
+                <FormError errorMessage={errorMessage}></FormError>
+              ) : null}
+            </div>
+            <div className={styles.space_between}>
+              <TextWithHyperlink
+                text={"Forgot your Password?"}
+                href={"/forgot-password"}
+                hyperlink={"Reset Password"}
+              ></TextWithHyperlink>
+            </div>
+            <SubmitButton
+              label={"Login"}
+              submitHandler={handleSubmit}
+            ></SubmitButton>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 

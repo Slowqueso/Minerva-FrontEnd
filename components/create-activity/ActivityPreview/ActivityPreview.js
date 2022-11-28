@@ -50,7 +50,7 @@ const ActivityPreview = ({ setProgress, user }) => {
   const [errorMessage, setErrorMessage] = useState();
 
   const editActivity = () => {
-    setProgress(0);
+    router.push(`/create-activity/edit-activity/${activityId}`);
     // console.log("yes");
   };
 
@@ -108,8 +108,6 @@ const ActivityPreview = ({ setProgress, user }) => {
   };
 
   useEffect(() => {
-    const activityId = window.location.href.split("/").pop();
-    console.log(activityId);
     if (activityId) {
       axios
         .get(
@@ -135,11 +133,15 @@ const ActivityPreview = ({ setProgress, user }) => {
           }
         })
         .catch((err) => {
-          setErrorMessage(err.response.data.msg);
+          if (err.response.data) {
+            setErrorMessage(err.response.data.msg);
+          } else {
+            setErrorMessage("Error 404: Not Found");
+          }
           console.log(err);
         });
     }
-  }, []);
+  }, [activityId]);
   return (
     <div className={styles.wrapper}>
       {activity ? (
@@ -186,12 +188,12 @@ const ActivityPreview = ({ setProgress, user }) => {
             <CategoryTag categories={activity.categories}></CategoryTag>
           </div>
           <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
-            <div className="space-between">
-              <SubmitButton
+            <div className="flex-end">
+              {/* <SubmitButton
                 label={"Edit Activity"}
                 isTransparent={true}
                 submitHandler={editActivity}
-              ></SubmitButton>
+              ></SubmitButton> */}
               <SubmitButton
                 label={"Deploy Activity"}
                 submitHandler={handleSubmit}

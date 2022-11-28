@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 import incrementStatus from "../../../utils/api/incrementActivity";
+import FormError from "../../form/formError";
 
 const ActivityOverview = () => {
   const router = useRouter();
@@ -28,14 +29,15 @@ const ActivityOverview = () => {
   };
 
   const handleRemoveFields = (index) => {
+    console.log(index);
     const values = [...inputFields];
-    values.splice(values[index], 1);
+    values.splice(index, 1);
     setInputFields(values);
   };
 
   const handleAddFields = (e) => {
     e.preventDefault();
-    setInputFields([...inputFields, { firstName: "", lastName: "" }]);
+    setInputFields([...inputFields, { fieldHeader: "", fieldDescription: "" }]);
   };
 
   const handleSubmit = () => {
@@ -62,22 +64,30 @@ const ActivityOverview = () => {
           return (
             <div key={index} style={{ marginBottom: "1rem" }}>
               <div className={styles.flex_between}>
-                <TitleBox
-                  label={"Field Header"}
-                  name={"fieldHeader"}
-                  value={inputfield.fieldHeader}
-                  index={index}
-                  inputUpdate={handleChangeInput}
-                ></TitleBox>
-                <TextArea
-                  label={"Field Description"}
-                  name={"fieldDescription"}
-                  value={inputfield.fieldDescription}
-                  index={index}
-                  inputUpdate={handleChangeInput}
-                ></TextArea>
+                <div className={styles.textBox_align}>
+                  <div className="flex">
+                    <TitleBox
+                      label={"Field Header"}
+                      name={"fieldHeader"}
+                      value={inputfield.fieldHeader}
+                      index={index}
+                      inputUpdate={handleChangeInput}
+                    ></TitleBox>
+                  </div>
+                  <div className="flex">
+                    <TextArea
+                      label={"Field Description"}
+                      name={"fieldDescription"}
+                      value={inputfield.fieldDescription}
+                      index={index}
+                      inputUpdate={handleChangeInput}
+                    ></TextArea>
+                  </div>
+                </div>
               </div>
-              <DeleteButton clickHandler={handleRemoveFields}></DeleteButton>
+              <DeleteButton
+                clickHandler={() => handleRemoveFields(index)}
+              ></DeleteButton>
             </div>
           );
         })}

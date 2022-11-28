@@ -55,3 +55,9 @@
 .add_field:hover{
     cursor: pointer;
 }
+
+.textBox_align{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

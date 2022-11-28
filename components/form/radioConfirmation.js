@@ -1,4 +1,11 @@
-const RadioConfirmation = ({ label, name, href, hyperlink, changeHandler }) => {
+const RadioConfirmation = ({
+  label,
+  name,
+  href,
+  hyperlink,
+  changeHandler,
+  isChecked,
+}) => {
   return (
     <div className="flex-together">
       <input
@@ -7,8 +14,11 @@ const RadioConfirmation = ({ label, name, href, hyperlink, changeHandler }) => {
         value="1"
         id={name}
         onChange={(e) => {
-          e.target.value === "1" ? changeHandler(true) : changeHandler(false);
-          console.log(e.target.value);
+          if (isChecked) {
+            changeHandler(false);
+          } else {
+            changeHandler(true);
+          }
         }}
       />
       <div className="flex-together">

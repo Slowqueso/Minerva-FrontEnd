@@ -9,8 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ConnectButton } from "web3uikit";
 import ENV from "../../../static_files/hostURL";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [profileModalVisibility, setProfileModalVisibility] = useState();
   const [user, setUser] = useState();
   useEffect(() => {
@@ -65,9 +67,20 @@ const Navbar = () => {
             ></ProfileModal>
           </div>
         ) : (
-          <Link href={"/login"}>
-            <h3 className={styles.link_text}>Login</h3>
-          </Link>
+          <>
+            {router ? (
+              <Link
+                href={router.pathname === "/login" ? "/register" : "/login"}
+              >
+                <h3 className={styles.link_text}>
+                  {router.pathname === "/login" ? "Sign Up" : "Login"}
+                </h3>
+              </Link>
+            ) : // <Link href={"login"}>
+            //   <h3 className={styles.link_text}>Login</h3>
+            // </Link>
+            null}
+          </>
         )}
       </div>
     </div>

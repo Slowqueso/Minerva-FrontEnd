@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,AAAA,UAAU,CAAA;EACN,KAAK,EAAC,GAAG;CACZ;;AACD,AAAA,YAAY,CAAA;EACR,MAAM,EAAE,GAAG;EACX,UAAU,EAAE,MAAM;EAClB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,wBAAwB;EACrC,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,aAAa,EAAE,MAAM;CACxB;;AACD,AAAA,eAAe,CAAA;EACX,OAAO,EAAE,MAAM;EACf,UAAU,EAAE,wBAAwB;CAEvC;;AACD,AAAA,cAAc,CAAA;EACV,MAAM,EAAE,QAAQ;CACnB",
     "sources": [
-        "login.module.scss"
+        "styles.module.scss"
     ],
     "names": [],
-    "file": "login.module.css"
+    "file": "styles.module.css"
 }

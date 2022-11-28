@@ -5,7 +5,7 @@ import Cards from "../../components/Cards/Cards";
 import axios from "axios";
 import ENV from "../../static_files/hostURL";
 
-const index = () => {
+const Index = () => {
   const [activities, setActivities] = useState();
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

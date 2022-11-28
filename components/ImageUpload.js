@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ImageUpload = ({ setFileName, setImageFile }) => {
+const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
   const [uploadedImage, setUploadedImage] = useState("");
 
   const imageHandler = (e) => {
@@ -17,6 +17,11 @@ const ImageUpload = ({ setFileName, setImageFile }) => {
       setImageFile(files[0]);
     }
   };
+  useEffect(() => {
+    if (preImage) {
+      setUploadedImage(preImage);
+    }
+  }, []);
   return (
     <>
       <label htmlFor="pic-inp" style={{ borderRadius: "50%" }}>

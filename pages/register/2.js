@@ -9,6 +9,7 @@ import ImageUpload from "../../components/ImageUpload";
 import SelectMenu from "../../components/form/SelectMenu";
 import occupations from "../../static_files/occupations.js";
 import ENV from "../../static_files/hostURL";
+import FormError from "../../components/form/formError";
 
 const DetailsForm = () => {
   const router = useRouter();
