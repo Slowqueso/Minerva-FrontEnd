@@ -1,10 +1,11 @@
-const SelectMenu = ({ objectArray, name, changeHandler, label }) => {
+const SelectMenu = ({ objectArray, name, changeHandler, label,value }) => {
   return (
     <div className="textOnInput">
       <label htmlFor={name} className="label f-12">
         {label}
       </label>
       <select
+      value={value}
         name={name}
         id={name}
         className="options-menu"

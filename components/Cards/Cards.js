@@ -51,13 +51,13 @@ const Card = ({ activity }) => {
               }
               title={activity.tags}
             ></Tag>
-            <Tag
+            {/* <Tag
               tagText={
                 spliceTag(activity.tags)[1].length > 5
                   ? `${spliceTag(activity.tags)[1].slice(0, 6)}..`
                   : spliceTag(activity.tags)[1]
               }
-            ></Tag>
+            ></Tag> */}
           </div>
         </div>
       </div>

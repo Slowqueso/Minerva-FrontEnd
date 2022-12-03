@@ -43,14 +43,16 @@ const CategoryTag = ({ categories, user }) => {
   );
 };
 
-const ActivityPreview = ({ setProgress, user }) => {
+const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
   const router = useRouter();
-  const [activity, setActivity] = useState();
+  // const [activity, setActivity] = useState();
   const activityId = router.query.activityId;
   const [errorMessage, setErrorMessage] = useState();
 
   const editActivity = () => {
-    router.push(`/create-activity/edit-activity/${activityId}`);
+    // router.push(`/create-activity/edit-activity/${activityId}`);
+    setProgress(0)
+    // decrementStatus(activityId, setProgress,0);
     // console.log("yes");
   };
 
@@ -129,6 +131,7 @@ const ActivityPreview = ({ setProgress, user }) => {
               setProgress(100);
             } else {
               setTimeout(() => setActivity(response.data.activity), 500);
+              
             }
           }
         })
@@ -189,11 +192,11 @@ const ActivityPreview = ({ setProgress, user }) => {
           </div>
           <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
             <div className="flex-end">
-              {/* <SubmitButton
+              <SubmitButton
                 label={"Edit Activity"}
-                isTransparent={true}
+                // isTransparent={true}
                 submitHandler={editActivity}
-              ></SubmitButton> */}
+              ></SubmitButton>
               <SubmitButton
                 label={"Deploy Activity"}
                 submitHandler={handleSubmit}

@@ -12,11 +12,12 @@ import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 import { Loading } from "web3uikit";
 import { useRouter } from "next/router";
+import incrementStatus from "../../../utils/api/incrementActivity";
 
-const ActivityDetails = ({ activity }) => {
+const ActivityDetails = ({ activity, setProgress }) => {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(null);
   const [imageFile, setImageFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [selectedLevel, setSelectedLevel] = useState(0);
@@ -29,9 +30,12 @@ const ActivityDetails = ({ activity }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async () => {
-    if (imageFile && fileName) {
+    if ((imageFile && fileName) || preImage)  {
       const formData = new FormData();
-      formData.append("activityLogo", imageFile, fileName);
+      if(imageFile && fileName){
+        formData.append("activityLogo", imageFile, fileName);
+      }
+      
       formData.append("title", title);
       formData.append("description", description);
       formData.append("selectedLevel", selectedLevel);
@@ -41,22 +45,41 @@ const ActivityDetails = ({ activity }) => {
       formData.append("categories", categories);
       try {
         // setLoader(true);
-        const res = await axios.post(
-          ENV.PROTOCOL +
-            ENV.HOST +
-            ENV.PORT +
-            "/activity/create-activity/create-draft",
-          formData,
-          {
-            headers: {
-              "Content-type": "multipart/form-data",
-              "x-access-token": localStorage.getItem("_USID"),
-            },
+        if (!activity) {
+          const res = await axios.post(
+            ENV.PROTOCOL +
+              ENV.HOST +
+              ENV.PORT +
+              "/activity/create-activity/create-draft",
+            formData,
+            {
+              headers: {
+                "Content-type": "multipart/form-data",
+                "x-access-token": localStorage.getItem("_USID"),
+              },
+            }
+          );
+          if (res.data.draftSaved) {
+            // setProgress(33);
+            router.push(`/create-activity/${res.data._id}`);
           }
-        );
-        if (res.data.draftSaved) {
-          // setProgress(33);
-          router.push(`/create-activity/${res.data._id}`);
+        } else {
+          const res = await axios.post(
+            ENV.PROTOCOL +
+              ENV.HOST +
+              ENV.PORT +
+              `/activity/upd-activity/${activity.id}`,
+            formData,
+            {
+              headers: {
+                "Content-type": "multipart/form-data",
+              },
+            }
+          );
+          if (res.data.draftSaved) {
+            setProgress(33);
+            router.push(`/create-activity/${res.data._id}`);
+          }
         }
       } catch (err) {
         setLoader(false);
@@ -68,14 +91,17 @@ const ActivityDetails = ({ activity }) => {
     }
   };
   useEffect(() => {
+    console.log(activity);
     if (activity) {
       setTitle(activity.title);
       setDescription(activity.description);
+      setDurationPeriod(activity.durationPeriod);
       setCategories(activity.categories);
       setSelectedLevel(activity.difficulty_level);
       setPreImage(activity.logo);
       setMemberLimit(activity.member_limit);
       setJoinPrice(activity.join_price);
+     
     }
   }, [activity]);
   return (
@@ -93,6 +119,7 @@ const ActivityDetails = ({ activity }) => {
                   label={"Activity Title"}
                   inputUpdate={setTitle}
                   name={"title"}
+                  value={title}
                 ></TextBox>
               </div>
               <div className={styles.tb_aligner}>
@@ -100,6 +127,7 @@ const ActivityDetails = ({ activity }) => {
                   label={"Activity Description"}
                   inputUpdate={setDescription}
                   name={"desc"}
+                  value={description}
                 ></TextArea>
               </div>
             </div>
@@ -107,6 +135,7 @@ const ActivityDetails = ({ activity }) => {
               <ImageUpload
                 setFileName={setFileName}
                 setImageFile={setImageFile}
+                preImage={preImage}
               ></ImageUpload>
             </div>
           </div>
@@ -116,11 +145,13 @@ const ActivityDetails = ({ activity }) => {
               label={"Difficulty Level"}
               changeHandler={setSelectedLevel}
               name={"level"}
+              value={selectedLevel}
             ></SelectMenu>
             <TextBox
               label={"Member Limit"}
               inputUpdate={setMemberLimit}
               name={"limit"}
+              value={memberLimit}
             ></TextBox>
           </div>
           <div className={styles.input_divider}>
@@ -128,11 +159,13 @@ const ActivityDetails = ({ activity }) => {
               label={"Duration Period (Months)"}
               inputUpdate={setDurationPeriod}
               name={"duration"}
+              value={durationPeriod}
             ></TextBox>
             <TextBox
               label={"Joining Price ($)"}
               inputUpdate={setJoinPrice}
               name={"price"}
+              value={joinPrice}
             ></TextBox>
           </div>
           <div className={styles.input_divider}>
@@ -140,6 +173,7 @@ const ActivityDetails = ({ activity }) => {
               label={"Category Tags"}
               inputUpdate={setCategories}
               name={"category"}
+              value={categories}
             ></TextBox>
           </div>
           {errorMessage ? (
@@ -155,6 +189,7 @@ const ActivityDetails = ({ activity }) => {
           </div>
         </form>
       )}
+      
     </div>
   );
 };

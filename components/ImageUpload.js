@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
   const [uploadedImage, setUploadedImage] = useState("");
-
+  
   const imageHandler = (e) => {
     const img = document.createElement("img");
     const imageURL = URL.createObjectURL(e.target.files[0]);
@@ -19,7 +19,8 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
   };
   useEffect(() => {
     if (preImage) {
-      setUploadedImage(preImage);
+      console.log(preImage);
+      
     }
   }, []);
   return (
@@ -34,18 +35,31 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
               justifyContent: "space-around",
             }}
           >
-            <img
-              style={{
-                width: "189px",
-                height: "auto",
-                margin: "auto",
-              }}
-              src={
-                uploadedImage ? uploadedImage : "/assets/default_profile.svg"
-              }
-              crossOrigin="anonymous"
-              className="unselectable"
-            />
+            {preImage ? (
+              <img
+                style={{
+                  width: "189px",
+                  height: "auto",
+                  margin: "auto",
+                }}
+                src={uploadedImage ? uploadedImage : preImage}
+                crossOrigin="anonymous"
+                className="unselectable"
+              />
+            ) : (
+              <img
+                style={{
+                  width: "189px",
+                  height: "auto",
+                  margin: "auto",
+                }}
+                src={
+                  uploadedImage ? uploadedImage : "/assets/default_profile.svg"
+                }
+                crossOrigin="anonymous"
+                className="unselectable"
+              />
+            )}
           </label>
 
           <div className="acc-user-profile-lens">
