@@ -200,3 +200,32 @@ section.form-only{
     font-family: var(--fs-poppins-200);
     border: none;
   }
+
+  .activity-assets{
+    position: relative;
+    border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
+    border-width: 2px;
+    border-style: dotted;
+    .acc-user-profile-lens{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0.432);
+        // display: flex;
+        align-items: center;
+        justify-content: space-around;
+        h3{
+            color: white;
+            font-size: 1;
+            font-family: var(--fs-poppins-200);
+        }
+        cursor: pointer;
+    }
+  }
+  .activity-assets:hover .acc-user-profile-lens{
+    display: flex;
+  }

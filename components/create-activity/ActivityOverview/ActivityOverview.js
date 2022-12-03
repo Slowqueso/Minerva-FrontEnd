@@ -12,15 +12,91 @@ import ENV from "../../../static_files/hostURL";
 import incrementStatus from "../../../utils/api/incrementActivity";
 import FormError from "../../form/formError";
 
+const FieldImage = ({ inputFields, index, setInputFields }) => {
+  const imageHandler = (e) => {
+    try {
+      const imageURL = URL.createObjectURL(e.target.files[0]);
+      const values = [...inputFields];
+      values[index][e.target.name] = imageURL;
+      setInputFields(values);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onFileUpload = (e) => {
+    const { files } = e.target;
+    console.log(files);
+    if (imageHandler(e)) {
+      const values = [...inputFields];
+      values[index]["imageFile"] = files[0];
+      values[index]["fileName"] = files[0].name;
+      setInputFields(values);
+    }
+  };
+
+  return (
+    <>
+      <label htmlFor={`pic-inp-${index}`} style={{ borderRadius: "50%" }}>
+        <div className="activity-assets">
+          <label
+            htmlFor={`pic-inp-${index}`}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
+            <img
+              style={{
+                width: "200px",
+                height: "200px",
+                margin: "auto",
+              }}
+              src={
+                inputFields[index].activityAsset
+                  ? inputFields[index].activityAsset
+                  : "/assets/ImageUpload.svg"
+              }
+              crossOrigin="anonymous"
+              className="unselectable"
+            />
+          </label>
+
+          <div className="acc-user-profile-lens">
+            <h3 className="lens-text unselectable f-16">Choose a Photo</h3>
+          </div>
+        </div>
+      </label>
+      <input
+        type="file"
+        name="activityAsset"
+        onChange={(e) => {
+          onFileUpload(e);
+          // imageHandler(e);
+        }}
+        id={`pic-inp-${index}`}
+        style={{ display: "none" }}
+      />
+    </>
+  );
+};
+
 const ActivityOverview = () => {
   const router = useRouter();
   const activityId = router.query.activityId;
+  const [progress, setProgress] = useState();
   const [inputFields, setInputFields] = useState([
-    { fieldHeader: "", fieldDescription: "" },
+    {
+      fieldHeader: "",
+      fieldDescription: "",
+      imageFile: "",
+      fileName: "",
+      activityAsset: "",
+    },
   ]);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const setProgress = () => {};
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
@@ -37,27 +113,74 @@ const ActivityOverview = () => {
 
   const handleAddFields = (e) => {
     e.preventDefault();
-    setInputFields([...inputFields, { fieldHeader: "", fieldDescription: "" }]);
+    setInputFields([
+      ...inputFields,
+      {
+        fieldHeader: "",
+        fieldDescription: "",
+        activityAsset: "",
+        fileName: "",
+        imageFile: "",
+      },
+    ]);
   };
-
-  const handleSubmit = () => {
+  const sendHeaderWithImage = (entry, index) => {
+    const formData = new FormData();
+    formData.append("activityAsset", entry.imageFile, entry.fileName);
+    formData.append("header", entry.fieldHeader);
+    formData.append("description", entry.fieldDescription);
+    formData.append("activityId", activityId);
+    formData.append("index", index);
     axios
-      .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-fields", {
-        id: activityId,
-        fields: inputFields,
-      })
-      .then((response) => {
-        incrementStatus(activityId, setProgress, 100, setErrorMessage);
-        router.push(`/my-activity/${activityId}`);
+      .post(
+        ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-fields",
+        formData
+      )
+      .then(async (response) => {
+        await new Promise((r) => setTimeout(r, 100));
+        // incrementStatus(activityId, setProgress, 100, setErrorMessage);
+        // router.push(`/my-activity/${activityId}`);
       })
       .catch((err) => {
         console.log(err);
+        return false;
       });
+    return true;
+  };
+
+  const handleSubmit = () => {
+    let flag = false;
+    inputFields.forEach((entry, index) => {
+      if (entry.fileName === "") {
+        axios
+          .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-fields", {
+            header: entry.fieldHeader,
+            description: entry.fieldDescription,
+            id: activityId,
+            index: index,
+          })
+          .then(async (response) => {
+            if (response) {
+              flag = true;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            return false;
+          });
+      } else {
+        flag = sendHeaderWithImage(entry, index);
+      }
+    });
+    if (flag) {
+      incrementStatus(activityId, setProgress, 100, setErrorMessage);
+      router.push(`/my-activity/${activityId}`);
+    }
   };
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.wrapper_title}>
-        Project Overview and Resources (Optional)
+        Activity Overview and Resources (Optional)
       </h1>
       <form className={styles.form_container}>
         {inputFields.map((inputfield, index) => {
@@ -83,6 +206,13 @@ const ActivityOverview = () => {
                       inputUpdate={handleChangeInput}
                     ></TextArea>
                   </div>
+                </div>
+                <div>
+                  <FieldImage
+                    index={index}
+                    inputFields={inputFields}
+                    setInputFields={setInputFields}
+                  ></FieldImage>
                 </div>
               </div>
               <DeleteButton
