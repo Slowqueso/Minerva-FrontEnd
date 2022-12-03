@@ -22,7 +22,13 @@ const TextArea = ({ label, name, inputUpdate, isPassword, value, index }) => {
           value={value}
           placeholder={isSelected ? "" : label}
           onChange={(e) => {
-            inputUpdate(index, e);
+            
+            if(index>=0){
+              inputUpdate(index, e);
+            }
+            else{
+              inputUpdate(e.target.value);
+            }
           }}
         />
       ) : (

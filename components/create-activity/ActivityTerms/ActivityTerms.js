@@ -110,7 +110,7 @@ const ActivityTerms = ({ setProgress }) => {
       <h1 className={styles.wrapper_title}>Add Terms and Conditions</h1>
       <form className={styles.form_container}>
         {inputFields.map((inputfield, index) => {
-          console.log(inputfield.termDescription);
+          
           return (
             <div key={index} style={{ marginBottom: "1rem" }}>
               <div className={styles.flex_between}>

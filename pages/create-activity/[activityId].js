@@ -71,6 +71,7 @@ const TimeLineGraph = ({ progress }) => {
 const CreateActivity = () => {
   const [progress, setProgress] = useState(33);
   const [user, setUser] = useState();
+  const [activity, setActivity] = useState();
   useEffect(() => {
     const token = localStorage.getItem("_USID");
     if (token) {
@@ -106,6 +107,7 @@ const CreateActivity = () => {
               setProgress={setProgress}
               user={user}
               progress={progress}
+              activity={activity}
             ></ActivityDetails>
           ) : (
             <FormError
@@ -118,7 +120,7 @@ const CreateActivity = () => {
       ) : null}
 
       {progress >= 33 && progress < 66 ? (
-        <ActivityPreview setProgress={setProgress} user={user} />
+        <ActivityPreview activity={activity} setActivity={setActivity} setProgress={setProgress} user={user} />
       ) : null}
       {progress >= 66 && progress < 100 ? (
         <ActivityTerms setProgress={setProgress}></ActivityTerms>
