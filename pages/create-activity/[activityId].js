@@ -62,7 +62,7 @@ const TimeLineGraph = ({ progress }) => {
         >
           <h3>4</h3>
         </div>
-        <h2>Activity Preview</h2>
+        <h2>Activity Overview</h2>
       </li>
     </ul>
   );
@@ -120,7 +120,12 @@ const CreateActivity = () => {
       ) : null}
 
       {progress >= 33 && progress < 66 ? (
-        <ActivityPreview activity={activity} setActivity={setActivity} setProgress={setProgress} user={user} />
+        <ActivityPreview
+          activity={activity}
+          setActivity={setActivity}
+          setProgress={setProgress}
+          user={user}
+        />
       ) : null}
       {progress >= 66 && progress < 100 ? (
         <ActivityTerms setProgress={setProgress}></ActivityTerms>

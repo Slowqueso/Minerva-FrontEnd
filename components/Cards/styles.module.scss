@@ -7,51 +7,82 @@
     width: 100%;
     margin: auto;
     // border: 1px solid white;
+    --card-height: 325px;
     .card{
-        margin: 0rem 3rem 2rem 1.5rem;
+        margin: 0rem 1rem 2rem 1.5rem;
         border-radius: 9px 9px 0px 0px;
         position: relative;
         overflow: hidden;
-        width: 310px;
-        height: 325px;
+        width: 261px;
+        height: var(--card-height);
         display: flex;
         flex-direction: column;
         background: #1c1c1c;
-        img{
+        --image-height: 200px;
+        transition: 200ms ease;
+        // padding-bottom: 1rem;
+        .activity_logo{
+            transition: 200ms ease;
             // object-fit: contain;
-            width: 310px;
+            width: 100%;
             // border: 1px solid white;
-            height: 200px;
+            transition-delay: 200ms;
+            height: var(--image-height);
         }
         .inner_container{
-            padding: 1rem;
+            background-color: #1C1C1C;
+            // border: 1px solid white;
+            padding: 0.75rem 1rem 0rem 1rem;
+            transition: 200ms ease;
+            transition-delay: 200ms;
+            max-height: calc(var(--card-height) - var(--image-height) - 1rem);
+            overflow: hidden;
         }
         .layer{
-            transition: 0.2s ease-out;
             position: absolute;
             display: none;
+            transition: 200ms ease;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.562);
             justify-content: center;
             align-items: center;
-            .icon{
-                border-radius: 100%;
-                background-color: #1d1d1d;
-                padding: 0.75rem;
-                margin: 1rem;
-            }
-            .icon:hover{
-                background-color: #3a3a3a;
-            }
+        
         }
     }
     .card:hover{
-        .layer{
-            display: flex;
+        // border: 2px solid white;
+        // .layer{
+        //     display: flex;
+        // }
+        // .layer:hover{
+        //     // cursor: pointer;
+        //     background-color: rgba(0, 0, 0, 0.562);
+        // }
+        .activity_logo{
+            opacity: 0;
         }
-
+        .inner_container{
+            min-height: calc(var(--card-height));
+            // border: 1px solid red;
+            // overflow: auto;
+            transform: translateY(calc(-1*var(--image-height)));
+        }
     }
+
+}
+.icon{
+    border-radius: 100%;
+    background-color: #1d1d1d;
+    padding: 0.75rem;
+    width: fit-content;
+    transition: 200ms ease;
+    // margin: 1rem;
+    margin: auto;
+}
+.icon:hover{
+    cursor: pointer;
+    background-color: #3a3a3a;
 }
 .tags{
     display: flex;
@@ -87,12 +118,14 @@
     font-family: var(--fs-poppins-200);
     font-size: 12px;
     font-weight: 100;
-    max-width: 20ch;
+    // max-width: 20ch;
+    // border: 1px solid white;
 }
 .activity_title{
     color: white;
     font-weight: 100;
     font-family: var(--fs-poppins-200);
+    // font-size: 16px;
 }
 
 .loader{
@@ -100,4 +133,102 @@
     height: 80vh;
     display: flex;
     justify-content: center;
+}
+
+.cardv2{
+    --padding: 0.5rem;
+    height: 298px;
+    display: flex;
+    width: 261px;
+    padding: var(--padding);
+    background: #111111;
+    border: 2px solid #555555;
+    overflow: hidden;
+    margin: 0rem 1rem 2rem 1rem;
+    .cardv2_inner{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size:100%;
+        background-position: center;
+        background-color: #ffffff;
+        // background-color: transparent;
+        .content{
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.37) 24.03%, rgba(0, 0, 0, 0.9) 100%);
+            width: 100%;
+            padding: var(--padding);
+            padding-top: 3rem;
+            transform: translateY(11rem);
+            opacity: 0;
+            transition: 500ms ease;
+            .title{
+                position: relative;
+                font-size: 20px;
+                font-family: var(--fs-poppins-400);
+                color: white;
+                margin: 0px;
+                width: max-content;
+                text-shadow: #111111 0px 0px 10px;
+            }
+            .title::after{
+                content: "";
+                position: absolute;
+                width: calc(100% + var(--padding)*2);
+                height: 3px;
+                background: var(--palette-hot-pink);
+                left: calc(-2*var(--padding));
+                bottom: -0.5rem;
+                margin: 0.5rem 0px;
+                transition: 500ms ease;
+                transition-delay: 500ms;
+                transform-origin: left;
+                transform: scaleX(0);
+            }
+            .desc{
+                margin: calc(2*var(--padding)) 0rem;
+                color: rgba(255, 255, 255, 0.85);
+                font-family: var(--fs-inter-400);   
+                font-size: 14px;
+            }
+            button{
+                padding: 0.4rem 0.75rem;
+                outline: none;
+                border: none;
+                border-radius: 0.2rem;
+                font-size: 11px;
+            }
+            button:nth-child(1){
+                background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
+            }
+            button:nth-child(1):hover{
+                cursor: pointer;
+                background: linear-gradient(90deg, #C93232 -14.67%, #C34BD7 16.86%, #C898DF 46.5%, #D763CB 82.45%, #D25151 105.16%);
+            }
+            button:nth-child(2){
+                background: #1C1C1C;
+                border: 1px solid #555555;
+                color: #BEBEBE;
+            }
+            button:nth-child(2):hover{
+                cursor: pointer;
+                background: #2C2C2C;
+                border: 1px solid #555555;
+                color: #BEBEBE;
+            }
+        }
+    }
+}
+.cardv2:hover{
+    .cardv2_inner{
+        .content{
+            transform: translateY(0rem);
+            opacity: 1;
+            .title::after{
+                transform: scaleX(1);
+            }
+        }
+    }
 }

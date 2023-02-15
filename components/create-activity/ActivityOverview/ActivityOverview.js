@@ -137,7 +137,7 @@ const ActivityOverview = () => {
         formData
       )
       .then(async (response) => {
-        await new Promise((r) => setTimeout(r, 100));
+        console.log(response);
         // incrementStatus(activityId, setProgress, 100, setErrorMessage);
         // router.push(`/my-activity/${activityId}`);
       })

@@ -50,14 +50,37 @@ const Overview = () => {
       {activity ? (
         <>
           <section className={styles.content_container}>
-            <h3>About Activity</h3>
-            <h4 className={styles.desc}>{activity.desc}</h4>
+            <div>
+              <h3>About Activity</h3>
+              <p className={styles.desc}>{activity.desc}</p>
+            </div>
           </section>
           {activity.fields.map((field, index) => {
             return (
               <section className={styles.content_container} key={index}>
-                <h3>{field.fieldHeader}</h3>
-                <h4>{field.fieldDescription}</h4>
+                <div>
+                  <h3>{field.fieldHeader}</h3>
+                  <p>{field.fieldDescription}</p>
+                </div>
+                {field.imageFile ? (
+                  <Link
+                    href={`${
+                      ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/" + field.imageFile
+                    }`}
+                  >
+                    <a target="_blank">
+                      <img
+                        src={`${
+                          ENV.PROTOCOL +
+                          ENV.HOST +
+                          ENV.PORT +
+                          "/" +
+                          field.imageFile
+                        }`}
+                      ></img>
+                    </a>
+                  </Link>
+                ) : null}
               </section>
             );
           })}

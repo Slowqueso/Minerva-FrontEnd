@@ -12,17 +12,10 @@ const Tag = CategoryTag;
 const Card = ({ activity }) => {
   return (
     <div className={styles.card}>
-      <div className={styles.layer}>
-        <Link href={`/explore/${activity.id}/overview`}>
-          <div className={styles.icon}>
-            <FontAwesomeIcon icon={faEye} color={"white"}></FontAwesomeIcon>
-          </div>
-        </Link>
-        <div className={styles.icon}>
-          <FontAwesomeIcon icon={faFlag} color={"white"}></FontAwesomeIcon>
-        </div>
-      </div>
-      <img src={activity.logo} alt="" />
+      {/* <div className={styles.layer}>
+        
+      </div> */}
+      <img src={activity.logo} className={styles.activity_logo} alt="" />
       <div className={styles.inner_container}>
         <div className={styles.space_between}>
           <h3 className={styles.activity_title}>
@@ -32,17 +25,18 @@ const Card = ({ activity }) => {
           </h3>
           <Tag
             tagText={`$${activity.join_price}`}
-            fontSize={"16px"}
+            fontSize={"12px"}
             title={"Joining Price"}
           ></Tag>
         </div>
         <div className={styles.space_between} style={{ marginBottom: `0px` }}>
           <h4 title={activity.desc} className={styles.activity_desc}>
             {activity.desc.length > 40
-              ? `${activity.desc.slice(0, 40)}...`
+              ? `${activity.desc.slice(0, 160)}...`
               : activity.desc}
           </h4>
-          <div className={styles.tags} title={"Activity Tags"}>
+
+          {/* <div className={styles.tags} title={"Activity Tags"}>
             <Tag
               tagText={
                 spliceTag(activity.tags)[0].length > 5
@@ -51,13 +45,47 @@ const Card = ({ activity }) => {
               }
               title={activity.tags}
             ></Tag>
-            {/* <Tag
-              tagText={
-                spliceTag(activity.tags)[1].length > 5
-                  ? `${spliceTag(activity.tags)[1].slice(0, 6)}..`
-                  : spliceTag(activity.tags)[1]
-              }
-            ></Tag> */}
+          </div> */}
+        </div>
+        <Link href={`/explore/${activity.id}/overview`}>
+          <div className={styles.icon}>
+            <FontAwesomeIcon icon={faEye} color={"white"}></FontAwesomeIcon>
+          </div>
+        </Link>
+        <div className={styles.icon}>
+          <FontAwesomeIcon icon={faFlag} color={"white"}></FontAwesomeIcon>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Cardv2 = ({ activity }) => {
+  return (
+    <div className={styles.cardv2}>
+      <div
+        className={styles.cardv2_inner}
+        style={{
+          backgroundImage: `url(${activity.logo})`,
+        }}
+      >
+        <div className={styles.content}>
+          <h3 className={styles.title}>{activity.title}</h3>
+          <p className={styles.desc}>
+            {activity.desc.length > 40
+              ? `${activity.desc.slice(0, 80)}...`
+              : activity.desc}
+          </p>
+          <Tag
+            tagText={`$${activity.join_price}`}
+            fontSize={"12px"}
+            title={"Joining Price"}
+          ></Tag>
+          <div className="space-between">
+            <Link href={`/explore/${activity.id}/overview`}>
+              <button>Learn More</button>
+            </Link>
+            <button>Flag It</button>
           </div>
         </div>
       </div>

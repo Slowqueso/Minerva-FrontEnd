@@ -2,7 +2,7 @@ import Logo from "../../Logo/Logo";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import ProfileModal from "../../profileModal/Modal";
+import ProfileModal, { Modalv2 } from "../../profileModal/Modal";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
