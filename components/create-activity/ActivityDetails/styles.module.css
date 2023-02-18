@@ -4,53 +4,30 @@
   width: 50%;
   padding: 2rem 2rem 2rem 0rem;
 }
-
 .form_container .flex_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
 }
-
 .form_container .flex_container .inner_container {
   margin: 2rem;
   width: 100%;
 }
-
 .form_container .flex_container .inner_container .tb_aligner {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1rem;
 }
 
 .input_divider {
   margin-left: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flex_end {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-end;
   margin-left: 2rem;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

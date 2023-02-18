@@ -48,7 +48,7 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
   // const [activity, setActivity] = useState();
   const activityId = router.query.activityId;
   const [errorMessage, setErrorMessage] = useState();
-
+  const [button, setButton] = useState(false);
   const editActivity = () => {
     // router.push(`/create-activity/edit-activity/${activityId}`);
     setProgress(0)
@@ -102,9 +102,12 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
     });
   };
   const handleSubmit = async () => {
+    console.log("first")
+    setButton(true);
     const response = await createActivity({
       onSuccess: handleSuccess,
-      onError: (error) => console.log(error),
+      onError: (error) => {console.log(error);
+      setButton(false);},
     });
     console.log(response);
   };
@@ -198,6 +201,7 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
                 submitHandler={editActivity}
               ></SubmitButton>
               <SubmitButton
+                isDisabled={button}
                 label={"Deploy Activity"}
                 submitHandler={handleSubmit}
               ></SubmitButton>

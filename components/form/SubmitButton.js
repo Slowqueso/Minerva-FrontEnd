@@ -1,8 +1,9 @@
-const SubmitButton = ({ label, iconSrc, submitHandler, isTransparent }) => {
+const SubmitButton = ({ label, iconSrc, submitHandler, isTransparent ,isDisabled}) => {
   return (
     <>
       <button
         type="submit"
+        disabled={isDisabled ? true : false}
         className="submit-button"
         style={
           isTransparent

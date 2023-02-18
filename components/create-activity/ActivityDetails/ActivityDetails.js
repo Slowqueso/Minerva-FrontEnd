@@ -28,9 +28,86 @@ const ActivityDetails = ({ activity, setProgress }) => {
   const [loader, setLoader] = useState(false);
   const [preImage, setPreImage] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+  
+  
+  const handleValidation = () => {
+    
+    if (!title || !description || !selectedLevel || !memberLimit || !durationPeriod || !joinPrice || !categories ) {
+      
+      return "Please fill all the fields";
+    }
+    
+    let error={
+      title: "",
+      description: "",
+      categories: "",
+      durationPeriod: "",
+      selectedLevel: "",
+      memberLimit: "",
+      joinPrice: "",
+      ifImage: "",
+      
+    }
+    //title validation
+    if (!title.trim()) {
+      error.title= "Title is required";
+    } else {
+      error.title = null;
+    }
+    
+    //description validation
+    if (!description.trim()) {
+      error.description= "Description is required";
+    } else {
+      error.description = null;
+    }
+
+    if(!categories.trim()){
+      error.categories= "Categories is required";
+    }else{
+      error.categories = null;
+    }
+
+    //wheter member limit is a number
+    if (isNaN(memberLimit)) {
+      error.memberLimit= "Member limit must be a number";
+    } else {
+      error.memberLimit = null;
+    }
+
+    //wheter duration period is a number
+    if (isNaN(durationPeriod)) {
+      error.durationPeriod= "Duration period must be a number";
+    } else {
+      error.durationPeriod = null;
+    }
+
+    //wheter join price is a number
+    if (isNaN(joinPrice)) {
+      error.joinPrice= "Join price must be a number";
+    } else {   
+      error.joinPrice = null;
+    }
+
+    //wheter image is uploaded
+    
+    if(preImage){
+      error.ifImage = null;
+    } 
+    else if (!imageFile || !fileName) {
+      error.ifImage= "Image is required";
+    }
+
+    else {
+      error.ifImage = null;
+    }
+
+    return error.title || error.description || error.categories || error.durationPeriod || error.memberLimit || error.joinPrice || error.ifImage;
+  };
 
   const handleSubmit = async () => {
-    if ((imageFile && fileName) || preImage)  {
+    
+    if (((imageFile && fileName) || preImage) && !handleValidation())  {
       const formData = new FormData();
       if(imageFile && fileName){
         formData.append("activityLogo", imageFile, fileName);
@@ -73,6 +150,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
             {
               headers: {
                 "Content-type": "multipart/form-data",
+                "x-access-token": localStorage.getItem("_USID"),
               },
             }
           );
@@ -87,11 +165,11 @@ const ActivityDetails = ({ activity, setProgress }) => {
         console.log(err);
       }
     } else {
-      setErrorMessage("Upload an Image");
+      setErrorMessage(handleValidation());
     }
   };
   useEffect(() => {
-    console.log(activity);
+    
     if (activity) {
       setTitle(activity.title);
       setDescription(activity.description);

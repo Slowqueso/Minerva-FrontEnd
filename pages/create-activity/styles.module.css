@@ -1,19 +1,13 @@
 .timeline_container {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   position: relative;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   color: #fff;
 }
-
 .timeline_container div {
   width: 100%;
 }
@@ -23,12 +17,8 @@
   list-style: none;
   position: absolute;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .node_container:hover h2 {
@@ -42,41 +32,25 @@
 }
 
 .node_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  flex-direction: column;
 }
-
 .node_container h2 {
   display: none;
   position: absolute;
   color: white;
 }
-
 .node_container .node {
   width: 55px;
   height: 55px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  align-items: center;
+  justify-content: space-around;
   border-radius: 50%;
 }
-
 .node_container .node h3 {
   color: white;
   font-weight: 300;
   cursor: default;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */
