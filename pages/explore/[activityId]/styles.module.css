@@ -1,16 +1,11 @@
 .activity_profile {
   width: 85%;
   margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
-
 .activity_profile .activity_logo {
   height: 290px;
   min-width: 290px;
@@ -18,32 +13,25 @@
   border-radius: 50%;
   margin-right: 2rem;
 }
-
 .activity_profile .inner_container {
   width: 100%;
 }
-
 .activity_profile .inner_container .activity_title {
   font-size: 52px;
   color: white;
   font-weight: 500;
   margin: 0px;
 }
-
 .activity_profile .inner_container .label_text {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-right: 2.5rem;
 }
-
 .activity_profile .inner_container .label_text h3 {
   color: white;
   font-size: 26px;
   font-weight: 200;
   margin-right: 0.5rem;
 }
-
 .activity_profile .inner_container .label_text h4 {
   color: #B2B2B2;
   font-size: 16px;
@@ -54,60 +42,40 @@
 .centralise {
   width: 100%;
   height: 80vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .flex_align {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .flex_end {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .view_tab {
   width: 85%;
   margin: auto;
   border-bottom: 1px solid #1c1c1c;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
 }
-
 .view_tab .view_nav {
   padding: 0.75rem;
   width: 100%;
   text-align: center;
-  -webkit-transform: 0.3s ease-in;
-          transform: 0.3s ease-in;
+  transform: 0.3s ease-in;
 }
-
 .view_tab .view_nav h3 {
   margin: 0px;
   font-weight: 200;
   color: white;
   font-size: 14px;
 }
-
 .view_tab .view_nav:hover {
   cursor: pointer;
   background: rgba(103, 103, 103, 0.06);
@@ -163,107 +131,78 @@
   width: 85%;
   padding: 1rem;
 }
-
 .terms_container .terms_page {
   background: white;
   margin: 0px;
   padding: 4rem 6rem;
 }
-
 .terms_container .terms_page h3, .terms_container .terms_page h4, .terms_container .terms_page h2 {
   margin: 0px;
 }
-
 .terms_container .terms_page .header .logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .terms_container .terms_page .header .logo h3 {
   font-size: 24px;
   font-family: var(--fs-montserrat-300);
 }
-
 .terms_container .terms_page .header .logo img {
   height: 28px;
   width: 28px;
 }
-
 .terms_container .terms_page .header .title {
   font-size: 32px;
   margin: auto;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   font-family: var(--fs-montserrat-300);
   font-weight: 600;
   margin: 1.5rem auto;
 }
-
 .terms_container .terms_page .header .date {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
-
 .terms_container .terms_page .header .date h3 {
   font-family: var(--fs-montserrat-300);
   font-weight: 500;
 }
-
 .terms_container .terms_page .body p {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 16px;
   font-weight: 100;
 }
-
 .terms_container .terms_page .body h4 {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 20px;
   margin: 1.5rem 0rem;
 }
-
 .terms_container .terms_page .body .term h3 {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: lighter;
 }
-
 .terms_container .terms_page .body .term p {
   margin-bottom: 2.5rem;
 }
-
 .terms_container .terms_page .footer h3 {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 20px;
   margin: 1.5rem 0rem;
 }
-
 .terms_container .terms_page .footer .addresses {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 0.5rem 0rem;
 }
-
 .terms_container .terms_page .footer .addresses h3 {
   font-size: 16px;
   margin: 0px;
   margin-right: 1rem;
 }
-
 .terms_container .terms_page .footer .addresses h4 {
   font-weight: 200;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .button_text {

@@ -1,0 +1,22 @@
+.account_navbar{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 2em;
+    background-color: var(--palette-gradient-grey);
+    padding: 45px;
+    img{
+        width: 118px;
+        height: 118px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+    }
+    a{
+        width:fit-content;
+        margin: 0.6em;
+        color: var(--palette-medium-grey);
+        font-weight: bold;
+    }
+}

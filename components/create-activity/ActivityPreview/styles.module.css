@@ -1,6 +1,5 @@
 .wrapper {
   margin: auto;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   min-width: 40%;
@@ -10,12 +9,8 @@
 }
 
 .flex_wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -27,14 +22,9 @@
   -o-object-fit: fill;
      object-fit: fill;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 .activity_logo img {
   width: auto;
   height: 198px;
@@ -48,7 +38,6 @@
   margin: 1.5rem 0rem;
   min-width: 20ch;
 }
-
 .labelText_wrapper .title {
   font-family: var(--fs-montserrat-300);
   font-weight: 1200;
@@ -56,7 +45,6 @@
   color: #727272;
   margin: 0px;
 }
-
 .labelText_wrapper .content_text {
   font-size: 16px;
   color: white;
@@ -66,32 +54,22 @@
 }
 
 .tag_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 5px 0.5rem 0rem 0rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 5px 7px;
   background: var(--palette-darker-grey);
   border-radius: 3px;
 }
-
 .tag_container .content_text {
   font-size: 12px;
 }
 
 .error_loader {
   margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  align-items: center;
+  justify-content: space-around;
   padding: 3rem;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */
