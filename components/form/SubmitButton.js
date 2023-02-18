@@ -12,6 +12,7 @@ const SubmitButton = ({ label, iconSrc, submitHandler, isTransparent ,isDisabled
                 border: `1px solid #3A3A3A`,
                 color: `white`,
                 margin: "1rem 1rem",
+                marginLeft: "0px",
               }
             : null
         }

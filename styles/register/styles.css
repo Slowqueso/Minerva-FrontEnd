@@ -103,7 +103,9 @@ section.form-only {
 
 .submit-button {
   padding: 0.5rem 2.5rem;
-  transition: 0.3s ease-out;
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+  background: -webkit-gradient(linear, left top, right top, color-stop(-14.67%, #FF5858), color-stop(16.86%, #EC7AFF), color-stop(46.5%, #F0CFFF), color-stop(82.45%, rgba(243, 141, 233, 0.88)), color-stop(105.16%, #FF7878));
   background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
   outline: none;
   border: none;
@@ -195,4 +197,43 @@ section.form-only {
   color: white;
   font-family: var(--fs-poppins-200);
   border: none;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+.activity-assets {
+  position: relative;
+  -o-border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
+     border-image: -webkit-gradient(linear, left top, right top, from(#AD26EC), color-stop(#B660DE), color-stop(#FFD3F5), to(#E01FFF)) 30;
+     border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
+  border-width: 2px;
+  border-style: dotted;
+}
+
+.activity-assets .acc-user-profile-lens {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.432);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  cursor: pointer;
+}
+
+.activity-assets .acc-user-profile-lens h3 {
+  color: white;
+  font-size: 1;
+  font-family: var(--fs-poppins-200);
+}
+
+.activity-assets:hover .acc-user-profile-lens {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=styles.css.map */

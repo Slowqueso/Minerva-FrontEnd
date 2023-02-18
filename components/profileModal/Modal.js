@@ -24,7 +24,7 @@ const Modal = ({ modalVisibility, setModalVisibility, user }) => {
               src={
                 user.profile_pic
                   ? user.profile_pic
-                  : "./assets/default_profile.svg"
+                  : "/assets/default_profile.svg"
               }
             />
             <Link href={"/account/id"}>
@@ -47,6 +47,24 @@ const Modal = ({ modalVisibility, setModalVisibility, user }) => {
         <Loading />
       )}
     </div>
+  );
+};
+
+export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
+  return (
+    <div
+      style={modalVisibility}
+      onMouseOver={() => {
+        setModalVisibility({ display: "flex" });
+      }}
+      onMouseLeave={() => {
+        setTimeout(() => {
+          setModalVisibility({ display: "flex" });
+        }, 800);
+      }}
+      className={styles.profile_modal}
+      id="exception"
+    ></div>
   );
 };
 

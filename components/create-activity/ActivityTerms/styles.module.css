@@ -5,11 +5,19 @@
   padding: 1rem;
 }
 .wrapper .wrapper_title {
-  color: var(--palette-light-grey);
-  font-family: var(--fs-montserrat-300);
-  font-weight: 300;
+  font-family: var(--fs-poppins-400);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 63px;
+  background: -webkit-gradient(linear, left top, right top, from(#D47AFF), color-stop(21.66%, #FF78BD), color-stop(52.22%, #FFFBFC), color-stop(74.33%, #FF79E2));
+  background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-left: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .wrapper .form_container {
   max-height: 50vh;

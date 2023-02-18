@@ -109,7 +109,7 @@ section.form-only{
 
 .submit-button{
     padding: 0.5rem 2.5rem;
-    transition: 0.3s ease-out;
+    transition: 200ms ease;
     // background: var(--palette-text-green);
     background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
     outline: none;
@@ -199,4 +199,33 @@ section.form-only{
     color: white;
     font-family: var(--fs-poppins-200);
     border: none;
+  }
+
+  .activity-assets{
+    position: relative;
+    border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
+    border-width: 2px;
+    border-style: dotted;
+    .acc-user-profile-lens{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0.432);
+        // display: flex;
+        align-items: center;
+        justify-content: space-around;
+        h3{
+            color: white;
+            font-size: 1;
+            font-family: var(--fs-poppins-200);
+        }
+        cursor: pointer;
+    }
+  }
+  .activity-assets:hover .acc-user-profile-lens{
+    display: flex;
   }

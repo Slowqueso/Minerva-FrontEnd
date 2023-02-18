@@ -43,7 +43,7 @@ const CategoryTag = ({ categories, user }) => {
   );
 };
 
-const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
+const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
   const router = useRouter();
   // const [activity, setActivity] = useState();
   const activityId = router.query.activityId;
@@ -51,7 +51,7 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
   const [button, setButton] = useState(false);
   const editActivity = () => {
     // router.push(`/create-activity/edit-activity/${activityId}`);
-    setProgress(0)
+    setProgress(0);
     // decrementStatus(activityId, setProgress,0);
     // console.log("yes");
   };
@@ -134,7 +134,6 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
               setProgress(100);
             } else {
               setTimeout(() => setActivity(response.data.activity), 500);
-              
             }
           }
         })
@@ -194,10 +193,10 @@ const ActivityPreview = ({activity, setActivity, setProgress, user }) => {
             <CategoryTag categories={activity.categories}></CategoryTag>
           </div>
           <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
-            <div className="flex-end">
+            <div className="space-between">
               <SubmitButton
                 label={"Edit Activity"}
-                // isTransparent={true}
+                isTransparent={true}
                 submitHandler={editActivity}
               ></SubmitButton>
               <SubmitButton

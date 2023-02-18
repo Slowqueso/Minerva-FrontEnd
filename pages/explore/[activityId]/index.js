@@ -13,6 +13,7 @@ import { useNotification } from "web3uikit";
 import getNumericDate from "../../../utils/dateConverter";
 import { ethers } from "ethers";
 import convertUsdToETH from "../../../utils/usdConverter";
+import Link from "next/link";
 
 const ActivityProfile = () => {
   const router = useRouter();
@@ -136,6 +137,7 @@ const ActivityProfile = () => {
               })
               .then((response) => {
                 if (response.data.authenticated) {
+                  console.log(response);
                   setUser(response.data.user);
                 }
               })
@@ -156,6 +158,20 @@ const ActivityProfile = () => {
           <img src={activity.logo} alt="" className={styles.activity_logo} />
           <div className={styles.inner_container}>
             <h3 className={styles.activity_title}>{activity.title}</h3>
+            <div className={styles.activity_owner}>
+              <img
+                src={
+                  activity.owner.profile_pic
+                    ? activity.owner.profile_pic
+                    : "/assets/default_profile.svg"
+                }
+                height={"30px"}
+                width={"30px"}
+              ></img>
+              <Link href={`/user-profile/${activity.owner.id}`}>
+                <h3>{activity.owner.username}</h3>
+              </Link>
+            </div>
             <div className={styles.flex_align}>
               <div className={`${styles.label_text} flex`}>
                 <h3>{activity.upVotes}</h3>

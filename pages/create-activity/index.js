@@ -61,7 +61,7 @@ const TimeLineGraph = ({ progress }) => {
         >
           <h3>4</h3>
         </div>
-        <h2>Activity Preview</h2>
+        <h2>Activity Overview</h2>
       </li>
     </ul>
   );
