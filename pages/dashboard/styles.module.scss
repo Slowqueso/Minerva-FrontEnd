@@ -1,0 +1,23 @@
+.section{
+    width: 95%;
+    margin: auto;
+    max-height: 92vh;
+    // height: 100%;
+    overflow: hidden;
+    // border: 1px solid white;
+    .center_loader{
+        // border: 1px solid white;
+        width: 100%;
+        margin-left: 2rem;
+        display: flex;
+        justify-content: center;
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .nav_map{
+        color: #909090;
+        font-family: var(--fs-montserrat-300);
+        font-weight: 200;
+    }
+}
+

@@ -1,1 +1,38 @@
-/* No CSS *//*# sourceMappingURL=styles.module.css.map */
+.dashboard_nav {
+  width: 15rem;
+  padding: 2rem;
+  padding-top: 1rem;
+  background-color: #1B1B1B;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.dashboard_nav .nav_list {
+  padding: 0;
+}
+
+.dashboard_nav .nav_list .nav_item_header {
+  font-family: var(--fs-inter-400);
+  color: #595959;
+  margin: 0px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 1.5rem;
+}
+
+.dashboard_nav .nav_list .nav_item {
+  margin: 0rem 0 0.5rem 0;
+  font-family: var(--fs-inter-400);
+  font-size: 16px;
+  color: white;
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+}
+
+.dashboard_nav .nav_list .nav_item:hover {
+  cursor: pointer;
+  color: var(--palette-medium-grey);
+}
+/*# sourceMappingURL=styles.module.css.map */
