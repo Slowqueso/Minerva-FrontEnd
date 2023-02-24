@@ -188,6 +188,7 @@ const AddProfile = () => {
           <div className={styles.add_profile}>
             <h1>Add Profile</h1>
 
+
             <button className={styles.dropdownBtn} onClick={toggleStudentForm}>
               <h3>Student Profile</h3>
               <span className={`${styles.arrow} ${isStudentOpen ? styles.active : ""}`}><h3>&#9662;</h3></span>
@@ -259,6 +260,7 @@ const AddProfile = () => {
                 />
               </form>
             </div>
+
 
             <button className={styles.dropdownBtn} onClick={toggleJobForm}>
               <h3>Job Profile</h3>
