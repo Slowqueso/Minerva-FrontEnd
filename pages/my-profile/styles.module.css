@@ -6,8 +6,8 @@
   padding: 2rem;
 }
 .my_profile h1 {
-  font-family: var(--fs-inter-600);
-  font-weight: 600;
+  font-family: var(--fs-inter-400);
+  font-weight: bold;
   background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -23,6 +23,7 @@
 }
 .my_profile .account_overview {
   width: 100%;
+  padding: 2rem;
 }
 .my_profile .account_overview table {
   width: 80%;
@@ -201,6 +202,14 @@
   padding: 0px;
   height: -moz-max-content;
   height: max-content;
+  display: flex;
+  align-items: center;
+}
+.add_profile .arrow {
+  transition: transform 0.3s;
+}
+.add_profile .arrow.active {
+  transform: rotate(180deg);
 }
 .add_profile .dropdownForm {
   display: none;

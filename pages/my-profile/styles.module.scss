@@ -7,12 +7,13 @@
     height: 100%;
     padding: 2rem;
     h1{
-        font-family: var(--fs-inter-600);
-        font-weight: 600;
+        font-family: var(--fs-inter-400);
+        font-weight: bold;
         background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        
         font-size: 2.5em;
         margin: 0px;
     }
@@ -25,7 +26,7 @@
     }
     .account_overview{
         width: 100%;
-        
+        padding: 2rem;
         table{
             width: 80%;
             border-collapse: collapse;
@@ -214,9 +215,16 @@
         margin: 0px;
         padding: 0px;
         height: max-content;
-       
+       display: flex;
+       align-items: center;
       }
+      .arrow {
+        transition: transform 0.3s;
       
+        &.active {
+          transform: rotate(180deg);
+        }
+      }
       .dropdownForm {
         display: none;
         transition: opacity 0.3s, max-height 0.3s;

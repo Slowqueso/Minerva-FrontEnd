@@ -43,9 +43,27 @@ const Login = () => {
         password,
       })
       .then((response) => {
-        if (response.data.status === "ok") {
+        if (
+          response.data.status === "ok" &&
+          response.data.email_auth === false
+        ) {
           localStorage.setItem("_USID", response.data.user);
           router.push("/explore");
+        } else if (response.data.status === "ok" && response.data.email_auth === true) {
+          
+          axios
+            .post(
+              ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/generate-otp-login",
+              {
+                email: email,
+              }
+            )
+            .then((res) => {
+              router.push(`/login/email-auth/${res.data.otpToken}`);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {

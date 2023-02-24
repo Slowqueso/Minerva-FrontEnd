@@ -7,6 +7,7 @@ import axios from "axios";
 import ENV from "../../static_files/hostURL";
 import occupations from "../../static_files/occupations";
 import { Loading } from "web3uikit";
+import Router from "next/router";
 
 const AccountOverview = () => {
   const [username, setUsername] = useState();
@@ -45,7 +46,7 @@ const AccountOverview = () => {
           console.log(err);
         });
     } else {
-      router.push("/login");
+      Router.push("/login");
     }
   }, []);
 

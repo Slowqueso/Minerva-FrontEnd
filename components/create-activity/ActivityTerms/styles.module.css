@@ -10,7 +10,6 @@
   font-weight: 500;
   font-size: 36px;
   line-height: 63px;
-  background: -webkit-gradient(linear, left top, right top, from(#D47AFF), color-stop(21.66%, #FF78BD), color-stop(52.22%, #FFFBFC), color-stop(74.33%, #FF79E2));
   background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

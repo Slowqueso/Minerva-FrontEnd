@@ -28,6 +28,35 @@
     width: 100%;
 }
 
+.textOnInput2 {
+    position: relative;
+    margin: 1rem 1rem;
+    // width: 100%;
+    input{
+        width: 100%;
+        padding: 0.75rem 7px;
+        border: #3C3C3C 1.5px solid;
+        border-radius: 5px;
+        box-shadow: none;
+        // border: 1px solid var(--palette-light-grey);
+        background-color: black;
+        color: white;
+        font-family: var(--fs-poppins-200);
+    }
+    textarea{
+        border: 1px solid transparent;
+        width: 100%;
+        padding: 0.75rem 7px;
+        border: #3C3C3C 1.5px solid;
+        border-radius: 5px;
+        box-shadow: none;
+        // border: 1px solid var(--palette-light-grey);
+        background-color: black;
+        color: white;
+        font-family: var(--fs-poppins-200);
+    }
+    width: 100%;
+}
 
 section.form-only{
     max-height: 100vh;

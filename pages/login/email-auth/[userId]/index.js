@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../styles.module.css";
+import styles from "../../../forgot-password/styles.module.css";
 import Navbar from "../../../../components/Layout/Navbar/Navbar";
 import TextBox from "../../../../components/form/textBox";
 import SubmitButton from "../../../../components/form/SubmitButton";
@@ -27,44 +27,39 @@ const OtpAuth = () => {
       })
       .then((res) => {
         if (res.data.authenticated) {
-          router.push(`/forgot-password/otp-auth/${userId}/password-reset`);
+          localStorage.setItem("_USID", res.data.user);
+          router.push(`/explore`);
         } else {
           setErrorMessage(res.data.msg);
         }
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
         setErrorMessage(err.response.data.msg);
       });
   };
   useEffect(() => {
-    flag.then((res) => {
-      setLoading(true);
-      // console.log(userId);
-      if (!res) {
-        if (userId) {
-          axios
-            .get(
-              ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/validate-token",
-              {
-                headers: {
-                  "x-otp-token": userId,
-                },
-              }
-            )
-            .then((res) => {
-              setLoading(false);
-              console.log(res.data.msg);
-            })
-            .catch((err) => {
-              console.log(err);
-              router.push("/login");
-            });
-        } else {
-          router.back();
-        }
+    if (userId) {
+        axios
+          .get(
+            ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/validate-token",
+            {
+              headers: {
+                "x-otp-token": userId,
+              },
+            }
+          )
+          .then((res) => {
+            setLoading(false);
+            console.log(res.data.msg);
+          })
+          .catch((err) => {
+            console.log(err);
+            router.push("/login");
+          });
+      } else {
+        router.back();
       }
-    });
   }, [userId]);
 
   return (
