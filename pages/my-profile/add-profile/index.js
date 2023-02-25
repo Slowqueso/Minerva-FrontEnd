@@ -1,42 +1,82 @@
-import React from "react";
+import {React,useState,useEffect} from "react";
 import styles from "../styles.module.css";
 import FullLayout from "../../../components/Layout/FullLayout";
 import MyProfileNavbar from "../../../components/my-profile/navbar/MyProfileNavbar";
-import TextBox from "../../../components/form/textBox";
-import TextArea from "../../../components/form/TextArea";
+
+import TextBox2 from "../../../components/form/textbox2";
+import TextArea2 from "../../../components/form/TextArea2";
+
 import FormError from "../../../components/form/formError";
 import SubmitButton from "../../../components/form/SubmitButton";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 
 const AddProfile = () => {
-  const [name_of_institution, setNameOfInstitution] = React.useState("");
-  const [student_email, setStudentEmail] = React.useState("");
-  const [degree, setDegree] = React.useState("");
-  const [course_name, setCourseName] = React.useState("");
-  const [course_duration, setCourseDuration] = React.useState("");
-  const [field_of_study, setFieldOfStudy] = React.useState("");
-  const [join_date, setJoinDate] = React.useState("");
-  const [grade, setGrade] = React.useState("");
+  const [name_of_institution, setNameOfInstitution] = useState("");
+  const [student_email, setStudentEmail] = useState("");
+  const [degree, setDegree] = useState("");
+  const [course_name, setCourseName] = useState("");
+  const [course_duration, setCourseDuration] = useState("");
+  const [field_of_study, setFieldOfStudy] = useState("");
+  const [join_date, setJoinDate] = useState("");
+  const [grade, setGrade] = useState("");
 
-  const [company_name, setCompanyName] = React.useState("");
-  const [job_designation, setJobDesignation] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [job_description, setJobDescription] = React.useState("");
-  const [qualifications, setQualifications] = React.useState("");
+  const [company_name, setCompanyName] = useState("");
+  const [job_designation, setJobDesignation] = useState("");
+  const [location, setLocation] = useState("");
+  const [job_description, setJobDescription] = useState("");
+  const [qualifications, setQualifications] = useState("");
 
-  const [studentError, setStudentError] = React.useState("");
-  const [jobError, setJobError] = React.useState("");
+  const [studentError, setStudentError] = useState("");
+  const [jobError, setJobError] = useState("");
 
-  const [isStudentOpen, setStudentIsOpen] = React.useState(false); // state for form visibility
+  const [isStudentOpen, setStudentIsOpen] = useState(false); // state for form visibility
   const toggleStudentForm = () => {
     setStudentIsOpen(!isStudentOpen);
   };
 
-  const [isJobOpen, setJobIsOpen] = React.useState(false); // state for form visibility
+  const [isJobOpen, setJobIsOpen] = useState(false); // state for form visibility
   const toggleJobForm = () => {
     setJobIsOpen(!isJobOpen);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("_USID");
+    if (token) {
+      axios
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/view_profiles", {
+          headers: {
+            "x-access-token": token,
+          },
+        })
+        .then((response) => {
+          if(response.data.student_profile){
+            setNameOfInstitution(response.data.student_profile.name_of_institution);
+            setStudentEmail(response.data.student_profile.student_email);
+            setDegree(response.data.student_profile.degree);
+            setCourseName(response.data.student_profile.course_name);
+            setCourseDuration(response.data.student_profile.course_duration);
+            setFieldOfStudy(response.data.student_profile.field_of_study);
+            setJoinDate(response.data.student_profile.join_date);
+            setGrade(response.data.student_profile.grade);
+          }
+          if(response.data.job_profile){
+            setCompanyName(response.data.job_profile.company_name);
+            setJobDesignation(response.data.job_profile.job_designation);
+            setLocation(response.data.job_profile.location);
+            setJobDescription(response.data.job_profile.job_description);
+            setQualifications(response.data.job_profile.qualifications);
+          }
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push("/login");
+    }
+  }, []);
+
 
   const handleStudentValidation = () => {
     if (
@@ -148,8 +188,10 @@ const AddProfile = () => {
           <div className={styles.add_profile}>
             <h1>Add Profile</h1>
 
+
             <button className={styles.dropdownBtn} onClick={toggleStudentForm}>
-              <h3>Student Profile</h3>{" "}
+              <h3>Student Profile</h3>
+              <span className={`${styles.arrow} ${isStudentOpen ? styles.active : ""}`}><h3>&#9662;</h3></span>
             </button>
             <div
               className={`${styles.dropdownForm} ${
@@ -157,64 +199,56 @@ const AddProfile = () => {
               }`}
             >
               <form>
-                <div className="flex">
-                  <TextBox
-                    label={"Name of Institution"}
-                    placeholder={"NameOfInstitution"}
-                    inputUpdate={setNameOfInstitution}
-                  />
-                </div>
-                <div className="flex">
-                  <TextBox
-                    label={"Student Email"}
-                    placeholder={"StudentEmail"}
-                    inputUpdate={setStudentEmail}
-                  />
-                </div>
-                <div className="flex">
-                  <TextBox
-                    label={"Degree"}
-                    placeholder={"Degree"}
-                    inputUpdate={setDegree}
-                  />
-                </div>
+                <TextBox2
+                  label={"Name of Institution"}
+                  placeholder={"NameOfInstitution"}
+                  inputUpdate={setNameOfInstitution}
+                  value={name_of_institution}
+                />
+                <TextBox2
+                  label={"Student Email"}
+                  placeholder={"StudentEmail"}
+                  inputUpdate={setStudentEmail}
+                  value={student_email}
+                />
+                <TextBox2
+                  label={"Degree"}
+                  placeholder={"Degree"}
+                  inputUpdate={setDegree}
+                  value={degree}
+                />
                 <div className={styles.twobytwo}>
-                  <div className="flex">
-                    <TextBox
-                      label={"Course Name"}
-                      placeholder={"Course"}
-                      inputUpdate={setCourseName}
-                    />
-                  </div>
-                  <div className="flex">
-                    <TextBox
-                      label={"Course Duration"}
-                      placeholder={"CourseDuration"}
-                      inputUpdate={setCourseDuration}
-                    />
-                  </div>
-                  <div className="flex">
-                    <TextBox
-                      label={"Field of Study"}
-                      placeholder={"FieldOfStudy"}
-                      inputUpdate={setFieldOfStudy}
-                    />
-                  </div>
-                  <div className="flex">
-                    <TextBox
-                      label={"Join Date"}
-                      placeholder={"JoinDate"}
-                      inputUpdate={setJoinDate}
-                    />
-                  </div>
-                </div>
-                <div className="flex">
-                  <TextBox
-                    label={"Grade"}
-                    placeholder={"Grade"}
-                    inputUpdate={setGrade}
+                  <TextBox2
+                    label={"Course Name"}
+                    placeholder={"Course"}
+                    inputUpdate={setCourseName}
+                    value={course_name}
+                  />
+                  <TextBox2
+                    label={"Course Duration"}
+                    placeholder={"CourseDuration"}
+                    inputUpdate={setCourseDuration}
+                    value={course_duration}
+                  />
+                  <TextBox2
+                    label={"Field of Study"}
+                    placeholder={"FieldOfStudy"}
+                    inputUpdate={setFieldOfStudy}
+                    value={field_of_study}
+                  />
+                  <TextBox2
+                    label={"Join Date"}
+                    placeholder={"JoinDate"}
+                    inputUpdate={setJoinDate}
+                    value={join_date}
                   />
                 </div>
+                <TextBox2
+                  label={"Grade"}
+                  placeholder={"Grade"}
+                  inputUpdate={setGrade}
+                  value={grade}
+                />
                 {studentError ? (
                   <div className={styles.input_divider}>
                     <FormError errorMessage={studentError}></FormError>
@@ -227,39 +261,46 @@ const AddProfile = () => {
               </form>
             </div>
 
+
             <button className={styles.dropdownBtn} onClick={toggleJobForm}>
-              <h3>Job Profile</h3>{" "}
+              <h3>Job Profile</h3>
+              <span className={`${styles.arrow} ${isJobOpen ? styles.active : ""}`}><h3>&#9662;</h3></span>
             </button>
             <div
               className={`${styles.dropdownForm} ${isJobOpen && styles.show}`}
             >
               <form>
-                <TextBox
+                <TextBox2
                   label={"Company Name"}
                   placeholder={"CompanyName"}
                   inputUpdate={setCompanyName}
+                  value={company_name}
                 />
                 <div className={styles.twobytwo}>
-                  <TextBox
+                  <TextBox2
                     label={"Job Designation"}
                     placeholder={"JobDesignation"}
                     inputUpdate={setJobDesignation}
+                    value={job_designation}
                   />
-                  <TextBox
+                  <TextBox2
                     label={"Location"}
                     placeholder={"Location"}
                     inputUpdate={setLocation}
+                    value={location}
                   />
                 </div>
-                <TextArea
+                <TextArea2
                   label={"Job Description"}
                   placeholder={"JobDescription"}
                   inputUpdate={setJobDescription}
+                  value={job_description}
                 />
-                <TextBox
+                <TextBox2
                   label={"Qualifications"}
                   placeholder={"Qualifications"}
                   inputUpdate={setQualifications}
+                  value={qualifications}
                 />
                 {jobError ? (
                   <div className={styles.input_divider}>

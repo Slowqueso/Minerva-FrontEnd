@@ -24,6 +24,33 @@
   font-family: var(--fs-poppins-200);
 }
 
+.textOnInput2 {
+  position: relative;
+  margin: 1rem 1rem;
+  width: 100%;
+}
+.textOnInput2 input {
+  width: 100%;
+  padding: 0.75rem 7px;
+  border: #3C3C3C 1.5px solid;
+  border-radius: 5px;
+  box-shadow: none;
+  background-color: black;
+  color: white;
+  font-family: var(--fs-poppins-200);
+}
+.textOnInput2 textarea {
+  border: 1px solid transparent;
+  width: 100%;
+  padding: 0.75rem 7px;
+  border: #3C3C3C 1.5px solid;
+  border-radius: 5px;
+  box-shadow: none;
+  background-color: black;
+  color: white;
+  font-family: var(--fs-poppins-200);
+}
+
 section.form-only {
   max-height: 100vh;
   background-image: linear-gradient(180deg, var(--palette-gradient-black) 0%, var(--palette-gradient-black) 99.48%);
@@ -103,9 +130,7 @@ section.form-only {
 
 .submit-button {
   padding: 0.5rem 2.5rem;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
-  background: -webkit-gradient(linear, left top, right top, color-stop(-14.67%, #FF5858), color-stop(16.86%, #EC7AFF), color-stop(46.5%, #F0CFFF), color-stop(82.45%, rgba(243, 141, 233, 0.88)), color-stop(105.16%, #FF7878));
   background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
   outline: none;
   border: none;
@@ -202,12 +227,10 @@ section.form-only {
 .activity-assets {
   position: relative;
   -o-border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
-     border-image: -webkit-gradient(linear, left top, right top, from(#AD26EC), color-stop(#B660DE), color-stop(#FFD3F5), to(#E01FFF)) 30;
      border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
   border-width: 2px;
   border-style: dotted;
 }
-
 .activity-assets .acc-user-profile-lens {
   display: none;
   position: absolute;
@@ -217,14 +240,10 @@ section.form-only {
   width: 100%;
   border-radius: 0;
   background-color: rgba(0, 0, 0, 0.432);
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  align-items: center;
+  justify-content: space-around;
   cursor: pointer;
 }
-
 .activity-assets .acc-user-profile-lens h3 {
   color: white;
   font-size: 1;
@@ -232,8 +251,5 @@ section.form-only {
 }
 
 .activity-assets:hover .acc-user-profile-lens {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-}
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

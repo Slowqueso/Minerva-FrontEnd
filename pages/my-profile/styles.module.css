@@ -33,7 +33,7 @@
 
 .my_profile .account_overview {
   width: 100%;
-  margin-top: 2rem;
+  padding: 2rem;
 }
 
 .my_profile .account_overview table {
@@ -286,6 +286,24 @@
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add_profile .arrow {
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.add_profile .arrow.active {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .add_profile .dropdownForm {

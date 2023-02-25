@@ -14,38 +14,29 @@
   overflow: hidden;
   width: 261px;
   height: var(--card-height);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   background: #1c1c1c;
   --image-height: 200px;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
 }
-
 .card_container .card .activity_logo {
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
   width: 100%;
-  -webkit-transition-delay: 200ms;
-          transition-delay: 200ms;
+  transition-delay: 200ms;
   height: var(--image-height);
 }
 .card_container .card .inner_container {
   background-color: #1C1C1C;
   padding: 0.75rem 1rem 0rem 1rem;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
-  -webkit-transition-delay: 200ms;
-          transition-delay: 200ms;
+  transition-delay: 200ms;
   max-height: calc(var(--card-height) - var(--image-height) - 1rem);
   overflow: hidden;
 }
 .card_container .card .layer {
   position: absolute;
   display: none;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
   width: 100%;
   height: 100%;
@@ -53,25 +44,20 @@
   justify-content: center;
   align-items: center;
 }
-
 .card_container .card:hover .activity_logo {
   opacity: 0;
 }
-
 .card_container .card:hover .inner_container {
   min-height: calc(var(--card-height));
-  -webkit-transform: translateY(calc(-1*var(--image-height)));
-          transform: translateY(calc(-1*var(--image-height)));
+  transform: translateY(calc(-1 * var(--image-height)));
 }
 
 .icon {
   border-radius: 100%;
   background-color: #1d1d1d;
   padding: 0.75rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
   margin: auto;
 }
@@ -130,16 +116,12 @@
   width: 100%;
   height: 80vh;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .cardv2 {
   --padding: 0.5rem;
   height: 298px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 261px;
   padding: var(--padding);
@@ -148,77 +130,56 @@
   overflow: hidden;
   margin: 0rem 1rem 2rem 1rem;
 }
-
 .cardv2 .cardv2_inner {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  flex-direction: row;
+  align-items: flex-end;
   height: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
   background-color: #ffffff;
 }
-
 .cardv2 .cardv2_inner .content {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(24.03%, rgba(0, 0, 0, 0.37)), to(rgba(0, 0, 0, 0.9)));
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.37) 24.03%, rgba(0, 0, 0, 0.9) 100%);
   width: 100%;
   padding: var(--padding);
   padding-top: 3rem;
-  -webkit-transform: translateY(11rem);
-          transform: translateY(11rem);
+  transform: translateY(11rem);
   opacity: 0;
-  -webkit-transition: 500ms ease;
   transition: 500ms ease;
 }
-
 .cardv2 .cardv2_inner .content .title {
   position: relative;
   font-size: 20px;
   font-family: var(--fs-poppins-400);
   color: white;
   margin: 0px;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   text-shadow: #111111 0px 0px 10px;
 }
-
 .cardv2 .cardv2_inner .content .title::after {
   content: "";
   position: absolute;
-  width: calc(100% + var(--padding)*2);
+  width: calc(100% + var(--padding) * 2);
   height: 3px;
   background: var(--palette-hot-pink);
-  left: calc(-2*var(--padding));
+  left: calc(-2 * var(--padding));
   bottom: -0.5rem;
   margin: 0.5rem 0px;
-  -webkit-transition: 500ms ease;
   transition: 500ms ease;
-  -webkit-transition-delay: 500ms;
-          transition-delay: 500ms;
-  -webkit-transform-origin: left;
-          transform-origin: left;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
+  transition-delay: 500ms;
+  transform-origin: left;
+  transform: scaleX(0);
 }
-
 .cardv2 .cardv2_inner .content .desc {
-  margin: calc(2*var(--padding)) 0rem;
+  margin: calc(2 * var(--padding)) 0rem;
   color: rgba(255, 255, 255, 0.85);
   font-family: var(--fs-inter-400);
   font-size: 14px;
 }
-
 .cardv2 .cardv2_inner .content button {
   padding: 0.4rem 0.75rem;
   outline: none;
@@ -226,24 +187,18 @@
   border-radius: 0.2rem;
   font-size: 11px;
 }
-
 .cardv2 .cardv2_inner .content button:nth-child(1) {
-  background: -webkit-gradient(linear, left top, right top, color-stop(-14.67%, #FF5858), color-stop(16.86%, #EC7AFF), color-stop(46.5%, #F0CFFF), color-stop(82.45%, rgba(243, 141, 233, 0.88)), color-stop(105.16%, #FF7878));
   background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
 }
-
 .cardv2 .cardv2_inner .content button:nth-child(1):hover {
   cursor: pointer;
-  background: -webkit-gradient(linear, left top, right top, color-stop(-14.67%, #C93232), color-stop(16.86%, #C34BD7), color-stop(46.5%, #C898DF), color-stop(82.45%, #D763CB), color-stop(105.16%, #D25151));
   background: linear-gradient(90deg, #C93232 -14.67%, #C34BD7 16.86%, #C898DF 46.5%, #D763CB 82.45%, #D25151 105.16%);
 }
-
 .cardv2 .cardv2_inner .content button:nth-child(2) {
   background: #1C1C1C;
   border: 1px solid #555555;
   color: #BEBEBE;
 }
-
 .cardv2 .cardv2_inner .content button:nth-child(2):hover {
   cursor: pointer;
   background: #2C2C2C;
@@ -252,13 +207,9 @@
 }
 
 .cardv2:hover .cardv2_inner .content {
-  -webkit-transform: translateY(0rem);
-          transform: translateY(0rem);
+  transform: translateY(0rem);
   opacity: 1;
 }
-
 .cardv2:hover .cardv2_inner .content .title::after {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-}
-/*# sourceMappingURL=styles.module.css.map */
+  transform: scaleX(1);
+}/*# sourceMappingURL=styles.module.css.map */

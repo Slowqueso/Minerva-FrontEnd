@@ -27,7 +27,7 @@
     }
     .account_overview{
         width: 100%;
-        margin-top: 2rem;
+        padding: 2rem;
         table{
             width: 80%;
             border-collapse: collapse;
@@ -216,9 +216,16 @@
         margin: 0px;
         padding: 0px;
         height: max-content;
-       
+       display: flex;
+       align-items: center;
       }
+      .arrow {
+        transition: transform 0.3s;
       
+        &.active {
+          transform: rotate(180deg);
+        }
+      }
       .dropdownForm {
         display: none;
         transition: opacity 0.3s, max-height 0.3s;

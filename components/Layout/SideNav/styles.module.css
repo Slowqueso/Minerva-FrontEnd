@@ -3,43 +3,28 @@
   flex-direction: column;
   padding: 0;
   --space-from-left: 2rem;
-  -ms-flex-item-align: start;
-      align-self: start;
+  align-self: start;
   margin: 0rem 0rem 0rem 0rem;
   border-bottom: 1px solid #484848;
   width: 100%;
   padding: 1rem 3rem 1rem 1rem;
 }
 .nav_list li {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .nav_list li h3 {
   font-weight: 400;
   font-size: 16px;
   margin-left: var(--space-from-left);
   min-width: 14ch;
-  -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   color: white;
-  font-size: 15px;
-  font-weight: 200;
-  font-family: var(--fs-poppins-200);
 }
-
 .nav_list li h3:hover {
   cursor: pointer;
-}
-
-.nav_list li .activities_list .activity_container:hover .activity_title {
   color: var(--palette-light-grey);
 }
-
 .nav_list li .activities_list {
   padding: 0;
   border-left: 1px dashed #484848;
@@ -47,7 +32,6 @@
   padding-left: calc(var(--space-from-left) + 0.75rem);
   text-decoration: none;
 }
-
 .nav_list li .activities_list .role_header {
   text-transform: uppercase;
   font-weight: 400;
@@ -56,59 +40,40 @@
   line-height: 13px;
   margin: 0;
 }
-
 .nav_list li .activities_list .role_header:hover {
   cursor: default;
 }
-
 .nav_list li .activities_list .role_header::before {
-  content: '#';
+  content: "#";
 }
-
 .nav_list li .activities_list .activity_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: -webkit-fit-content;
+  align-items: center;
   width: -moz-fit-content;
   width: fit-content;
 }
-
 .nav_list li .activities_list .activity_container .activity_logo {
-  margin-right: calc(var(--space-from-left)/2);
+  margin-right: calc(var(--space-from-left) / 2);
   border-radius: 50%;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 30px;
   width: 30px;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
 }
-
 .nav_list li .activities_list .activity_container .activity_logo:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  filter: brightness(0.8);
 }
-
 .nav_list li .activities_list .activity_container .activity_title {
   color: white;
   font-size: 15px;
   font-weight: 200;
   font-family: var(--fs-poppins-200);
 }
-
 .nav_list li .activities_list .activity_container:hover {
   cursor: pointer;
 }
-
 .nav_list li .activities_list .activity_container:hover .activity_title {
   color: var(--palette-light-grey);
 }

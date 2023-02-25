@@ -1,7 +1,5 @@
 .tag_container {
   margin: 0.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   padding: 0.2rem 0.75rem;
@@ -10,11 +8,9 @@
   border-radius: 3px;
   max-height: 30px;
   margin-left: 0rem;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 1rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
