@@ -7,7 +7,7 @@ import FormError from "../../components/form/formError";
 import axios from "axios";
 import SideBanner from "../../components/form/sideBanner";
 import { useRouter } from "next/router";
-import jwt from "jsonwebtoken";
+import { ConnectButton } from "web3uikit";
 
 const Register = () => {
   const router = useRouter();
@@ -131,6 +131,14 @@ const Register = () => {
                 isPassword={true}
                 inputUpdate={setRepassword}
               ></TextBox>
+            </div>
+            <div
+              className="space-between"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <ConnectButton />
             </div>
             <div className="space-between">
               <RadioConfirmation
