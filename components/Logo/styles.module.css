@@ -1,7 +1,6 @@
 .logo_container {
   display: flex;
   justify-content: space-around;
-  width: -moz-fit-content;
   width: fit-content;
   align-items: center;
   padding: 0;

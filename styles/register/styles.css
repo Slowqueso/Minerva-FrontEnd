@@ -226,8 +226,7 @@ section.form-only {
 
 .activity-assets {
   position: relative;
-  -o-border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
-     border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
+  border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
   border-width: 2px;
   border-style: dotted;
 }

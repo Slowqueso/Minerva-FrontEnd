@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Home from "./Tabs/Home/Home";
+import Tasks from "./Tabs/Tasks/Tasks"
+import AddTask from "./Tabs/AddTask/AddTask";
 
 const ViewTabs = () => {
   const router = useRouter();
@@ -23,7 +25,9 @@ const ViewTabs = () => {
     case "donation":
       return <div>Donations</div>;
     case "tasks":
-      return <div>Tasks</div>;
+      return <Tasks/>;
+    case "add-task":
+      return <AddTask/>;
     case "connections":
       return <div>Connections</div>;
     case "integrations":
