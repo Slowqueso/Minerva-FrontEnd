@@ -29,6 +29,17 @@ const DashboardNav = ({ NavList }) => {
               />
             );
           })}
+          <h3 className={styles.nav_item_header}>Tasks</h3>
+          {NavList.Tasks.map((item, index) => {
+            return (
+              <NavItem
+                labelText={item.labelText}
+                href={item.href}
+                key={index}
+                activityId={activityId}
+              />
+            );
+          })}
           <h3 className={styles.nav_item_header}>apps</h3>
           {NavList.Apps.map((item, index) => {
             return (

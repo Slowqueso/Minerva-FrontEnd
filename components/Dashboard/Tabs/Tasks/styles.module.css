@@ -50,24 +50,15 @@
 .taskSection .wrapper::-webkit-scrollbar-thumb {
   background: #333333;
   border-radius: 5px;
-  visibility: hidden;
 }
 .taskSection .wrapper::-webkit-scrollbar-thumb:hover {
   background: #555;
-  visibility: visible;
-}
-.taskSection .wrapper .centerLine {
-  position: absolute;
-  height: 100%;
-  max-height: fit-content;
-  width: 1px;
-  background: #333333;
-  left: 12px;
-  top: 0;
 }
 .taskSection .wrapper .row {
   display: flex;
   justify-content: flex-start;
+  border-left: 1px solid #333333;
+  padding-left: 1.2rem;
 }
 .taskSection .wrapper .row section {
   display: flex;

@@ -42,10 +42,8 @@
         padding: 0 35px;
         position: relative;
         color: #FFFFFF;
-        // border: 2px solid green;
         height: fit-content;
         max-height: 50vh;
-        // overflow-x: hidden;
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -59,27 +57,17 @@
         &::-webkit-scrollbar-thumb {
             background: #333333;
             border-radius: 5px;
-            visibility: hidden;
         }
 
         &::-webkit-scrollbar-thumb:hover {
             background: #555;
-            visibility: visible;
-        }
-
-        .centerLine {
-            position: absolute;
-            height: 100%;
-            max-height: fit-content;
-            width: 1px;
-            background: #333333;
-            left: 12px;
-            top: 0;
         }
 
         .row {
             display: flex;
             justify-content: flex-start;
+            border-left: 1px solid #333333;
+            padding-left: 1.2rem;
 
             section {
                 display: flex;

@@ -205,16 +205,17 @@ const ActivityProfile = () => {
                 );
               })}
             </div>
+            <h3>Yes</h3>
             {user ? (
               <div className={styles.flex_end}>
                 {isMember ? null : (
                   <>
                     <SubmitButton
-                      label={"Upvote Activity"}
+                      label={"Support"}
                       isTransparent={true}
                     ></SubmitButton>
                     <SubmitButton
-                      label={"Join Activity"}
+                      label={"Join"}
                       submitHandler={handleSubmit}
                     ></SubmitButton>
                   </>

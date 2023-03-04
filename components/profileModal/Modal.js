@@ -27,7 +27,7 @@ const Modal = ({ modalVisibility, setModalVisibility, user }) => {
                   : "/assets/default_profile.svg"
               }
             />
-            <Link href={"/account/id"}>
+            <Link href={"/my-profile"}>
               <div className={`${styles.profile_cover} f-12`}>
                 <h3>Change Profile</h3>
               </div>

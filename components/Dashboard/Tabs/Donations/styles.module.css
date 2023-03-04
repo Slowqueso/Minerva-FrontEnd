@@ -1,0 +1,15 @@
+.section_1 {
+  width: 100%;
+}
+.section_1 .tab_header {
+  color: white;
+  font-family: var(--fs-poppins-400);
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 400;
+}
+
+.section_2 {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=styles.module.css.map */

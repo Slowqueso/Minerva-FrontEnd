@@ -1,1 +1,26 @@
-/*# sourceMappingURL=styles.module.css.map */
+.add_task {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+.add_task .add_task_container {
+  width: 100%;
+}
+.add_task .add_task_container form {
+  width: 50%;
+  margin: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2rem;
+  background: #1C1C1C;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.add_task .add_task_container form .flex {
+  width: 96%;
+  margin: 1rem 0 0 0;
+}
+.add_task .add_task_container form .byTwo {
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: row;
+}/*# sourceMappingURL=styles.module.css.map */

@@ -1,0 +1,76 @@
+.section{
+    .table, td, th{
+        width: fit-content;
+        border-collapse:separate;
+        border-spacing:20px 10px;
+    }
+}
+.table{
+    --row-inner-margin: 0.25rem;
+    margin-top: 1.5rem;
+    thead{
+        color: #747474;
+        font-family: var(--fs-inter-400);
+        tr> th{
+            font-size: 16px;
+            font-weight: 400;
+        }
+        tr{
+            th:nth-child(2){
+                width: 72ch;
+                text-align: left;
+            }
+        }
+    }
+    tbody{
+        tr{
+            outline: 1px solid #1B1B1B;
+            border-radius: 2px;
+            td{
+                p{
+                    margin: calc(var(--row-inner-margin )*2) 0px;
+                    font-family: var(--fs-inter-400);
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: white;
+                }
+            }
+            td:not(:nth-child(2)){
+                text-align: center;
+                color: white;
+                font-family: var(--fs-inter-400);
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: white;
+            }
+            td:nth-child(2){
+                
+                display: flex;
+                align-items: center;
+                width: 100%;
+                color: white;
+                font-family: var(--fs-inter-400);
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: white;
+                .profile{
+                    border: 1px solid white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    margin: var(--row-inner-margin) 1rem var(--row-inner-margin) 0rem;
+                }
+                p{
+                    margin: 0px;
+                    font-family: var(--fs-inter-400);
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: white;
+                }
+            }
+        }
+    }
+}

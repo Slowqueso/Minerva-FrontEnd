@@ -36,7 +36,10 @@ const DashboardTabs = () => {
       { labelText: "Templates", href: "template" },
       { labelText: "Status", href: "status" },
       { labelText: "Donations", href: "donation" },
+    ],
+    Tasks: [
       { labelText: "Tasks", href: "tasks" },
+      { labelText: "Add Task", href: "add-task" },
     ],
     Apps: [
       { labelText: "Connections", href: "connections" },
