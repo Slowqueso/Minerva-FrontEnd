@@ -1,0 +1,153 @@
+.taskSection {
+  width: 60%;
+  font-family: var(--fs-inter-400);
+}
+.taskSection .dropdownBtn {
+  width: fit-content;
+  background: #1B1B1B;
+  color: #BFBFBF;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  margin: 10px 40px;
+  letter-spacing: 1px;
+  padding: 0 10px;
+}
+.taskSection .arrow {
+  padding: 0 5px;
+  transition: transform 0.3s;
+}
+.taskSection .arrow.active {
+  transform: rotate(180deg);
+}
+.taskSection .dropdownContent {
+  display: none;
+  transition: opacity 0.3s, max-height 0.3s;
+}
+.taskSection .dropdownContent.show {
+  display: block;
+  transition: opacity 0.3s 0.3s, max-height 0.3s 0.3s;
+}
+.taskSection .wrapper {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 35px;
+  position: relative;
+  color: #FFFFFF;
+  height: fit-content;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.taskSection .wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.taskSection .wrapper::-webkit-scrollbar-track {
+  background: #1B1B1B;
+}
+.taskSection .wrapper::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 5px;
+}
+.taskSection .wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.taskSection .wrapper .row {
+  display: flex;
+  justify-content: flex-start;
+  border-left: 1px solid #333333;
+  padding-left: 1.2rem;
+}
+.taskSection .wrapper .row section {
+  display: flex;
+  border: 1px solid #1B1B1B;
+  border-radius: 5px;
+  width: calc(100% - 40px);
+  padding: 10px;
+  position: relative;
+  margin: 0.4rem 0;
+}
+.taskSection .wrapper .row section .icon {
+  position: absolute;
+  top: 26px;
+  left: -34px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #333333;
+  font-size: 17px;
+}
+.taskSection .wrapper .row section .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 70%;
+}
+.taskSection .wrapper .row section .details .user_info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.taskSection .wrapper .row section .details .user_info .user_img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.taskSection .wrapper .row section .details .user_info .user_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.taskSection .wrapper .row section .details .title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.taskSection .wrapper .row section p {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 13px;
+  margin: 5px 10px;
+}
+.taskSection .wrapper .row section p span {
+  color: #595959;
+}
+.taskSection .wrapper .row section .due_date,
+.taskSection .wrapper .row section .reward_amount {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #595959;
+  align-self: center;
+}
+.taskSection .wrapper .row section .amount {
+  align-self: center;
+}
+.taskSection .wrapper .row section .amount span {
+  background: #3A3A3A;
+  border-radius: 3px;
+  padding: 8px 20px;
+  margin: 0 10px;
+}
+.taskSection .wrapper .row section .view {
+  align-self: center;
+}
+.taskSection .wrapper .row section .view a {
+  text-decoration: none;
+  background: linear-gradient(90deg, #FF5858 -15.3%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
+  border: 1px solid #000000;
+  border-radius: 3px;
+  color: #000000;
+  padding: 8px 30px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}/*# sourceMappingURL=styles.module.css.map */

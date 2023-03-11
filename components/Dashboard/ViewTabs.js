@@ -1,6 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Home from "./Tabs/Home/Home";
+import Donations from "./Tabs/Donations/Donations";
+import Tasks from "./Tabs/Tasks/Tasks"
+import AddTask from "./Tabs/AddTask/AddTask";
 
 const ViewTabs = () => {
   const router = useRouter();
@@ -21,9 +24,15 @@ const ViewTabs = () => {
     case "status":
       return <div>Status</div>;
     case "donation":
-      return <div>Donations</div>;
+      return (
+        <section className="parent-section">
+          <Donations />
+        </section>
+      );
     case "tasks":
-      return <div>Tasks</div>;
+      return <Tasks/>;
+    case "add-task":
+      return <AddTask/>;
     case "connections":
       return <div>Connections</div>;
     case "integrations":

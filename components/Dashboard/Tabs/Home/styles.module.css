@@ -3,10 +3,12 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  justify-content: space-between;
   padding-bottom: 1rem;
 }
 .section_1 .activity_info {
   display: flex;
+  align-items: center;
   align-items: center;
 }
 .section_1 .activity_info .activity_logo {
@@ -38,6 +40,7 @@
 .section_1 .activity_info .activity_details {
   display: flex;
   margin: 0rem 1.5rem;
+  align-items: baseline;
   align-items: baseline;
 }
 .section_1 .activity_info .activity_details h2,

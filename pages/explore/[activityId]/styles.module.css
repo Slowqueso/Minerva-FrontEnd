@@ -147,7 +147,6 @@
 .terms_container .terms_page .header .title {
   font-size: 32px;
   margin: auto;
-  width: -moz-fit-content;
   width: fit-content;
   font-family: var(--fs-montserrat-300);
   font-weight: 600;
@@ -205,7 +204,6 @@
 
 .activity_owner {
   display: flex;
-  width: -moz-fit-content;
   width: fit-content;
   align-items: center;
 }
