@@ -1,7 +1,6 @@
 .section_1 {
   width: 100%;
 }
-
 .section_1 .tab_header {
   color: white;
   font-family: var(--fs-poppins-400);
@@ -11,11 +10,6 @@
 }
 
 .section_2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-/*# sourceMappingURL=styles.module.css.map */
+  justify-content: space-between;
+}/*# sourceMappingURL=styles.module.css.map */

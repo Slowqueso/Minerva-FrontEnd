@@ -4,23 +4,16 @@
   max-height: 92vh;
   overflow: hidden;
 }
-
 .section .center_loader {
   width: 100%;
   margin-left: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   height: 90vh;
   overflow-y: scroll;
 }
-
 .section .nav_map {
   color: #909090;
   font-family: var(--fs-montserrat-300);
   font-weight: 200;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

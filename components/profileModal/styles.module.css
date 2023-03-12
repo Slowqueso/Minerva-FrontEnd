@@ -9,9 +9,8 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: rgba(2, 2, 2, 0.315);
-  border: 1px solid #8b8b8b2d;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  border: 1px solid rgba(139, 139, 139, 0.1764705882);
+  backdrop-filter: blur(2px);
   z-index: 10000;
 }
 
@@ -32,8 +31,7 @@
 }
 
 .user_profile_pic img {
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   position: absolute;
   top: 0;
   left: 0;
