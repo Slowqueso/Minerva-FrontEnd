@@ -1,11 +1,13 @@
-const SelectMenu = ({ objectArray, name, changeHandler, label,value }) => {
+const SelectMenu = ({ objectArray, name, changeHandler, label, value }) => {
   return (
     <div className="textOnInput">
-      <label htmlFor={name} className="label f-12">
-        {label}
-      </label>
+      {label ? (
+        <label htmlFor={name} className="label f-12">
+          {label}
+        </label>
+      ) : null}
       <select
-      value={value}
+        value={value}
         name={name}
         id={name}
         className="options-menu"
@@ -13,7 +15,7 @@ const SelectMenu = ({ objectArray, name, changeHandler, label,value }) => {
           changeHandler(parseInt(e.target.value));
         }}
       >
-        {objectArray.map((object) => {
+        {objectArray.map((object, index) => {
           return (
             <option value={object.value} key={object.value}>
               {object.label}

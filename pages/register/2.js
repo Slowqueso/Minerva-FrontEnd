@@ -39,7 +39,6 @@ const DetailsForm = () => {
           }
         )
         .then(async (res) => {
-          console.log(res);
           if (res.data.completed) {
             router.push("/explore");
           } else {

@@ -14,6 +14,7 @@ import getNumericDate from "../../../utils/dateConverter";
 import { ethers } from "ethers";
 import convertUsdToETH from "../../../utils/usdConverter";
 import Link from "next/link";
+import DonationModal from "../../../components/DonationModal/Modal";
 
 const ActivityProfile = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const ActivityProfile = () => {
   const [user, setUser] = useState();
   const [activity, setActivity] = useState();
   const [isMember, setIsMember] = useState(false);
+  const [DModalActive, setDModalActive] = useState(false);
   const { chainId: chainIdHex, account } = useMoralis();
   const chainId = parseInt(chainIdHex);
   const ActivityAddress =
@@ -87,6 +89,10 @@ const ActivityProfile = () => {
         console.log(err);
       });
     handleNewNotification();
+  };
+
+  const toggleDModal = () => {
+    setDModalActive(!DModalActive);
   };
 
   const handleNewNotification = () => {
@@ -155,6 +161,13 @@ const ActivityProfile = () => {
     <div>
       {activity ? (
         <section className={styles.activity_profile}>
+          {DModalActive ? (
+            <DonationModal
+              setDModalActive={setDModalActive}
+              user={user}
+              activityId={activityId}
+            ></DonationModal>
+          ) : null}
           <img src={activity.logo} alt="" className={styles.activity_logo} />
           <div className={styles.inner_container}>
             <h3 className={styles.activity_title}>{activity.title}</h3>
@@ -205,7 +218,6 @@ const ActivityProfile = () => {
                 );
               })}
             </div>
-            <h3>Yes</h3>
             {user ? (
               <div className={styles.flex_end}>
                 {isMember ? null : (
@@ -213,6 +225,7 @@ const ActivityProfile = () => {
                     <SubmitButton
                       label={"Support"}
                       isTransparent={true}
+                      submitHandler={toggleDModal}
                     ></SubmitButton>
                     <SubmitButton
                       label={"Join"}

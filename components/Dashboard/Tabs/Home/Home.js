@@ -17,7 +17,7 @@ const Home = () => {
   };
   useEffect(() => {
     isLogged();
-    console.log(activity);
+    // console.log(activity);
   }, []);
 
   return (

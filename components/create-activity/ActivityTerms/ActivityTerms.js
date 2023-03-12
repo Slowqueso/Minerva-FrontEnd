@@ -14,6 +14,10 @@ import { useNotification } from "web3uikit";
 import axios from "axios";
 import { abi, contractAddresses } from "../../../constants/index";
 import incrementStatus from "../../../utils/api/incrementActivity";
+import {
+  getActivityById,
+  getActivityPublicId,
+} from "../../../utils/api/GetActivity";
 
 const ActivityTerms = ({ setProgress }) => {
   const router = useRouter();
@@ -22,6 +26,7 @@ const ActivityTerms = ({ setProgress }) => {
   const [inputFields, setInputFields] = useState([
     { termTitle: "", termDescription: "" },
   ]);
+  const [publicId, setPublicId] = useState();
   const [errorMessage, setErrorMessage] = useState("");
 
   //Deploying Terms
@@ -51,7 +56,7 @@ const ActivityTerms = ({ setProgress }) => {
     contractAddress: ActivityAddress,
     functionName: "addTermForActivity",
     params: {
-      _activityID: activityId,
+      _activityID: publicId ? publicId : 0,
       _title: getTitleArray(),
       _desc: getDescriptionArray(),
     },
@@ -105,12 +110,22 @@ const ActivityTerms = ({ setProgress }) => {
     });
   };
 
+  const loadPublicID = async () => {
+    const response = await getActivityPublicId(activityId);
+    setPublicId(response.data.public_ID);
+  };
+
+  useEffect(() => {
+    if (activityId) {
+      loadPublicID();
+    }
+  }, [activityId]);
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.wrapper_title}>Add Terms and Conditions</h1>
       <form className={styles.form_container}>
         {inputFields.map((inputfield, index) => {
-          
           return (
             <div key={index} style={{ marginBottom: "1rem" }}>
               <div className={styles.flex_between}>

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Row = ({ object, isImage, index }) => {
   return (
-    <tr>
+    <tr key={index}>
       <td>{index + 1}.</td>
       {Object.keys(object).includes(
         "image_logo" || "profile_pic" || "image" || "logo" || "image_url"

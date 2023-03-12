@@ -47,7 +47,7 @@ const Card = ({ activity }) => {
             ></Tag>
           </div> */}
         </div>
-        <Link href={`/explore/${activity.id}/overview`}>
+        <Link href={`/explore/${activity.public_ID}/overview`}>
           <div className={styles.icon}>
             <FontAwesomeIcon icon={faEye} color={"white"}></FontAwesomeIcon>
           </div>
@@ -82,7 +82,7 @@ const Cardv2 = ({ activity }) => {
             title={"Joining Price"}
           ></Tag>
           <div className="space-between">
-            <Link href={`/explore/${activity.id}/overview`}>
+            <Link href={`/explore/${activity.public_ID}/overview`}>
               <button>Learn More</button>
             </Link>
             <button>Flag It</button>
@@ -101,7 +101,7 @@ const Cards = ({ activities }) => {
           <div className={styles.card_container}>
             {activities.map((activity, index) => {
               return (
-                <div key={index}>
+                <div style={{ display: "flex" }} key={index}>
                   <Card activity={activity} />
                 </div>
               );

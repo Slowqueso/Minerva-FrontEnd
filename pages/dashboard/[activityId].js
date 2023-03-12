@@ -6,7 +6,6 @@ const MyActivity = () => {
   const router = useRouter();
   const { activityId, tab } = router.query;
   useEffect(() => {
-    // console.log("gay");
     if (activityId) {
       router.replace(`/dashboard/${activityId}/home`);
     }

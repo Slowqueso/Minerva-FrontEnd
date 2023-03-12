@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 *,
 *::before,
@@ -33,9 +32,10 @@
   --fs-josef-400: "Josefin Sans", sans-serif;
   --fs-josef-600: "Josefin Sans", sans-serif;
   --fs-poppins-200: "Poppins", sans-serif;
-  --fs-cinzel-400: "Cinzel", serif;
-  --fs-montserrat-300: "Montserrat", sans-serif;
-  --fs-inter-400: "Inter", sans-serif;
+  --fs-cinzel-400: 'Cinzel', serif;
+  --fs-montserrat-300: 'Montserrat', sans-serif;
+  --fs-inter-800: 'Inter', sans-serif;
+  --fs-inter-400: 'Inter', sans-serif;
 }
 
 html {

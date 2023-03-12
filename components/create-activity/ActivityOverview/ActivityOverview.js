@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import TitleBox from "../../form/TitleBox";
 import TextArea from "../../form/TextArea";
@@ -105,7 +105,7 @@ const ActivityOverview = () => {
   };
 
   const handleRemoveFields = (index) => {
-    console.log(index);
+    // console.log(index);
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
@@ -138,8 +138,8 @@ const ActivityOverview = () => {
       )
       .then(async (response) => {
         console.log(response);
-        // incrementStatus(activityId, setProgress, 100, setErrorMessage);
-        // router.push(`/my-activity/${activityId}`);
+        incrementStatus(activityId, setProgress, 100, setErrorMessage);
+        router.push(`/dashboard/${activityId}`);
       })
       .catch((err) => {
         console.log(err);
@@ -151,6 +151,7 @@ const ActivityOverview = () => {
   const handleSubmit = () => {
     let flag = false;
     inputFields.forEach((entry, index) => {
+      console.log(entry);
       if (entry.fileName === "") {
         axios
           .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-fields", {
@@ -160,7 +161,7 @@ const ActivityOverview = () => {
             index: index,
           })
           .then(async (response) => {
-            if (response) {
+            if (response && index === inputFields.length - 1) {
               flag = true;
             }
           })
@@ -174,7 +175,7 @@ const ActivityOverview = () => {
     });
     if (flag) {
       incrementStatus(activityId, setProgress, 100, setErrorMessage);
-      router.push(`/my-activity/${activityId}`);
+      router.push(`/dashboard/${activityId}`);
     }
   };
   return (

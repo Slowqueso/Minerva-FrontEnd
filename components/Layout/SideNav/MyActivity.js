@@ -38,7 +38,7 @@ const MyActivity = () => {
           {activities.map((activity, index) => {
             if (activity.role === 1) {
               return (
-                <Link href={`/dashboard/${activity.id}`} key={index}>
+                <Link href={`/dashboard/${activity.public_ID}`} key={index}>
                   <li className={styles.activity_container}>
                     <span className={styles.activity_logo}>
                       <Image
@@ -59,7 +59,7 @@ const MyActivity = () => {
           {activities.map((activity, index) => {
             if (activity.role === 2) {
               return (
-                <Link href={`/dashboard/${activity.id}`} key={index}>
+                <Link href={`/dashboard/${activity.public_ID}`} key={index}>
                   <li className={styles.activity_container}>
                     <span className={styles.activity_logo}>
                       <Image
