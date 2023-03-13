@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./styles.module.css";
 import Link from "next/link";
 
-const MyProfileNavbar = () => {
+const MyProfileNavbar = ({ profilePic }) => {
   return (
     <>
       <div className={styles.account_navbar}>
-        <img src="https://via.placeholder.com/150" alt="profile" />
+        <img src={profilePic} alt="profile" />
 
         <Link href="/my-profile/">AccountInfo</Link>
         <Link href="/my-profile/privacy">Privacy</Link>

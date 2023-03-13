@@ -139,7 +139,7 @@ const ActivityOverview = () => {
       .then(async (response) => {
         console.log(response);
         incrementStatus(activityId, setProgress, 100, setErrorMessage);
-        router.push(`/dashboard/${activityId}`);
+        router.push(`/explore`);
       })
       .catch((err) => {
         console.log(err);
@@ -175,7 +175,7 @@ const ActivityOverview = () => {
     });
     if (flag) {
       incrementStatus(activityId, setProgress, 100, setErrorMessage);
-      router.push(`/dashboard/${activityId}`);
+      router.push(`/explore`);
     }
   };
   return (

@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { isUserLogged } from "../../../../utils/api/validateUser";
 import { ActivityContext } from "../../../../pages/dashboard/[activityId]/[tab]";
+import DataCard from "../../DataCard/DataCard";
 import {
   faEye,
   faDollarSign,
@@ -22,10 +23,10 @@ import { Loading } from "web3uikit";
 const Home = () => {
   const router = useRouter();
   const activity = useContext(ActivityContext);
-  const [lastviews, setLastViews] = useState();
-  const [lastdonations, setLastDonations] = useState();
-  const [lastcomments, setLastComments] = useState();
-  const [lastupvotes, setLastUpvotes] = useState();
+  const [lastviews, setLastViews] = useState(0);
+  const [lastdonations, setLastDonations] = useState(0);
+  const [lastcomments, setLastComments] = useState(0);
+  const [lastupvotes, setLastUpvotes] = useState(0);
   const [join_requests, setJoinRequests] = useState([]);
 
   const [viewlabels, setviewLabels] = useState([]);
@@ -386,78 +387,26 @@ const Home = () => {
           </section>
           <section className={styles.section_2}>
             <div className={styles.card_container}>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon icon={faEye} size="lg" color="#999999" />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Views</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastviews != null ? <h3>{lastviews}</h3> : <Loading />}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faDollarSign}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Donations</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastdonations != null ? (
-                    <h3>{lastdonations}</h3>
-                  ) : (
-                    <Loading />
-                  )}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faCommentAlt}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Comments</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastcomments != null ? <h3>{lastcomments}</h3> : <Loading />}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faThumbsUp}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Upvotes</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastupvotes != null ? <h3>{lastupvotes}</h3> : <Loading />}
-                </div>
-              </div>
+              <DataCard
+                label={"Views"}
+                icon={faEye}
+                data={lastviews}
+              ></DataCard>
+              <DataCard
+                icon={faDollarSign}
+                data={lastdonations}
+                label={"Donations"}
+              ></DataCard>
+              <DataCard
+                icon={faCommentAlt}
+                label={"Comments"}
+                data={lastcomments}
+              ></DataCard>
+              <DataCard
+                icon={faThumbsUp}
+                label={"Upvotes"}
+                data={lastupvotes}
+              ></DataCard>
             </div>
           </section>
           <section className={styles.section_3}>

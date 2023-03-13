@@ -127,15 +127,6 @@ const Modal = ({ setDModalActive, activityId, user }) => {
     msgValue: weiAmount,
   });
 
-  const { runContractFunction: getConversionRate } = useWeb3Contract({
-    abi,
-    contractAddress: ActivityAddress,
-    functionName: "getConversionRate",
-    params: {
-      ethAmount: 35155000000000000n,
-    },
-  });
-
   const handleBack = () => {
     setErrorMessage("");
     setCurrentTab(0);

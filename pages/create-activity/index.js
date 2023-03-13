@@ -71,6 +71,7 @@ const CreateActivity = () => {
   const router = useRouter();
   const [progress, setProgress] = useState(0);
   const [user, setUser] = useState();
+
   useEffect(() => {
     const token = localStorage.getItem("_USID");
     if (token) {

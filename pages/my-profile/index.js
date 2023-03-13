@@ -16,6 +16,7 @@ const AccountOverview = () => {
   const [country, setCountry] = useState();
   const [occupation, setOccupation] = useState();
   const [description, setDescription] = useState();
+  const [profilePic, setProfilePic] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const AccountOverview = () => {
             setEmail(response.data.user.email);
             // setDob(response.data.user.dob);
             setCountry(response.data.user.address.country);
+            setProfilePic(response.data.user.profile_pic);
             var occtemp = occupations.find(
               (item) => item.value == response.data.user.occupation
             );
@@ -54,7 +56,7 @@ const AccountOverview = () => {
     <>
       <FullLayout>
         <div className={styles.my_profile}>
-          <MyProfileNavbar />
+          <MyProfileNavbar profilePic={profilePic} />
           {isLoading ? (
             <div className="centralise" style={{ height: "40vh" }}>
               <Loading></Loading>
