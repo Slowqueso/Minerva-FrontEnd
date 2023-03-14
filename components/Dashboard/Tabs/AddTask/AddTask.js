@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import TextBox from '../../../form/textbox';
+import TextBox from '../../../form/textBox';
 import TextArea from '../../../form/TextArea';
 import SelectMenu from '../../../form/SelectMenu';
 import SubmitButton from '../../../form/SubmitButton';
