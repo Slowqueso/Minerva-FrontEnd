@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
   const [uploadedImage, setUploadedImage] = useState("");
-  
+
   const imageHandler = (e) => {
     const img = document.createElement("img");
     const imageURL = URL.createObjectURL(e.target.files[0]);
@@ -17,12 +17,6 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
       setImageFile(files[0]);
     }
   };
-  useEffect(() => {
-    if (preImage) {
-      console.log(preImage);
-      
-    }
-  }, []);
   return (
     <>
       <label htmlFor="pic-inp" style={{ borderRadius: "50%" }}>

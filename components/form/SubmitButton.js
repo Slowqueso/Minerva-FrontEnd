@@ -1,4 +1,12 @@
-const SubmitButton = ({ label, iconSrc, submitHandler, isTransparent ,isDisabled}) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const SubmitButton = ({
+  label,
+  iconSrc,
+  submitHandler,
+  isTransparent,
+  isDisabled,
+}) => {
   return (
     <>
       <button
@@ -21,7 +29,13 @@ const SubmitButton = ({ label, iconSrc, submitHandler, isTransparent ,isDisabled
           submitHandler();
         }}
       >
-        {label}
+        <h3>{label}</h3>
+        {iconSrc ? (
+          <FontAwesomeIcon
+            style={{ marginLeft: "1rem" }}
+            icon={iconSrc}
+          ></FontAwesomeIcon>
+        ) : null}
       </button>
     </>
   );

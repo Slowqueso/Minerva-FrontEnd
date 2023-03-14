@@ -16,3 +16,16 @@ export const getActivityById = async (activityId) => {
       throw err;
     });
 };
+
+export const getActivityPublicId = async (activityId) => {
+  try {
+    return await axios.get(
+      ENV.PROTOCOL +
+        ENV.HOST +
+        ENV.PORT +
+        `/activity/get-public-id/${activityId}`
+    );
+  } catch (error) {
+    throw error;
+  }
+};

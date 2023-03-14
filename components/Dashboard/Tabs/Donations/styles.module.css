@@ -1,15 +1,49 @@
 .section_1 {
   width: 100%;
 }
+
 .section_1 .tab_header {
   color: white;
   font-family: var(--fs-poppins-400);
   font-size: 18px;
   margin: 0px;
   font-weight: 400;
+  margin-bottom: 1.5rem;
 }
 
 .section_2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-}/*# sourceMappingURL=styles.module.css.map */
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.section_2 .no_donations {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: grey;
+  font-family: var(--fs-poppins-400);
+}
+
+.section_2 .card_container {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
+}
+/*# sourceMappingURL=styles.module.css.map */

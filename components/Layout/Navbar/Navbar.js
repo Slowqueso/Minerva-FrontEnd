@@ -10,14 +10,14 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ConnectButton } from "web3uikit";
 import ENV from "../../../static_files/hostURL";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
-  const [profileModalVisibility, setProfileModalVisibility] = useState();
+  const [profileModalVisibility, setProfileModalVisibility] = useState(false);
   const [user, setUser] = useState();
   useEffect(() => {
     const token = localStorage.getItem("_USID");
-    setProfileModalVisibility({ display: "none" });
     if (token) {
       axios
         .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
@@ -28,6 +28,7 @@ const Navbar = () => {
         .then((response) => {
           if (response.data.authenticated) {
             setUser(response.data.user);
+            console.log(response.data.user);
           }
         })
         .catch((err) => {
@@ -50,22 +51,51 @@ const Navbar = () => {
         </Link>
         {user ? <ConnectButton></ConnectButton> : null}
         {user ? (
-          <div
-            className={styles.link_profile}
-            onMouseOver={() => {
-              setProfileModalVisibility({ display: "flex" });
-            }}
-            // onMouseLeave={() => {
-            //   setProfileModalVisibility({ display: "none" });
-            // }}
-          >
-            <FontAwesomeIcon icon={faUser} color="white"></FontAwesomeIcon>
-            <ProfileModal
-              modalVisibility={profileModalVisibility}
-              setModalVisibility={setProfileModalVisibility}
-              user={user}
-            ></ProfileModal>
-          </div>
+          <>
+            <div
+              className={styles.link_profile}
+              onClick={() => {
+                setProfileModalVisibility(!profileModalVisibility);
+              }}
+              // onMouseOver={() => {
+              //   setProfileModalVisibility({ display: "flex" });
+              // }}
+              // onMouseLeave={() => {
+              //   setProfileModalVisibility({ display: "none" });
+              // }}
+            >
+              {/* <FontAwesomeIcon icon={faUser} color="white"></FontAwesomeIcon> */}
+              <div
+                style={{
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  height: "40px",
+                  width: "40px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: "1px solid #c9c9c96e",
+                }}
+              >
+                <Image
+                  src={
+                    user.profile_pic
+                      ? user.profile_pic
+                      : "/assets/default_profile.svg"
+                  }
+                  height={40}
+                  width={40}
+                ></Image>
+              </div>
+            </div>
+            {profileModalVisibility ? (
+              <Modalv2
+                modalVisibility={profileModalVisibility}
+                setModalVisibility={setProfileModalVisibility}
+                user={user}
+              ></Modalv2>
+            ) : null}
+          </>
         ) : (
           <>
             {router ? (

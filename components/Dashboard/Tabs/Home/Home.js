@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { isUserLogged } from "../../../../utils/api/validateUser";
 import { ActivityContext } from "../../../../pages/dashboard/[activityId]/[tab]";
+import DataCard from "../../DataCard/DataCard";
 import {
   faEye,
   faDollarSign,
@@ -22,10 +23,10 @@ import { Loading } from "web3uikit";
 const Home = () => {
   const router = useRouter();
   const activity = useContext(ActivityContext);
-  const [lastviews, setLastViews] = useState();
-  const [lastdonations, setLastDonations] = useState();
-  const [lastcomments, setLastComments] = useState();
-  const [lastupvotes, setLastUpvotes] = useState();
+  const [lastviews, setLastViews] = useState(0);
+  const [lastdonations, setLastDonations] = useState(0);
+  const [lastcomments, setLastComments] = useState(0);
+  const [lastupvotes, setLastUpvotes] = useState(0);
   const [join_requests, setJoinRequests] = useState([]);
 
   const [viewlabels, setviewLabels] = useState([]);
@@ -36,7 +37,6 @@ const Home = () => {
   const [commentdata, setcommentData] = useState([]);
   const [upvotelabels, setupvoteLabels] = useState([]);
   const [upvotedata, setupvoteData] = useState([]);
-
 
   const isLogged = async () => {
     const isLogged = await isUserLogged();
@@ -73,8 +73,8 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-    
-      await axios
+
+    await axios
       .post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + `/activity/lastdonations`, {
         activityId: activity.id,
         start: past,
@@ -97,24 +97,23 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-      
   };
 
   const timestampcounter = (temp) => {
-    const timestamps = temp
+    const timestamps = temp;
     // Create a new Date object for the current date
     const now = new Date().getTime();
 
     // Create an object to hold the counts for each day
     const counts = {};
-    for (let i = 7; i >0; i--) {
+    for (let i = 7; i > 0; i--) {
       // Get the date for this day
       const date = new Date();
       date.setDate(date.getDate() - i);
-    
+
       // Format the date as YYYY-MM-DD
       const formattedDate = date.toISOString().split("T")[0];
-    
+
       // Set the value for this date to zero in the data object
       counts[formattedDate] = 0;
     }
@@ -136,8 +135,8 @@ const Home = () => {
           counts[dateStr] = 1;
         }
       });
-      return counts;
-    }
+    return counts;
+  };
 
   const loadchart = async () => {
     var ts = Math.round(new Date().getTime() / 1000);
@@ -162,7 +161,7 @@ const Home = () => {
     setviewLabels(Object.keys(timestampcounter(timestamps)));
     setviewData(Object.values(timestampcounter(timestamps)));
 
-    timestamps =[]
+    timestamps = [];
     await axios
       .post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + `/activity/lastupvotes`, {
         activityId: activity.id,
@@ -175,13 +174,10 @@ const Home = () => {
       })
       .catch((err) => {
         console.log(err);
-      }
-      );
+      });
 
     setupvoteLabels(Object.keys(timestampcounter(timestamps)));
     setupvoteData(Object.values(timestampcounter(timestamps)));
-      
-
   };
 
   const join_request = async (token) => {
@@ -230,7 +226,7 @@ const Home = () => {
 
   const reject_request = async (request) => {
     const token = localStorage.getItem("_USID");
-   
+
     await axios
       .post(
         ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/joinrejected",
@@ -251,8 +247,6 @@ const Home = () => {
         console.log(err);
       });
   };
-
-
 
   useEffect(() => {
     const token = localStorage.getItem("_USID");
@@ -294,14 +288,14 @@ const Home = () => {
         {
           label: "Upvotes",
           data: upvotedata,
-  
+
           borderColor: "#FF0006",
           borderWidth: 2,
           cubicInterpolationMode: "monotone",
-        }
+        },
       ],
     });
-  }, [viewlabels, viewdata, upvotedata,]);
+  }, [viewlabels, viewdata, upvotedata]);
 
   const [chartData, setChartData] = useState({
     labels: viewlabels,
@@ -321,20 +315,25 @@ const Home = () => {
         borderColor: "#FF0006",
         borderWidth: 2,
         cubicInterpolationMode: "monotone",
-      }
+      },
     ],
   });
 
   const Requestcard = (request) => {
-    
     return (
       <>
         <div className={styles.join_request}>
           <div className={styles.join_request_user}>
             <div className={styles.join_request_user_logo}>
-              <Image src={request.request.profile_pic
-                  ? request.request.profile_pic
-                  : "/assets/default_profile.svg"} height={41} width={41} />
+              <Image
+                src={
+                  request.request.profile_pic
+                    ? request.request.profile_pic
+                    : "/assets/default_profile.svg"
+                }
+                height={41}
+                width={41}
+              />
             </div>
             <div className={styles.join_request_user_info}>
               <h1>{request.request.name}</h1>
@@ -342,14 +341,16 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.join_request_buttons}>
-            <button className={styles.join_request_button_accept} onClick={
-              () => accept_request(request.request)
-            }>
+            <button
+              className={styles.join_request_button_accept}
+              onClick={() => accept_request(request.request)}
+            >
               <FontAwesomeIcon icon={faCheck} size="sm" color="#EFEFEF" />
             </button>
-            <button className={styles.join_request_button_decline}
+            <button
+              className={styles.join_request_button_decline}
               onClick={() => reject_request(request.request)}
-              >
+            >
               <FontAwesomeIcon icon={faXmark} size="sm" color="#EFEFEF" />
             </button>
           </div>
@@ -386,78 +387,26 @@ const Home = () => {
           </section>
           <section className={styles.section_2}>
             <div className={styles.card_container}>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon icon={faEye} size="lg" color="#999999" />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Views</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastviews != null ? <h3>{lastviews}</h3> : <Loading />}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faDollarSign}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Donations</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastdonations != null ? (
-                    <h3>{lastdonations}</h3>
-                  ) : (
-                    <Loading />
-                  )}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faCommentAlt}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Comments</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastcomments != null ? <h3>{lastcomments}</h3> : <Loading />}
-                </div>
-              </div>
-              <div className={styles.card}>
-                <div className={styles.card_header}>
-                  <div className={styles.card_header_icon}>
-                    <FontAwesomeIcon
-                      icon={faThumbsUp}
-                      size="lg"
-                      color="#999999"
-                    />
-                  </div>
-                  <div className={styles.card_header_text}>
-                    <h1>Upvotes</h1>
-                    <h2>In the last 24h</h2>
-                  </div>
-                </div>
-                <div className={styles.card_body}>
-                  {lastupvotes != null ? <h3>{lastupvotes}</h3> : <Loading />}
-                </div>
-              </div>
+              <DataCard
+                label={"Views"}
+                icon={faEye}
+                data={lastviews}
+              ></DataCard>
+              <DataCard
+                icon={faDollarSign}
+                data={lastdonations}
+                label={"Donations"}
+              ></DataCard>
+              <DataCard
+                icon={faCommentAlt}
+                label={"Comments"}
+                data={lastcomments}
+              ></DataCard>
+              <DataCard
+                icon={faThumbsUp}
+                label={"Upvotes"}
+                data={lastupvotes}
+              ></DataCard>
             </div>
           </section>
           <section className={styles.section_3}>
@@ -500,12 +449,10 @@ const Home = () => {
               <h1>Join Requests - {join_requests.length}</h1>
               <div id={styles.style_1}>
                 {join_requests.map((request) => {
-                  
-                  return(<Requestcard
-                    key={request.user_id}
-                    request={request}
-                  />)
-                  ;})}
+                  return (
+                    <Requestcard key={request.user_id} request={request} />
+                  );
+                })}
               </div>
             </div>
           </section>

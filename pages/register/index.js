@@ -8,9 +8,16 @@ import axios from "axios";
 import SideBanner from "../../components/form/sideBanner";
 import { useRouter } from "next/router";
 import { ConnectButton } from "web3uikit";
+import { useMoralis } from "react-moralis";
+import { useWeb3Contract } from "react-moralis";
+import { abi, contractAddresses } from "../../constants";
+import { useNotification } from "web3uikit";
+import { Loading } from "web3uikit";
+import { DeleteUser } from "../../utils/api/DeleteUser";
 
 const Register = () => {
   const router = useRouter();
+  const { account, chainId: chainIdHex } = useMoralis();
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [username, setUsername] = useState("");
@@ -20,8 +27,36 @@ const Register = () => {
   const [repassword, setRepassword] = useState("");
   const [termsApproval, setTermsApproval] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isWalletRegistered, setIsWalletRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState();
+  const chainId = parseInt(chainIdHex);
+  const ActivityAddress =
+    chainId in contractAddresses ? contractAddresses[chainId][0] : null;
+  const dispatch = useNotification();
+
+  const { runContractFunction: registerUser } = useWeb3Contract({
+    abi,
+    contractAddress: ActivityAddress,
+    functionName: "registerUser",
+  });
+
+  const { runContractFunction: getUserCount } = useWeb3Contract({
+    abi,
+    contractAddress: ActivityAddress,
+    functionName: "getUserCount",
+  });
+
+  const { runContractFunction: getUserCredits } = useWeb3Contract({
+    abi,
+    contractAddress: ActivityAddress,
+    functionName: "getUserCredits",
+    params: {
+      _userAddress: account,
+    },
+  });
 
   useEffect(() => {
+    setIsLoading(true);
     const token = localStorage.getItem("_USID");
     if (token) {
       axios
@@ -43,36 +78,84 @@ const Register = () => {
           router.replace("/login");
         });
     }
+    setIsLoading(false);
   }, []);
 
+  const checkWalletAddress = async () => {
+    const response = await getUserCredits();
+    console.log(response[1]);
+    if (response[1]) {
+      setIsWalletRegistered(true);
+      return setErrorMessage("Error: Wallet already registered!");
+    }
+    setIsWalletRegistered(false);
+    setErrorMessage("");
+  };
+
+  useEffect(() => {
+    if (account) {
+      checkWalletAddress();
+    }
+  }, [account]);
+
   const handleSubmit = async () => {
-    // console.log("yes");
+    setIsLoading(true);
     if (termsApproval) {
-      if (password === repassword) {
-        axios
-          .post("http://localhost:3001/user/register", {
-            username,
-            password,
-            email,
-            contact,
-            fname,
-            lname,
-          })
-          .then(async (response) => {
-            localStorage.setItem("_USID", response.data.token);
-            router.push("/register/2");
-          })
-          .catch((err) => {
-            setErrorMessage(err.response.data.msg);
-          });
+      if (account) {
+        if (password === repassword && !isWalletRegistered) {
+          const userCountInHex = await getUserCount();
+          axios
+            .post("http://localhost:3001/user/register", {
+              username,
+              password,
+              email,
+              contact,
+              fname,
+              lname,
+              walletAddress: account,
+              public_ID: parseInt(userCountInHex) + 1,
+            })
+            .then(async (response) => {
+              const response1 = await registerUser({
+                onSuccess: () => handleSuccess(response),
+                onError: (err) => {
+                  DeleteUser(response.data.uid);
+                  setErrorMessage(err.message);
+                  setIsLoading(false);
+                },
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              setErrorMessage(err.response.data.msg);
+              setIsLoading(false);
+            });
+        } else {
+          setErrorMessage("Error:" + " Passwords don't match!");
+          setIsLoading(false);
+        }
       } else {
-        setErrorMessage("Error:" + " Passwords don't match!");
+        setErrorMessage("Connect to a Wallet first!");
+        setIsLoading(false);
       }
     } else {
       setErrorMessage(
         "Error: You can't register without agreeing to Terms and Conditions!"
       );
+      setIsLoading(false);
     }
+  };
+
+  const handleSuccess = async (response) => {
+    dispatch({
+      type: "success",
+      message: "Welcome to Minerva!",
+      title: "Tx Notification",
+      position: "bottomR",
+    });
+
+    localStorage.setItem("_USID", response.data.token);
+    router.push("/register/2");
   };
   return (
     <section className="centralise form-only">
@@ -153,12 +236,16 @@ const Register = () => {
             {errorMessage ? (
               <FormError errorMessage={errorMessage}></FormError>
             ) : null}
-            <div className="flex-end">
-              <SubmitButton
-                label="Register"
-                submitHandler={handleSubmit}
-              ></SubmitButton>
-            </div>
+            {isLoading ? (
+              <Loading></Loading>
+            ) : (
+              <div className="flex-end">
+                <SubmitButton
+                  label="Register"
+                  submitHandler={handleSubmit}
+                ></SubmitButton>
+              </div>
+            )}
           </form>
         </div>
         <div className="space-between">

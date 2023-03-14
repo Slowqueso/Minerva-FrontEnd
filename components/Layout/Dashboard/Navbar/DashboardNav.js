@@ -57,7 +57,7 @@ const DashboardNav = ({ NavList }) => {
               <NavItem
                 labelText={item.labelText}
                 href={item.href}
-                // key={index}
+                key={index}
                 activityId={activityId}
               />
             );

@@ -13,6 +13,7 @@ import { useNotification } from "web3uikit";
 import incrementStatus from "../../../utils/api/incrementActivity";
 import FormError from "../../form/formError";
 import updateOwnerAddress from "../../../utils/api/updateOwnerAddress";
+import { AddPublicId } from "../../../utils/api/AddPublicId";
 
 const LabelText = ({ label, text }) => {
   return (
@@ -81,33 +82,43 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
           _level: activity.difficulty_level,
           _maxMembers: activity.member_limit,
           _waitingPeriodInMonths: 1,
-          dateOfCreation: parseInt(getNumericDate()),
         }
       : {},
   });
 
+  const { runContractFunction: getPublicId } = useWeb3Contract({
+    abi,
+    contractAddress: ActivityAddress,
+    functionName: "getActivityCount",
+  });
+
   const handleSuccess = async (tx) => {
     await tx.wait(1);
-    handleNewNotification(tx);
-    incrementStatus(activityId, setProgress, 66);
+    const response = await getPublicId();
+    console.log("Public ID: " + response);
+    await AddPublicId(activityId, parseInt(response), setErrorMessage);
     updateOwnerAddress(activityId, account);
+    incrementStatus(activityId, setProgress, 66);
+    handleNewNotification();
   };
 
   const handleNewNotification = () => {
     dispatch({
       type: "info",
       message: "Activity Deployed Successfully!",
-      title: "Tx Notification",
+      title: "Congratulations!",
       position: "bottomR",
     });
   };
   const handleSubmit = async () => {
-    console.log("first")
+    // console.log("first");
     setButton(true);
     const response = await createActivity({
       onSuccess: handleSuccess,
-      onError: (error) => {console.log(error);
-      setButton(false);},
+      onError: (error) => {
+        console.log(error);
+        setButton(false);
+      },
     });
     console.log(response);
   };
@@ -178,7 +189,7 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
                 ></LabelText>
                 <LabelText
                   label={"# DURATION PERIOD"}
-                  text={activity.durationPeriod}
+                  text={activity.durationPeriod + " months"}
                 ></LabelText>
               </div>
             </div>

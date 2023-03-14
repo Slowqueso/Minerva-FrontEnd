@@ -73,7 +73,6 @@ const DashboardTabs = () => {
         },
       })
       .then((response) => {
-        console.log(response.data.activity);
         setActivity(response.data.activity);
       })
       .catch((err) => {

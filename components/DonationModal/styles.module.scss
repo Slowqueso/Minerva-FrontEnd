@@ -1,0 +1,185 @@
+.modal_container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    .modal{
+        width: 70%;
+        border: 1px solid rgb(53, 53, 53);
+        height: 75vh;
+        overflow-y: scroll;
+        background: rgba(29, 29, 29, 0.75);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(15px);
+        padding: 3rem;
+        .close_button{
+            position: sticky;
+            // top: 1.5rem;
+            top: 0rem;
+            // right: 1.5rem;
+            transition: 200ms ease;
+            float: right;
+        }
+        .close_button:hover{
+            cursor: pointer;
+            filter: brightness(1.5);
+        }
+        .modal_header{
+            background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: fit-content;
+            background-clip: text;
+            // text-fill-color: transparent;
+            font-family: var(--fs-inter-800);
+            font-weight: 600;
+            font-size: 2em;
+            margin:1rem;
+            margin-left: 0;
+        }
+        .modal_body{
+            display: flex;
+            justify-content: space-between;
+            // border: 1px solid white;
+            .modal_tabs{
+                position: relative;
+                min-width: 35%;
+                margin-right: 1.5rem;
+                // background: #1C1C1C;
+                background: #171717;
+                box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+                .tab_header{
+                    --padding-placement: 1.5rem;
+                    display: flex;
+                    // justify-content: space-evenly;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    position: relative;
+                    background: #0f0f0f;
+                    padding: var(--padding-placement);
+                    h3{
+                        margin: 0px;
+                        color: #B6B6B6;
+                        font-family: var(--fs-inter-400);
+                        font-size: 18px;
+                    }
+                    .next_arrow{
+                        position: absolute;
+                        top: calc(var(--padding-placement) + 0.2rem);
+                        right: 1.5rem;    
+                        transition: 200ms ease;
+                    }
+                    .back_arrow{
+                        position: absolute;
+                        top: calc(var(--padding-placement) + 0.2rem);
+                        left: 1.5rem;
+                        transition: 200ms ease;
+                    }
+                    .next_arrow:hover, .back_arrow:hover{
+                        cursor: pointer;
+                        filter: brightness(1.5);
+                    }
+                    .tab_timeline{
+                        display: flex;
+                        span{
+                            margin: 0px 0.5rem;
+                            padding: 0.2rem;
+                            border-radius: 50%;
+                            // background-color: #B6B6B6;
+                            border: 1px solid #B6B6B6;
+                        }
+                        .selected{
+                            background-color: #B6B6B6;
+
+                        }
+                    }
+                }
+                .tab_body{
+                    .tab_form{
+                        padding: 1.5rem;
+                        .dollar_cards{
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: flex-start;
+                            margin: 1rem 1rem;
+                            .selected{
+                                border: 1px solid var(--palette-text-green) !important;
+                                color: var(--palette-text-green) !important;
+                                
+                            }
+                            .dollar_card{
+                                height: 37px;
+                                width: 81px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                // padding: 0.25rem 1.5rem;
+                                border: 1px solid #3C3C3C;
+                                background: #2B2B2B;
+                                border-radius: 5px;
+                                margin: 0rem 0.5rem 0.5rem 0rem;
+                                transition: 200ms ease;
+                                // margin: 0px;
+                                color: white;
+                                font-size: 14px;
+                                font-weight: 300;
+                                font-family: var(--fs-poppins-400);
+                                
+                            }
+                            .dollar_card:hover{
+                                background: #202020;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .tab_bill{
+                        padding: 1rem;
+                        .field_header{
+                            // border: 1px solid white;
+                            margin: 1rem 0.5rem 2rem 0.5rem;
+                            h3{
+                                font-family: var(--fs-montserrat-300);
+                                text-transform: uppercase;
+                                color: #727272;
+                                font-size: 14px;
+                                margin: 0px;
+                            }
+                            p{
+                                font-family: var(--fs-inter-400);
+                                font-weight: 300;
+                                color: white;
+                                font-size: 16px;
+                                margin: 0px;
+                            }
+                        }
+                        .GUIS{
+                            position: absolute;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+            .modal_content{
+                h1{
+                    color: white;
+                    font-family: var(--fs-inter-800);
+                    font-size: 2em;
+                    margin: 0px;
+                }
+                p{
+                    color: white;
+                    font-family: var(--fs-inter-400);
+                    font-weight: 200;
+                    text-align: justify;
+                    text-justify: inter-word
+                };
+            }
+        }
+    }
+}

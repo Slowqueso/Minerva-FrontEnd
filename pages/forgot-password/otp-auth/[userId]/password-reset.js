@@ -21,7 +21,7 @@ const PasswordReset = () => {
   const dispatch = useNotification();
 
   const handleSubmit = () => {
-    console.log("yes");
+    // console.log("yes");
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/update-password", {
         userId: userId,
