@@ -21,67 +21,79 @@ const DashboardNav = ({ NavList }) => {
           <h3 className={styles.nav_item_header}>activity</h3>
           {NavList.Activity.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
           <h3 className={styles.nav_item_header}>Tasks</h3>
           {NavList.Tasks.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
           <h3 className={styles.nav_item_header}>apps</h3>
           {NavList.Apps.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                // key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
           <h3 className={styles.nav_item_header}>user management</h3>
           {NavList.User_management.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
           <h3 className={styles.nav_item_header}>Moderations</h3>
           {NavList.Moderation.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                // key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
           <h3 className={styles.nav_item_header}>Discussions</h3>
           {NavList.Discussions.map((item, index) => {
             return (
-              <NavItem
-                labelText={item.labelText}
-                href={item.href}
-                // key={index}
-                activityId={activityId}
-              />
+              <span key={index}>
+                <NavItem
+                  labelText={item.labelText}
+                  href={item.href}
+                  // key={index}
+                  activityId={activityId}
+                />
+              </span>
             );
           })}
         </ul>

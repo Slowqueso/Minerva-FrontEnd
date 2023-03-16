@@ -12,7 +12,11 @@ const SelectMenu = ({id, objectArray, name, changeHandler, label, value }) => {
         id={name}
         className="options-menu"
         onChange={(e) => {
-          changeHandler(parseInt(e.target.value));
+          if (!isString) {
+            changeHandler(parseInt(e.target.value));
+          } else {
+            changeHandler(e.target.value);
+          }
         }}
       >
         {objectArray.map((object, index) => {

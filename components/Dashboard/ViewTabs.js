@@ -2,8 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import Home from "./Tabs/Home/Home";
 import Donations from "./Tabs/Donations/Donations";
-import Tasks from "./Tabs/Tasks/Tasks"
-import AddTask from "./Tabs/AddTask/AddTask";
+import Tasks from "./Tabs/Tasks/Tasks";
+import AddTask from "./Tabs/Add-Task/AddTask";
 
 const ViewTabs = () => {
   const router = useRouter();
@@ -30,9 +30,9 @@ const ViewTabs = () => {
         </section>
       );
     case "tasks":
-      return <Tasks/>;
+      return <Tasks />;
     case "add-task":
-      return <AddTask/>;
+      return <AddTask />;
     case "connections":
       return <div>Connections</div>;
     case "integrations":

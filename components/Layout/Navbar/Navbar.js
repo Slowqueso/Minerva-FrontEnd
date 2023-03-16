@@ -28,7 +28,6 @@ const Navbar = () => {
         .then((response) => {
           if (response.data.authenticated) {
             setUser(response.data.user);
-            console.log(response.data.user);
           }
         })
         .catch((err) => {

@@ -12,6 +12,7 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
 
   const onFileUpload = async (e) => {
     const { files } = e.target;
+    console.log(files);
     if (imageHandler(e)) {
       setFileName(files[0].name);
       setImageFile(files[0]);
