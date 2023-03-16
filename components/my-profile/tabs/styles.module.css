@@ -1,0 +1,258 @@
+.my_profile {
+  display: flex;
+  gap: 2em;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+.my_profile h1 {
+  font-family: var(--fs-inter-400);
+  font-weight: 600;
+  background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-clip: text;
+  font-size: 2.5em;
+  margin: 0px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.my_profile h3 {
+  color: white;
+  font-size: 1.7em;
+  padding: 0;
+  margin-block: 1rem;
+}
+
+.account_overview {
+  width: 100%;
+  padding: 2rem;
+}
+.account_overview table {
+  width: 80%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 1rem;
+}
+.account_overview table td {
+  width: 50%;
+  color: var(--palette-light-grey);
+  font-family: var(--fs-poppins-400);
+  font-weight: 400;
+  font-size: 1.2em;
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--palette-medium-grey);
+}
+.account_overview table td a {
+  margin-left: 0rem;
+}
+.account_overview table th {
+  width: 50%;
+  color: var(--palette-medium-grey);
+  font-family: var(--fs-poppins-400);
+  font-weight: 400;
+  font-size: 1.2em;
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--palette-medium-grey);
+}
+
+.security {
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.security form {
+  width: 100%;
+}
+.security form input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.security form input label {
+  width: 100%;
+  text-align: left;
+  font-size: 1.2em;
+  color: var(--palette-medium-grey);
+}
+.security form input input {
+  width: 100%;
+  height: 2.5em;
+  border: 1px solid var(--palette-medium-grey);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1.2em;
+  color: var(--palette-medium-grey);
+}
+.security form button {
+  width: 100%;
+  padding: 1rem auto;
+  margin: 1rem;
+  text-align: center;
+}
+.security form button h3 {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  color: black;
+}
+.security form .button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.security form .button button {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 2.5em;
+  border: 1px solid var(--palette-medium-grey);
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2em;
+  color: var(--palette-medium-grey);
+  background-color: var(--palette-light-grey);
+}
+.security p {
+  color: var(--palette-medium-grey);
+  font-size: 1.2em;
+  font-family: var(--fs-poppins-400);
+  margin-top: 1em;
+}
+.security .tfa {
+  background-color: #1B1B1B;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.security .tfa p {
+  color: white;
+  font-size: 1em;
+  font-family: var(--fs-poppins-400);
+  margin: 0;
+}
+.security .tfa .tfa_option {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.security .tfa .tfa_option input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+.security .tfa .tfa_option label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 31px;
+  height: 17.71px;
+  background: grey;
+  display: block;
+  border-radius: 31px;
+  position: relative;
+}
+.security .tfa .tfa_option label:after {
+  content: "";
+  position: absolute;
+  top: 1.5px;
+  left: 3px;
+  width: 14.76px;
+  height: 14.76px;
+  background: #fff;
+  border-radius: 14.76px;
+  transition: 0.3s;
+}
+.security .tfa .tfa_option input:checked + label {
+  background: #FF78BD;
+}
+.security .tfa .tfa_option input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+.security .tfa .tfa_option label:active:after {
+  width: 14px;
+}
+.security .tfa .tfa_option h5 {
+  color: white;
+  font-family: var(--fs-poppins-400);
+  font-size: 1.125rem;
+  padding: 0;
+  margin: 0;
+}
+.security .tfa hr {
+  border: 1px solid #939393;
+  width: 100%;
+  margin-block: 1rem;
+}
+
+.add_profile {
+  position: relative;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.add_profile .dropdownBtn {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  height: -moz-max-content;
+  height: max-content;
+  display: flex;
+  align-items: center;
+}
+.add_profile .arrow {
+  transition: transform 0.3s;
+}
+.add_profile .arrow.active {
+  transform: rotate(180deg);
+}
+.add_profile .dropdownForm {
+  display: none;
+  transition: opacity 0.3s, max-height 0.3s;
+}
+.add_profile .dropdownForm.show {
+  display: flex;
+  transition: opacity 0.3s 0.3s, max-height 0.3s 0.3s;
+}
+.add_profile form {
+  width: 100%;
+  height: 100%;
+  margin-left: -1rem;
+  display: flex;
+  flex-direction: column;
+}
+.add_profile form .twobytwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+.add_profile form button {
+  padding-inline: 1em;
+  margin: 0;
+  align-self: flex-end;
+}
+.add_profile form button h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  color: black;
+}/*# sourceMappingURL=styles.module.css.map */

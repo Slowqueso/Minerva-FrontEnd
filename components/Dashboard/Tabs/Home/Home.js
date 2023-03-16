@@ -19,6 +19,7 @@ import Image from "next/image";
 import axios from "axios";
 import ENV from "../../../../static_files/hostURL";
 import { Loading } from "web3uikit";
+import SelectMenu from "../../../form/SelectMenu";
 
 const Home = () => {
   const router = useRouter();
@@ -38,11 +39,29 @@ const Home = () => {
   const [upvotelabels, setupvoteLabels] = useState([]);
   const [upvotedata, setupvoteData] = useState([]);
 
+  const [activityStatus, setActivityStatus] = useState(0);
+
   const isLogged = async () => {
     const isLogged = await isUserLogged();
     if (!isLogged) {
       router.replace("/login");
     }
+  };
+
+  const handleActivityStatus = async () => {
+    await axios
+      .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + `/activity/toggle-status`, {
+        headers: {
+          "x-activity-id": activity.id,
+          "x-access-token": localStorage.getItem("_USID"),
+        },
+      })
+      .then((res) => {
+        setActivityStatus(!activityStatus);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const hudload = async () => {
@@ -256,21 +275,37 @@ const Home = () => {
     join_request(token);
 
     axios
-      .post(
-        ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/viewed",
-        {
-          activityId: activity.id,
-        },
+      .get(
+        ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/info/isOpen",
         {
           headers: {
-            "x-access-token": token,
+            "x-activity-id": activity.id,
           },
         }
       )
-      .then((res) => {})
+      .then((res) => {
+        setActivityStatus(res.data.isOpen);
+      })
       .catch((err) => {
         console.log(err);
       });
+
+    // axios
+    //   .post(
+    //     ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/viewed",
+    //     {
+    //       activityId: activity.id,
+    //     },
+    //     {
+    //       headers: {
+    //         "x-access-token": token,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {})
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
 
   useEffect(() => {
@@ -411,6 +446,7 @@ const Home = () => {
           </section>
           <section className={styles.section_3}>
             <div className={styles.chart_container}>
+              <h1>Weekly Chart</h1>
               <Line
                 data={chartData}
                 options={{
@@ -419,10 +455,6 @@ const Home = () => {
                     intersect: false,
                   },
                   plugins: {
-                    title: {
-                      display: true,
-                      text: "Statistics",
-                    },
                     legend: {
                       display: true,
                     },
@@ -444,6 +476,27 @@ const Home = () => {
                   },
                 }}
               />
+              <div className={styles.settings}>
+                <h1>Settings</h1>
+                <div className="space-between">
+                  <h2>Activity Status</h2>
+                  <div className={styles.select_menu}>
+                    <SelectMenu
+                      objectArray={[
+                        { label: "Open", value: true },
+                        { label: "Closed", value: false },
+                      ]}
+                      name="activity_status"
+                      value={activityStatus}
+                      changeHandler={handleActivityStatus}
+                    />
+                  </div>
+                </div>
+                <p>
+                  Update the visibility and accessbility of your Activity in
+                  Minerva
+                </p>
+              </div>
             </div>
             <div className={styles.join_request_container}>
               <h1>Join Requests - {join_requests.length}</h1>

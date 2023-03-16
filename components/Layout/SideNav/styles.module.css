@@ -49,6 +49,7 @@
 .nav_list li .activities_list .activity_container {
   display: flex;
   align-items: center;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .nav_list li .activities_list .activity_container .activity_logo {
@@ -78,6 +79,7 @@
 }
 
 .side_nav {
+  width: -moz-fit-content;
   width: fit-content;
   height: 92.5vh;
   position: sticky;

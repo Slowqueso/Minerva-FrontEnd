@@ -27,6 +27,7 @@ const ActivityProfile = () => {
   const [DModalActive, setDModalActive] = useState(false);
   const { chainId: chainIdHex, account } = useMoralis();
   const chainId = parseInt(chainIdHex);
+  const [activityStatus, setActivityStatus] = useState();
   const ActivityAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
@@ -155,8 +156,43 @@ const ActivityProfile = () => {
         .catch((err) => {
           console.log(err);
         });
+      
     }
   }, [activityId]);
+
+  useEffect(() => {
+    if (activity) {
+      const token = localStorage.getItem("_USID");
+      axios
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/info/isOpen", {
+          headers: {
+            "x-activity-id": activity.id,
+          },
+        })
+        .then((response) => {
+          setActivityStatus(response.data.isOpen);
+        });
+        if(token){
+        axios
+        .post(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/viewed",
+          {
+            activityId: activity.id,
+          },
+          {
+            headers: {
+              "x-access-token": token,
+            },
+          }
+        )
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+      }
+    }
+  }, [activity]);
+
   return (
     <div>
       {activity ? (
@@ -187,7 +223,7 @@ const ActivityProfile = () => {
             </div>
             <div className={styles.flex_align}>
               <div className={`${styles.label_text} flex`}>
-                <h3>{activity.upVotes}</h3>
+                <h3>{activity.upVotes.length}</h3>
                 <h4>Upvotes</h4>
               </div>
               <div className={`${styles.label_text} flex`}>
@@ -227,10 +263,12 @@ const ActivityProfile = () => {
                       isTransparent={true}
                       submitHandler={toggleDModal}
                     ></SubmitButton>
-                    <SubmitButton
-                      label={"Join"}
-                      submitHandler={handleSubmit}
-                    ></SubmitButton>
+                    {!activityStatus ? null : (
+                      <SubmitButton
+                        label={"Join"}
+                        submitHandler={handleSubmit}
+                      ></SubmitButton>
+                    )}
                   </>
                 )}
               </div>

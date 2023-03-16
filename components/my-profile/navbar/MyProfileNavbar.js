@@ -8,7 +8,7 @@ const MyProfileNavbar = ({ profilePic }) => {
       <div className={styles.account_navbar}>
         <img src={profilePic} alt="profile" />
 
-        <Link href="/my-profile/">AccountInfo</Link>
+        <Link href="/my-profile/info">AccountInfo</Link>
         <Link href="/my-profile/privacy">Privacy</Link>
         <Link href="/my-profile/security">Security</Link>
         <Link href="/my-profile/add-profile">Add profile</Link>

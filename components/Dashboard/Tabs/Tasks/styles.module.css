@@ -3,12 +3,14 @@
   font-family: var(--fs-inter-400);
 }
 .taskSection .dropdownBtn {
+  width: -moz-fit-content;
   width: fit-content;
   background: #1B1B1B;
   color: #BFBFBF;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  height: -moz-max-content;
   height: max-content;
   display: flex;
   align-items: center;
@@ -37,6 +39,7 @@
   padding: 0 35px;
   position: relative;
   color: #FFFFFF;
+  height: -moz-fit-content;
   height: fit-content;
   max-height: 50vh;
   overflow-y: auto;
@@ -104,7 +107,8 @@
 .taskSection .wrapper .row section .details .user_info .user_img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .taskSection .wrapper .row section .details .title {
   font-weight: 400;

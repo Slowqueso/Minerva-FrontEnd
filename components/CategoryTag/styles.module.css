@@ -8,8 +8,10 @@
   border-radius: 3px;
   max-height: 30px;
   margin-left: 0rem;
+  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 1rem;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .tag_container h3 {

@@ -2,9 +2,7 @@
   max-height: 55vh;
   overflow-y: scroll;
 }
-
 .section .table, .section td, .section th {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-collapse: separate;
@@ -33,49 +31,41 @@
 .table {
   --row-inner-margin: 0.25rem;
 }
-
 .table thead {
   color: #747474;
-  position: -webkit-sticky;
   position: sticky;
   top: 0px;
   font-family: var(--fs-inter-400);
   z-index: 20;
 }
-
 .table thead tr > th {
   font-size: 16px;
   font-weight: 400;
 }
-
 .table thead tr th:nth-child(2) {
   width: 72ch;
   text-align: left;
 }
-
 .table thead::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
-  top: -0rem;
+  top: 0rem;
   height: 2.5rem;
   background-color: #0A0A0A;
   width: 100%;
 }
-
 .table tbody tr {
   outline: 1px solid #1B1B1B;
   border-radius: 2px;
 }
-
 .table tbody tr td p {
-  margin: calc(var(--row-inner-margin )*2) 0px;
+  margin: calc(var(--row-inner-margin) * 2) 0px;
   font-family: var(--fs-inter-400);
   font-size: 16px;
   font-weight: 300;
   color: white;
 }
-
 .table tbody tr td:not(:nth-child(2)) {
   text-align: center;
   color: white;
@@ -84,14 +74,9 @@
   font-weight: 300;
   color: white;
 }
-
 .table tbody tr td:nth-child(2) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   width: 100%;
   color: white;
   font-family: var(--fs-inter-400);
@@ -99,26 +84,19 @@
   font-weight: 300;
   color: white;
 }
-
 .table tbody tr td:nth-child(2) .profile {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: var(--row-inner-margin) 1rem var(--row-inner-margin) 0rem;
 }
-
 .table tbody tr td:nth-child(2) p {
   margin: 0px;
   font-family: var(--fs-inter-400);
   font-size: 16px;
   font-weight: 300;
   color: white;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

@@ -1,5 +1,5 @@
 import {React,useState,useEffect} from "react";
-import styles from "../styles.module.css";
+import styles from "./styles.module.css";
 import FullLayout from "../../../components/Layout/FullLayout";
 import MyProfileNavbar from "../../../components/my-profile/navbar/MyProfileNavbar";
 
@@ -182,9 +182,7 @@ const AddProfile = () => {
 
   return (
     <>
-      <FullLayout>
-        <div className={styles.my_profile}>
-          <MyProfileNavbar />
+      
           <div className={styles.add_profile}>
             <h1>Add Profile</h1>
 
@@ -314,8 +312,7 @@ const AddProfile = () => {
               </form>
             </div>
           </div>
-        </div>
-      </FullLayout>
+        
     </>
   );
 };

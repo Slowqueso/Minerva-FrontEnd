@@ -67,9 +67,39 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  h1 {
+    color: #ffffff;
+    font-family: var(--fs-inter-400);
+    font-size: 18px;
+    margin: 1rem;
+  }
+  p{
+    color: #808080;
+    font-family: var(--fs-inter-400);
+    font-size: 12px;
+    padding-inline: 1rem;
+    margin: 0;
+  }
   .chart_container {
     height: 100%;
     width: 70%;
+    .settings{
+      width: 60%;
+      h2{
+        color: #CCCCCC;
+        font-family: var(--fs-inter-400);
+        font-size: 14px;
+        margin: 1rem;
+      }
+      .select_menu{
+        display: flex;
+        width: 100px;
+        height: 24px;
+        select{
+          padding: 0;
+        }
+      }
+    }
   }
   .join_request_container {
     display: flex;
@@ -103,12 +133,7 @@
     }
 
     background-color: #1b1b1b;
-    h1 {
-      color: #ffffff;
-      font-family: var(--fs-inter-400);
-      font-size: 18px;
-      margin: 1rem;
-    }
+    
     .join_request {
       display: flex;
       align-items: center;

@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import FullLayout from "../../../components/Layout/FullLayout";
-import styles from "../styles.module.css";
+import styles from "./styles.module.css";
 import MyProfileNavbar from "../../../components/my-profile/navbar/MyProfileNavbar";
 import TextBox2 from "../../../components/form/textbox2";
 import SubmitButton from "../../../components/form/SubmitButton";
@@ -108,14 +108,13 @@ const Security = () => {
   }, []);
   return (
     <>
-      <FullLayout>
-        <div className={styles.my_profile}>
-          <MyProfileNavbar />
+      
           <div className={styles.security}>
             <h1>Security</h1>
             <h3>Change Password</h3>
             <form>
               {/* <TextBox label={"Old Password"} /> */}
+              <div className="space-between">
               <TextBox2
                 label={"New Password"}
                 inputUpdate={setPassword}
@@ -126,10 +125,13 @@ const Security = () => {
                 inputUpdate={setRePassword}
                 isPassword={true}
               />
+              </div>
+              <div className={`flex-end ${styles.button}`}>
               <SubmitButton
                 label={"Change Password"}
                 submitHandler={handleSubmit}
               />
+              </div>
             </form>
             <h3>Two-Factor Authentication</h3>
             <p>
@@ -155,8 +157,7 @@ const Security = () => {
               <p>Receive Unique Authentication codes at {partialEmail}</p>
             </div>
           </div>
-        </div>
-      </FullLayout>
+        
     </>
   );
 };
