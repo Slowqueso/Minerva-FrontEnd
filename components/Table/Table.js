@@ -4,14 +4,14 @@ import Image from "next/image";
 
 const Row = ({ object, isImage, index }) => {
   return (
-    <tr key={index}>
+    <>
       <td>{index + 1}.</td>
       {Object.keys(object).includes(
         "image_logo" || "profile_pic" || "image" || "logo" || "image_url"
       )
         ? Object.keys(object).map((key, index) => {
             return (
-              <td>
+              <td key={index}>
                 {isImage &&
                 key ===
                   ("image_logo" ||
@@ -31,12 +31,15 @@ const Row = ({ object, isImage, index }) => {
           })
         : Object.keys(object).map((key, index) => {
             return (
-              <td style={index == 0 ? { marginTop: "0.5rem" } : null}>
+              <td
+                style={index == 0 ? { marginTop: "0.5rem" } : null}
+                key={index}
+              >
                 <p>{object[key]}</p>
               </td>
             );
           })}
-    </tr>
+    </>
   );
 };
 const Table = ({ headers, data, isImage }) => {
@@ -53,12 +56,14 @@ const Table = ({ headers, data, isImage }) => {
         <tbody>
           {data.map((object, index) => {
             return (
-              <Row
-                key={index}
-                object={object}
-                isImage={isImage}
-                index={index}
-              ></Row>
+              <tr key={index}>
+                <Row
+                  key={index}
+                  object={object}
+                  isImage={isImage}
+                  index={index}
+                ></Row>
+              </tr>
             );
           })}
         </tbody>

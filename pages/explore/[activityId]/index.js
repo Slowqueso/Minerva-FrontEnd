@@ -70,7 +70,7 @@ const ActivityProfile = () => {
     await tx.wait(1);
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
-        activityId: activityId,
+        activityId: activity._id,
         userId: user.id,
         registeredAddress: account,
       })
@@ -106,9 +106,20 @@ const ActivityProfile = () => {
   const handleSubmit = async () => {
     const response = await joinActivity({
       onSuccess: handleSuccess,
-      onError: (error) => console.log(error),
+      onError: (error) => {
+        handleError(error);
+      },
     });
     console.log(response);
+  };
+
+  const handleError = (error) => {
+    dispatch({
+      type: "error",
+      message: "Some Error Occured! Try again later",
+      title: "Join Failed!",
+      position: "bottomR",
+    });
   };
   useEffect(() => {
     if (activity && user) {
@@ -220,13 +231,15 @@ const ActivityProfile = () => {
             </div>
             {user ? (
               <div className={styles.flex_end}>
+                {activity.owner.id === user.id ? null : (
+                  <SubmitButton
+                    label={"Support"}
+                    isTransparent={true}
+                    submitHandler={toggleDModal}
+                  ></SubmitButton>
+                )}
                 {isMember ? null : (
                   <>
-                    <SubmitButton
-                      label={"Support"}
-                      isTransparent={true}
-                      submitHandler={toggleDModal}
-                    ></SubmitButton>
                     <SubmitButton
                       label={"Join"}
                       submitHandler={handleSubmit}

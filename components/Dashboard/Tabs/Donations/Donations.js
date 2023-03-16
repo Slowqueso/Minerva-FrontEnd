@@ -12,13 +12,15 @@ import DataCard from "../../DataCard/DataCard";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { ActivityContext } from "../../../../pages/dashboard/[activityId]/[tab]";
+import SubmitButton from "../../../form/SubmitButton";
+import { useNotification } from "web3uikit";
 
 const Donations = () => {
+  const dispacth = useNotification();
   const { Moralis, chainId: chainIdHex } = useMoralis();
   const [signer, setSigner] = useState();
   const { public_ID } = useContext(ActivityContext);
   const chainId = parseInt(chainIdHex);
-  const [activity, setActivity] = useState(null);
   const [donations, setDonations] = useState([]);
   const [totalDonations, setTotalDonations] = useState(0);
   const [donationBalance, setDonationBalance] = useState(0);
@@ -132,6 +134,37 @@ const Donations = () => {
     },
   });
 
+  const { runContractFunction: withdrawAllMoney } = useWeb3Contract({
+    abi,
+    contractAddress: ActivityAddress,
+    functionName: "withdrawAllMoney",
+    params: {
+      _activityID: public_ID,
+    },
+  });
+
+  const handleWithdrawalSuccess = async (tx) => {
+    await tx.wait(1);
+    dispacth({
+      title: "Widthrawal Successful!",
+      message: "Money will be sent to your wallet shortly",
+      type: "success",
+      position: "bottomR",
+    });
+    setDonationBalance(0);
+  };
+
+  const handleError = (error) => {
+    console.log(error);
+    dispacth({
+      title: "Error",
+      message:
+        "Money Could not be withdrawn, if the problem persists please contact support",
+      type: "error",
+      position: "bottomR",
+    });
+  };
+
   const listenToEvents = async () => {
     const contract = new ethers.Contract(ActivityAddress, abi, signer);
     contract.on(
@@ -169,8 +202,10 @@ const Donations = () => {
   useEffect(() => {
     const fetchActivity = async () => {
       const response = await getActivity();
-      setTotalDonations(parseInt(response.donationReceived));
-      setDonationBalance(parseInt(response.donationBalance));
+      if (response) {
+        setTotalDonations(parseInt(response.donationReceived));
+        setDonationBalance(parseInt(response.donationBalance));
+      }
     };
     if (public_ID) {
       fetchActivity();
@@ -222,6 +257,46 @@ const Donations = () => {
       </section>
       <section className={styles.section_3}>
         <h2 className={styles.tab_header}>Settings</h2>
+        <div className={styles.settings_container}>
+          <div className={styles.setting}>
+            <div className="space-between">
+              <h3 className={styles.setting_title}>Withdraw Donation Money</h3>
+              <SubmitButton
+                label={"Withdraw"}
+                isTransparent={false}
+                submitHandler={() => {
+                  const withdraw = async () => {
+                    await withdrawAllMoney({
+                      onSuccess: handleWithdrawalSuccess,
+                      onError: handleError,
+                    });
+                  };
+                  withdraw();
+                }}
+              ></SubmitButton>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+              ipsam ratione perferendis rerum incidunt neque suscipit ea
+              adipisci nostrum maiores, delectus quam, cumque praesentium eum
+              quisquam sed. Sunt officiis eligendi, laudantium aliquam soluta
+              beatae nulla aperiam magni excepturi mollitia? Quidem delectus
+              ullam veritatis voluptatem praesentium hic autem, provident
+              placeat assumenda.
+            </p>
+          </div>
+          <div className={styles.setting}>
+            <div className="space-between">
+              <h3 className={styles.setting_title}>Allow Donations</h3>
+              <span></span>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptates possimus ullam sed officia qui eveniet? Quos velit
+              dolor nam placeat libero ex, perspiciatis fugiat quibusdam?
+            </p>
+          </div>
+        </div>
       </section>
     </>
   );

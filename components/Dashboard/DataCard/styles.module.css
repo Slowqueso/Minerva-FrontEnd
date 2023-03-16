@@ -1,7 +1,7 @@
 .card {
   height: 100%;
   min-width: 260px;
-  max-width: 300px;
+  width: 25%;
   background-color: #1b1b1b;
   padding: 1.1rem;
   max-height: 120px;
@@ -30,8 +30,8 @@
 .card .card_header .card_header_text h1 {
   color: #e2e2e2;
   font-family: var(--fs-inter-400);
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 300;
   margin: 0px;
   margin-left: 1rem;
 }

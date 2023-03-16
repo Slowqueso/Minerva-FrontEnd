@@ -1,4 +1,11 @@
-const SelectMenu = ({ objectArray, name, changeHandler, label, value }) => {
+const SelectMenu = ({
+  objectArray,
+  name,
+  changeHandler,
+  label,
+  value,
+  isString,
+}) => {
   return (
     <div className="textOnInput">
       {label ? (
@@ -12,7 +19,11 @@ const SelectMenu = ({ objectArray, name, changeHandler, label, value }) => {
         id={name}
         className="options-menu"
         onChange={(e) => {
-          changeHandler(parseInt(e.target.value));
+          if (!isString) {
+            changeHandler(parseInt(e.target.value));
+          } else {
+            changeHandler(e.target.value);
+          }
         }}
       >
         {objectArray.map((object, index) => {
