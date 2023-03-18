@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //   padding: 2rem 6rem;
+  .wrapper {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    padding: 2.5rem 0rem;
+    align-items: center;
+    justify-content: space-between;
+    .nav_links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      .link_profile:hover {
+        cursor: pointer;
+        filter: brightness(0.7);
+      }
+
+      .link_profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile_modal {
+        position: relative;
+        right: 15%;
+      }
+    }
+  }
+}
+
+.link_text {
+  font-family: var(--fs-montserrat-300);
+  font-size: 16px;
+  //   margin: 0rem 3rem;
+  margin: 0;
+  font-weight: 100;
+  transition: 0.3s ease-out;
+  // transform: translateY(6px);
+  color: white;
+}
+
+.link_text:hover {
+  color: var(--palette-light-grey);
+  cursor: pointer;
+}

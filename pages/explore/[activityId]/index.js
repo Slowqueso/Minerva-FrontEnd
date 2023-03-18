@@ -52,7 +52,6 @@ const ActivityProfile = () => {
             _tenureInMonths: 2,
           }
         : {},
-    // msgValue: ethers.utils.parseEther("3"),
     msgValue: ethPrice,
   });
 
@@ -126,7 +125,6 @@ const ActivityProfile = () => {
         handleError(error);
       },
     });
-    console.log(response);
   };
 
   const handleError = (error) => {

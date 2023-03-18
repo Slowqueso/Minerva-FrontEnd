@@ -36,7 +36,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
       <Logo></Logo>
       <div className={styles.nav_links}>
         <Link href={"/explore"}>
@@ -112,7 +112,7 @@ const Navbar = () => {
           </>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
