@@ -1,0 +1,11 @@
+Model Information:
+* title:	Minerva
+* source:	https://sketchfab.com/3d-models/minerva-ad6afaa47d77478891a2be7dc85a9d46
+* author:	Macías (https://sketchfab.com/macias)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Minerva" (https://sketchfab.com/3d-models/minerva-ad6afaa47d77478891a2be7dc85a9d46) by Macías (https://sketchfab.com/macias) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

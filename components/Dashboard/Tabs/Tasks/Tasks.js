@@ -116,17 +116,15 @@ const Tasks = () => {
               isTasksViewed && styles.show
             }`}
           >
-            {taskArray && taskArray.length > 0 ? (
+            {taskArray ? (
               <div className={styles.wrapper}>
-                {taskArray.map((task) => {
-                  <Task
-                    title={"Minerva"}
-                    username={"Yes"}
-                    due_date={"12/03/2023"}
-                    credit_reward={50}
-                    assign_date={"12/03/2021"}
-                  ></Task>;
-                })}
+                <Task
+                  title={"Minerva"}
+                  username={"Yes"}
+                  due_date={"12/03/2023"}
+                  credit_reward={50}
+                  assign_date={"12/03/2021"}
+                ></Task>
               </div>
             ) : (
               <h3 className={styles.no_tasks}>No tasks to display :( </h3>

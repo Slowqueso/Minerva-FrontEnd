@@ -51,7 +51,6 @@ const ActivityProfile = () => {
             _tenureInMonths: 2,
           }
         : {},
-    // msgValue: ethers.utils.parseEther("3"),
     msgValue: ethPrice,
   });
 
@@ -67,10 +66,11 @@ const ActivityProfile = () => {
   });
 
   const handleSuccess = async (tx) => {
-    await tx.wait(1);
+    // console.log(activity);
+    // await tx.wait(1);
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
-        activityId: activity._id,
+        activityId: activity.id,
         userId: user.id,
         registeredAddress: account,
       })
@@ -110,7 +110,6 @@ const ActivityProfile = () => {
         handleError(error);
       },
     });
-    console.log(response);
   };
 
   const handleError = (error) => {
