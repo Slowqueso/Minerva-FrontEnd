@@ -17,6 +17,20 @@
             transition: 0.2s ease-out;
             color: white;   
         }
+        h4{
+            font-weight: 400;
+            font-size: 16px;
+            font-family: var(--fs-inter-400);
+            background-color: red;
+            // margin-left:var(--space-from-left);
+            width: 2ch;
+            text-align: center;
+            padding: auto;
+            margin: auto;
+            border-radius: 50%;
+            transition: 0.2s ease-out;
+            color: white;
+        }
         h3:hover{
             cursor: pointer;
             color: var(--palette-light-grey);

@@ -14,12 +14,13 @@ import {
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import React, { useState, useEffect } from "react";
 import MyActivity from "./MyActivity";
+import ENV from "../../../static_files/hostURL"
 
 const SideNav = () => {
   const [user, setUser] = useState();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
-
+  const [no_notifications, setNoNotifications] = useState(0);
   useEffect(() => {
     // console.log(localStorage.getItem("myActivityPreference"));
     if (localStorage.getItem("myActivityPreference") === "true") {
@@ -29,7 +30,7 @@ const SideNav = () => {
     const token = localStorage.getItem("_USID");
     if (token) {
       axios
-        .get("http://localhost:3001/user/info", {
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/info", {
           headers: {
             "x-access-token": token,
           },
@@ -45,6 +46,20 @@ const SideNav = () => {
           setUser(false);
           console.log(err);
         });
+        axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/get-no-of-notifications", {
+          headers: {
+            "x-access-token": token,
+          },
+        })
+        .then((response) => {
+          console.log(response)
+          setNoNotifications(response.data.count);
+        }
+        )
+        .catch((err) => {
+          console.log(err);
+        }
+        );
     }
   }, []);
 
@@ -129,8 +144,15 @@ const SideNav = () => {
             size="lg"
             color="white"
           ></FontAwesomeIcon>
-          <Link href={"/notifications/:id"}>
-            <h3>Notifications</h3>
+          <Link href={"/notifications"}>
+            <div className="flex">
+              <h3>Notifications</h3>
+              {no_notifications > 0 ? (
+                <h4>{no_notifications}</h4>
+              ) : null
+                }
+              
+            </div>
           </Link>
         </li>
         <li>

@@ -17,7 +17,7 @@ const Index = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  },[]);
 
   return (
     <FullLayout>

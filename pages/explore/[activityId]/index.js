@@ -68,38 +68,53 @@ const ActivityProfile = () => {
   });
 
   const handleSuccess = async (tx) => {
-    await tx.wait(1);
-    axios
-      .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
-        activityId: activity._id,
-        userId: user.id,
-        registeredAddress: account,
-      })
-      .then((response) => {
-        axios
-          .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/get-one", {
-            headers: {
-              "x-activity-id": activityId,
-            },
-          })
-          .then((response) => {
-            setActivity(response.data.activity);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
+    // await tx.wait(1);
+    const token = localStorage.getItem("_USID");
+    if(token){
+      axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/joinrequest", {
+        activityId: activity.id,
+       },{
+        headers: {
+          "x-access-token": token,
+        },
+       }).then((response) => {
+        console.log(response);
       });
-    handleNewNotification();
+
+    }
+    
+
+    // axios
+    //   .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
+    //     activityId: activity.id,
+    //     userId: user.id,
+    //     registeredAddress: account,
+    //   })
+    //   .then((response) => {
+    //     axios
+    //       .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/get-one", {
+    //         headers: {
+    //           "x-activity-id": activityId,
+    //         },
+    //       })
+    //       .then((response) => {
+    //         setActivity(response.data.activity);
+    //       });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    handleNewNotification("Join Request Sent Successfully!");
   };
 
   const toggleDModal = () => {
     setDModalActive(!DModalActive);
   };
 
-  const handleNewNotification = () => {
+  const handleNewNotification = (message) => {
     dispatch({
       type: "info",
-      message: "Activity Joined Successfully!",
+      message: message,
       title: "Tx Notification",
       position: "bottomR",
     });
@@ -123,8 +138,11 @@ const ActivityProfile = () => {
     });
   };
   useEffect(() => {
+    
     if (activity && user) {
+      
       setIsMember(activity.members.some((member) => member.id === user.id));
+      
     }
   }, [activity, user]);
 
@@ -274,11 +292,12 @@ const ActivityProfile = () => {
                     submitHandler={toggleDModal}
                   ></SubmitButton>
                 )}
-                {isMember && !activityStatus ? null : (
+                {isMember || !activityStatus ? null : (
                   <>
                     <SubmitButton
                       label={"Join"}
-                      submitHandler={handleSubmit}
+                      // submitHandler={handleSubmit}
+                      submitHandler={handleSuccess}
                     ></SubmitButton>
                   </>
                 )}

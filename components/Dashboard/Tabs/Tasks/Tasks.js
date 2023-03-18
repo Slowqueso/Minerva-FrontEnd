@@ -10,6 +10,9 @@ import { useWeb3Contract, useMoralis } from "react-moralis";
 import { abi, contractAddresses } from "../../../../constants";
 import { ethers } from "ethers";
 import DataCard from "../../DataCard/DataCard";
+import axios from "axios";
+import ENV from "../../../../static_files/hostURL";
+import getOrderedDate from "../../../../utils/dateParser";
 
 const Task = ({
   title,
@@ -68,6 +71,8 @@ const Tasks = () => {
   const [isTasksViewed, setIsTasksViewed] = useState(true); // state for form visibility
   const { chainId: chainIdHex } = useMoralis();
   const chainId = parseInt(chainIdHex);
+  const [wallets, setWallets] = useState([]); // state for form visibility
+  const [profile_pic, setProfilePic] = useState([]); // state for form visibility
   const ActivityAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
   const { runContractFunction: getActivityTasks } = useWeb3Contract({
@@ -93,10 +98,53 @@ const Tasks = () => {
         const response = await getActivityTasks();
         console.log(response);
         setTaskArray(response);
+        console.log(taskArray);
       };
       fetchTasks();
     }
   }, [activityId]);
+
+  useEffect(() => {
+    const fetchWallets = async () => {
+      var walletAddress = [];
+      taskArray.map((task) => {
+        walletAddress.push(task.assignee.toString().toLowerCase());
+      });
+      const response = await axios.post(
+        `${ENV.PROTOCOL}${ENV.HOST}${ENV.PORT}/user/get-profile-by-wallet`,
+        {
+          walletAddress: walletAddress,
+        }
+      );
+      console.log(response.data);
+      setWallets(response.data.user);
+    };
+    fetchWallets();
+  }, [taskArray]);
+
+  const fetch =  (task) => {
+    var assignedDate = new Date(parseInt(task.assignedDate.toString()) * 1000);
+    var dueDate = new Date(parseInt(task.dueDate.toString()) * 1000);
+    var walletAddress = task.assignee.toString();
+    const username = "";
+    const profile_pic = {};
+    var wallet =  wallets.findIndex(
+      (wallet) =>
+        wallet.wallet_ID._address.toLowerCase() === walletAddress.toLowerCase()
+    );
+    console.log(wallets[wallet]);
+    return (
+      <Task
+        title={task.title}
+        username={wallets[wallet]?wallets[wallet].username:""}
+        due_date={dueDate.toUTCString()}
+        credit_reward={task.creditScoreReward.toString()}
+        assign_date={assignedDate.toUTCString()}
+        usd_reward={task.rewardInD.toString()}
+        profile_pic={wallets[wallet]?wallets[wallet].profile_pic:""}
+      ></Task>
+    );
+  };
   return (
     <>
       <section className={styles.main_container}>
@@ -116,20 +164,34 @@ const Tasks = () => {
               isTasksViewed && styles.show
             }`}
           >
-            {taskArray && taskArray.length > 0 ? (
+            {taskArray && wallets && taskArray.length > 0 ? (
               <div className={styles.wrapper}>
                 {taskArray.map((task) => {
-                  <Task
-                    title={"Minerva"}
-                    username={"Yes"}
-                    due_date={"12/03/2023"}
-                    credit_reward={50}
-                    assign_date={"12/03/2021"}
-                  ></Task>;
+                  var assignedDate = new Date(parseInt(task.assignedDate.toString()) * 1000);
+                  var dueDate = new Date(parseInt(task.dueDate.toString()) * 1000);
+                  var walletAddress = task.assignee.toString();
+                  
+                  var wallet =  wallets.findIndex(
+                    (wallet) =>
+                      wallet.walletAddress === walletAddress.toLowerCase()
+                  );
+                  console.log(wallets[wallet]);
+                  return (
+                    <Task
+                      title={task.title}
+                      username={wallets[wallet]?wallets[wallet].username:""}
+                      due_date={getOrderedDate(dueDate)}
+                      credit_reward={task.creditScoreReward.toString()}
+                      assign_date={getOrderedDate(assignedDate)}
+                      usd_reward={task.rewardInD.toString()}
+                      profile_pic={wallets[wallet]?wallets[wallet].profile_pic:null}
+                    ></Task>
+                  );
                 })}
               </div>
             ) : (
               <h3 className={styles.no_tasks}>No tasks to display :( </h3>
+              
             )}
           </div>
 
@@ -187,11 +249,18 @@ const Tasks = () => {
               </div>
             </div>
           </div> */}
-        </section>
-        <div className={styles.data_cards}>
-          <DataCard> </DataCard>
-          <DataCard> </DataCard>
-        </div>
+        </section>{taskArray ? 
+        (<div className={styles.data_cards}>
+          <DataCard isSubTextNotVisible={true} label="Task Assigned" 
+          data={taskArray.length}
+          icon={faSitemap}> </DataCard>
+          <DataCard isSubTextNotVisible={true} label="Task Completed"
+          data={taskArray.filter(
+            (task) => task.completed === true
+          ).length}
+          icon={faSitemap}> </DataCard>
+        </div>):null
+}
       </section>
     </>
   );

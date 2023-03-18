@@ -1,0 +1,83 @@
+.notifications_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.notifications_container h3 {
+  font-family: var(--fs-inter-400);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.notifications_container .notifications_header h2 {
+  font-family: var(--fs-inter-400);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.notifications_container .notifications_list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 35px;
+  position: relative;
+  color: #ffffff;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.notifications_container .notifications_list .notification {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  padding-left: 1.2rem;
+  width: 100%;
+}
+.notifications_container .notifications_list .notification .notification_content {
+  width: 70%;
+}
+.notifications_container .notifications_list .notification .notification_content h1 {
+  font-family: var(--fs-inter-400);
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.notifications_container .notifications_list .notification .notification_content .notification_body {
+  display: flex;
+  flex-direction: column;
+}
+.notifications_container .notifications_list .notification .notification_content .notification_body p {
+  font-family: var(--fs-inter-400);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #ffffff;
+  margin: 0px;
+}
+.notifications_container .notifications_list .notification .notification_content .notification_body h3 {
+  font-family: var(--fs-inter-400);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.notifications_container .notifications_list .notification .notification_button {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.notifications_container .notifications_list .notification .notification_button button {
+  width: auto;
+  height: auto;
+}/*# sourceMappingURL=styles.module.css.map */

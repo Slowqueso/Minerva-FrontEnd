@@ -1,40 +1,25 @@
 .add_task {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  align-items: flex-start;
   width: 100%;
   margin-left: 2rem;
   gap: 1.5rem;
 }
-
 .add_task .add_task_container {
   margin: 0;
   min-width: 70%;
-  max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
 }
-
 .add_task .add_task_container form .flex {
   width: 96%;
   margin: 1rem 0 0 0;
 }
-
 .add_task .add_task_container form .byTwo {
   margin: 1rem 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
-
 .add_task .add_task_container form textarea {
   min-height: 10rem;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

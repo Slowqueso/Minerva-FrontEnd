@@ -51,7 +51,7 @@ const AccountOverview = () => {
           console.log(err);
         });
     } else {
-      Router.push("/login");
+      router.push("/login");
     }
   }, []);
 

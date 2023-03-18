@@ -12,9 +12,7 @@
 
 .section_2 {
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 .section_2 .no_donations {
@@ -35,11 +33,9 @@
 .section_3 {
   width: 75%;
 }
-
 .section_3 h3, .section_3 h2, .section_3 p {
   margin: 0;
 }
-
 .section_3 .tab_header {
   color: white;
   font-family: var(--fs-poppins-400);
@@ -48,28 +44,17 @@
   font-weight: 400;
   margin-bottom: 0.5rem;
 }
-
 .section_3 .settings_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 2.5rem;
 }
-
 .section_3 .settings_container .setting div {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  height: -webkit-fit-content;
+  align-items: flex-end;
   height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 0.5rem;
 }
-
 .section_3 .settings_container .setting div .setting_title {
   color: white;
   font-family: var(--fs-poppins-400);
@@ -77,16 +62,13 @@
   margin: 0px;
   font-weight: 400;
 }
-
 .section_3 .settings_container .setting div button {
   margin: 0;
 }
-
 .section_3 .settings_container .setting p {
   color: #B7B7B7;
   font-family: var(--fs-inter-400);
   font-size: 14px;
   margin: 0px;
   font-weight: 400;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

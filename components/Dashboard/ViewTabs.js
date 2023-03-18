@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Home from "./Tabs/Home/Home";
 import Donations from "./Tabs/Donations/Donations";
 import Tasks from "./Tabs/Tasks/Tasks";
 import AddTask from "./Tabs/Add-Task/AddTask";
+import axios from "axios";
+import ENV from "../../static_files/hostURL";
 
-const ViewTabs = () => {
+const ViewTabs = ({role}) => {
   const router = useRouter();
-  const { tab } = router.query;
+  const {activityId ,tab } = router.query;
+  
+  useEffect(() => {
+    
+  }, [activityId]);
   switch (tab) {
     case "home":
       return (
@@ -16,13 +22,28 @@ const ViewTabs = () => {
         </section>
       );
     case "roles":
-      return <div>Roles</div>;
+      if(role === 1){
+        return (<div>Roles</div>)
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "content-overview":
       return <div>Content Overview</div>;
     case "template":
-      return <div>Templates</div>;
+      if(role === 1){
+        return (<div>Templates</div>);
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "status":
-      return <div>Status</div>;
+      if(role === 1){
+        return (<div>Status</div>);
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "donation":
       return (
         <section className="parent-section">
@@ -32,19 +53,40 @@ const ViewTabs = () => {
     case "tasks":
       return <Tasks />;
     case "add-task":
-      return <AddTask />;
+      if(role === 1){
+        return <AddTask />;
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
+      
     case "connections":
       return <div>Connections</div>;
     case "integrations":
-      return <div>Integrations</div>;
+      if(role === 1){
+        return (<div>Integrations</div>);
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "members":
       return <div>Members</div>;
     case "terms-screening":
       return <div>Terms Screening</div>;
     case "audit-log":
-      return <div>Audit Log</div>;
+      if(role === 1){
+        return (<div>Audit Log</div>);
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "bans":
-      return <div>Bans</div>;
+      if(role === 1){
+        return (<div>Bans</div>);
+      }
+      else{
+        return <div className="centralise">Not Authorized</div>;
+      }
     case "chat":
       return <div>Member Chat</div>;
     default:

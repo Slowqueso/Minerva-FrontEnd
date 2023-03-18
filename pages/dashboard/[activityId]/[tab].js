@@ -28,6 +28,7 @@ const DashboardTabs = () => {
   const [currentTab, setCurrentTab] = useState(null);
 
   const [activity, setActivity] = useState();
+  const [role, setRole] = useState(0);
   const NavList = {
     Activity: [
       { labelText: "Home", href: "home" },
@@ -53,6 +54,31 @@ const DashboardTabs = () => {
     ],
     Discussions: [{ labelText: "Member Chat", href: "chat" }],
   };
+  const NavList2 = {
+    Activity: [
+      { labelText: "Home", href: "home" },
+      
+      { labelText: "Content Overview", href: "content-overview" },
+     
+      
+      { labelText: "Donations", href: "donation" },
+    ],
+    Tasks: [
+      { labelText: "Tasks", href: "tasks" },
+    ],
+    Apps: [
+      { labelText: "Connections", href: "connections" },
+      
+    ],
+    User_management: [{ labelText: "Members", href: "members" }],
+    Moderation: [
+      { labelText: "Terms Screening", href: "terms-screening" },
+      
+      
+    ],
+    Discussions: [{ labelText: "Member Chat", href: "chat" }],
+  };
+
 
   useEffect(() => {
     if (tab) {
@@ -85,6 +111,26 @@ const DashboardTabs = () => {
     if (activityId) {
       FetchActivity();
     }
+    const token = localStorage.getItem("_USID");
+    if (token) {
+      axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/get-role", {
+        activityId: activityId,
+      },{
+        headers: {
+          "x-access-token": token,
+          },
+          })
+          .then((response) => {
+            if (response) {
+              console.log(response);
+              setRole(response.data.role);
+            }
+          }
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+    }
   }, [activityId]);
 
   return (
@@ -95,10 +141,10 @@ const DashboardTabs = () => {
           <h1 className={styles.nav_map}>{currentTab.labelText}</h1>
         ) : null}
         <div className="flex">
-          <DashboardNav NavList={NavList}></DashboardNav>
+          <DashboardNav NavList={role==1?NavList:NavList2}></DashboardNav>
           {activity && currentTab ? (
             <ActivityProvider activity={activity}>
-              <ViewTabs />
+              <ViewTabs role={role}/>
             </ActivityProvider>
           ) : (
             <div className={styles.center_loader}>

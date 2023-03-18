@@ -88,6 +88,13 @@ const AddTask = () => {
   };
 
   const handleSuccess = () => {
+    setSelectedUser("");
+    setTaskTitle("");
+    setTaskDescription("");
+    setTaskCredit("");
+    setAmountInD("");
+    setTaskDueDate("");
+    
     dispatch({
       title: "Task Created",
       message: "Task created successfully",
