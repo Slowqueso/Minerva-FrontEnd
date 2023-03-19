@@ -272,7 +272,7 @@ const Home = () => {
     isLogged();
     hudload();
     loadchart();
-    join_request(token);
+    if(token) join_request(token);
 
     axios
       .get(

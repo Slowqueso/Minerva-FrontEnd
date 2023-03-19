@@ -122,7 +122,6 @@ const DashboardTabs = () => {
           })
           .then((response) => {
             if (response) {
-              console.log(response);
               setRole(response.data.role);
             }
           }
@@ -132,6 +131,29 @@ const DashboardTabs = () => {
           });
     }
   }, [activityId]);
+  useEffect(() => {
+    const token = localStorage.getItem("_USID");
+    if (activity && token) {
+      const members = activity.members;
+      axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +`/user/info/_id`, {
+        headers: {
+          "x-access-token": token,
+          },
+          })
+          .then((response) => {
+            if (response) {
+              console.log(response.data)
+              if(!members.some((member) => member.id == response.data._id)){
+               router.replace("/explore")
+              }
+            }
+          }
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+  }, [activity]);
 
   return (
     <>

@@ -4,6 +4,7 @@ import Home from "./Tabs/Home/Home";
 import Donations from "./Tabs/Donations/Donations";
 import Tasks from "./Tabs/Tasks/Tasks";
 import AddTask from "./Tabs/Add-Task/AddTask";
+import Members from "./Tabs/Members/Members";
 import axios from "axios";
 import ENV from "../../static_files/hostURL";
 
@@ -70,7 +71,8 @@ const ViewTabs = ({role}) => {
         return <div className="centralise">Not Authorized</div>;
       }
     case "members":
-      return <div>Members</div>;
+      return <Members />;
+
     case "terms-screening":
       return <div>Terms Screening</div>;
     case "audit-log":
