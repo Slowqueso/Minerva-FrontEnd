@@ -1,0 +1,67 @@
+.container {
+  //   border: 1px solid white;
+  .supported_apps {
+    width: 70%;
+    background: #111111;
+    padding: 1rem 1.5rem;
+    h3 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      /* identical to box height */
+      margin: 0;
+
+      color: #969696;
+    }
+    .apps {
+      margin-top: 1.5rem;
+      .app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px;
+        background: #1f1f1f;
+        border-radius: 10px;
+        transition: 200ms ease;
+        &:hover {
+          cursor: pointer;
+          background: #2f2f2f;
+        }
+      }
+    }
+  }
+  .integration_body {
+    margin: 0;
+    margin-top: 2rem;
+    padding: 0;
+    width: 70%;
+    .body_header {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+      margin: 0;
+      margin-top: 1rem;
+      margin-left: 2rem;
+
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+    }
+  }
+}

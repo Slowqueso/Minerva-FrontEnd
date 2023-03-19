@@ -80,6 +80,7 @@ const OtpAuth = () => {
                   label="OTP code"
                   name="otp"
                   inputUpdate={setOtp}
+                  isPassword={true}
                 ></TextBox>
               </div>
               <SubmitButton

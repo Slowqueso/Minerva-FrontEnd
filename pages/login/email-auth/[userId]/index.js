@@ -40,26 +40,26 @@ const OtpAuth = () => {
   };
   useEffect(() => {
     if (userId) {
-        axios
-          .get(
-            ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/validate-token",
-            {
-              headers: {
-                "x-otp-token": userId,
-              },
-            }
-          )
-          .then((res) => {
-            setLoading(false);
-            console.log(res.data.msg);
-          })
-          .catch((err) => {
-            console.log(err);
-            router.push("/login");
-          });
-      } else {
-        router.back();
-      }
+      axios
+        .get(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/validate-token",
+          {
+            headers: {
+              "x-otp-token": userId,
+            },
+          }
+        )
+        .then((res) => {
+          setLoading(false);
+          console.log(res.data.msg);
+        })
+        .catch((err) => {
+          console.log(err);
+          router.push("/login");
+        });
+    } else {
+      router.back();
+    }
   }, [userId]);
 
   return (
@@ -75,6 +75,7 @@ const OtpAuth = () => {
                   label="OTP code"
                   name="otp"
                   inputUpdate={setOtp}
+                  isPassword={true}
                 ></TextBox>
               </div>
               <SubmitButton
