@@ -24,6 +24,8 @@ const Notifications = () => {
   const [activity, setActivity] = useState();
   const [activityId, setActivityId] = useState();
   const [notificationId, setNotificationId] = useState();
+  const [handleSubmited, setHandleSubmited] = useState(false);
+
 
   const { chainId: chainIdHex, account } = useMoralis();
   const chainId = parseInt(chainIdHex);
@@ -64,7 +66,6 @@ const Notifications = () => {
               })
               .then((response) => {
                 if (response.data.authenticated) {
-                  console.log(response);
                   setUser(response.data.user);
                 }
               })
@@ -80,17 +81,18 @@ const Notifications = () => {
   }, [activityId]);
 
   const Notification = (notification) => {
+    setActivityId(notification.notification.activityId);
+    setNotificationId(notification.notification._id);
     const handleSubmit = async () => {
-      setActivityId(notification.notification.activityId);
-      setNotificationId(notification.notification._id);
-      console.log(activityId, notificationId);
-      const response = await joinActivity({
-        onSuccess: handleSuccess,
-        onError: (error) => {
-          handleError(error);
-        },
-      });
-      console.log(response);
+      setHandleSubmited(true);
+      // const response = await joinActivity({
+      //   onSuccess: handleSuccess,
+      //   onError: (error) => {
+      //     handleError(error);
+      //   },
+      // });
+      // console.log(response);
+      handleSuccess();
     };
     return (
       <>
@@ -155,7 +157,6 @@ const Notifications = () => {
 
     // }
 
-    console.log(activityId, user, activity);
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
         activityId: activity.id,
@@ -187,7 +188,6 @@ const Notifications = () => {
                 }
               )
               .then((response) => {
-                console.log(response);
                 router.push("/notifications");
               })
               .catch((err) => {
@@ -217,11 +217,16 @@ const Notifications = () => {
           }
         )
         .then((response) => {
-          if (response) {
-            console.log(response.data.notifications);
+          if (response && response.data.notifications.length > 0) {
+            setActivityId(response.data.notifications[0].activityId);
+            setNotificationId(response.data.notifications[0]._id);
             setNotifications(response.data.notifications);
             setLoading(false);
-            console.log(notifications);
+      
+          }
+          else{
+            setLoading(false);
+            setError("No Notifications");
           }
         })
         .catch((err) => {
@@ -230,7 +235,7 @@ const Notifications = () => {
           setError("Something went wrong");
         });
     }
-  }, []);
+  }, [handleSubmited]);
 
   return (
     <FullLayout>

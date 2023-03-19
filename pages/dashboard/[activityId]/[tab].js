@@ -26,7 +26,7 @@ export const DashboardTabs = ({ children }) => {
   const router = useRouter();
   const { activityId, tab, taskId } = router.query;
   const [currentTab, setCurrentTab] = useState(null);
-
+  const [isMember, setIsMember] = useState(false);
   const [activity, setActivity] = useState();
   const [role, setRole] = useState(0);
   const NavList = {
@@ -70,7 +70,6 @@ export const DashboardTabs = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(taskId);
     if (taskId >= 0) {
       return setCurrentTab({
         labelText: `Task > ${parseInt(taskId + 1)}`,
@@ -142,6 +141,10 @@ export const DashboardTabs = ({ children }) => {
               if(!members.some((member) => member.id == response.data._id)){
                router.replace("/explore")
               }
+              else{
+
+                setIsMember(members.some((member) => member.id == response.data._id));
+              }
             }
           }
           )
@@ -154,7 +157,7 @@ export const DashboardTabs = ({ children }) => {
   return (
     <>
       <Navbar></Navbar>
-      <section className={styles.section}>
+      {isMember?(<section className={styles.section}>
         {currentTab ? (
           <h1 className={styles.nav_map}>{currentTab.labelText}</h1>
         ) : null}
@@ -171,7 +174,7 @@ export const DashboardTabs = ({ children }) => {
             </div>
           )}
         </div>
-      </section>
+      </section>):null}
     </>
   );
 };

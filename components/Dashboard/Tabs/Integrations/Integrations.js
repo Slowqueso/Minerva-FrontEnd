@@ -64,7 +64,7 @@ const Integrations = () => {
             <form className="register-form">
               <div className={`flex ${styles.body}`}>
                 <TextBox
-                  label={"Enter Widget URL"}
+                  label={"Enter Discord Server ID"}
                   name={"url"}
                   inputUpdate={setUrl}
                 ></TextBox>

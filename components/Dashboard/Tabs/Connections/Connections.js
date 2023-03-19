@@ -27,7 +27,7 @@ const Connections = () => {
         <div>
           <h3 className={styles.header}>Discord</h3>
           <iframe
-            src={app.link}
+            src={`https://discord.com/widget?id=${app.link}&theme=dark`}
             width="350"
             height="500"
             allowtransparency="true"
