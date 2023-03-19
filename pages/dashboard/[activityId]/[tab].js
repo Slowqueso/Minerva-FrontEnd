@@ -22,9 +22,9 @@ const ActivityProvider = ({ children, activity }) => {
   );
 };
 
-const DashboardTabs = () => {
+export const DashboardTabs = ({ children }) => {
   const router = useRouter();
-  const { activityId, tab } = router.query;
+  const { activityId, tab, taskId } = router.query;
   const [currentTab, setCurrentTab] = useState(null);
 
   const [activity, setActivity] = useState();
@@ -57,30 +57,26 @@ const DashboardTabs = () => {
   const NavList2 = {
     Activity: [
       { labelText: "Home", href: "home" },
-      
+
       { labelText: "Content Overview", href: "content-overview" },
-     
-      
+
       { labelText: "Donations", href: "donation" },
     ],
-    Tasks: [
-      { labelText: "Tasks", href: "tasks" },
-    ],
-    Apps: [
-      { labelText: "Connections", href: "connections" },
-      
-    ],
+    Tasks: [{ labelText: "Tasks", href: "tasks" }],
+    Apps: [{ labelText: "Connections", href: "connections" }],
     User_management: [{ labelText: "Members", href: "members" }],
-    Moderation: [
-      { labelText: "Terms Screening", href: "terms-screening" },
-      
-      
-    ],
+    Moderation: [{ labelText: "Terms Screening", href: "terms-screening" }],
     Discussions: [{ labelText: "Member Chat", href: "chat" }],
   };
 
-
   useEffect(() => {
+    console.log(taskId);
+    if (taskId >= 0) {
+      return setCurrentTab({
+        labelText: `Task > ${parseInt(taskId + 1)}`,
+        href: "task",
+      });
+    }
     if (tab) {
       Object.entries(NavList).map((key) => {
         if (key[1].find((item) => item.href === tab)) {
@@ -89,7 +85,7 @@ const DashboardTabs = () => {
         // return key[1].find((item) => item.href === tab);
       });
     }
-  }, [tab]);
+  }, [tab, taskId]);
 
   const FetchActivity = async () => {
     axios
@@ -163,10 +159,11 @@ const DashboardTabs = () => {
           <h1 className={styles.nav_map}>{currentTab.labelText}</h1>
         ) : null}
         <div className="flex">
-          <DashboardNav NavList={role==1?NavList:NavList2}></DashboardNav>
+          <DashboardNav NavList={role == 1 ? NavList : NavList2}></DashboardNav>
           {activity && currentTab ? (
             <ActivityProvider activity={activity}>
-              <ViewTabs role={role}/>
+              {!children ? <ViewTabs role={role} /> : null}
+              {children}
             </ActivityProvider>
           ) : (
             <div className={styles.center_loader}>

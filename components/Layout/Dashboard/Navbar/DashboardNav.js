@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const NavItem = ({ labelText, href, key, activityId }) => {
   return (
-    <Link href={`../${activityId}/${href}`} key={key}>
+    <Link href={`/dashboard/${activityId}/${href}`} key={key}>
       <li className={styles.nav_item}>{labelText}</li>
     </Link>
   );

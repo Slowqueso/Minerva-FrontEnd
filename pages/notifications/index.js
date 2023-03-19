@@ -14,7 +14,6 @@ import getNumericDate from "../../utils/dateConverter";
 import convertUsdToETH from "../../utils/usdConverter";
 import { ethers } from "ethers";
 
-
 const Notifications = () => {
   const router = useRouter();
   const [notifications, setNotifications] = useState([]);
@@ -31,13 +30,13 @@ const Notifications = () => {
   const ActivityAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
-    const [ethPrice, setEthPrice] = useState();
-    const dispatch = useNotification();
-    const getWeiAmount = async (join_price) => {
-      const ethValue = await convertUsdToETH(join_price);
-      const weiAmount = ethers.utils.parseEther(ethValue.toString());
-      return weiAmount;
-    };
+  const [ethPrice, setEthPrice] = useState();
+  const dispatch = useNotification();
+  const getWeiAmount = async (join_price) => {
+    const ethValue = await convertUsdToETH(join_price);
+    const weiAmount = ethers.utils.parseEther(ethValue.toString());
+    return weiAmount;
+  };
   useEffect(() => {
     if (activity) {
       getWeiAmount(activity.join_price).then((value) => {
@@ -67,8 +66,7 @@ const Notifications = () => {
                 if (response.data.authenticated) {
                   console.log(response);
                   setUser(response.data.user);
-                  
-                } 
+                }
               })
               .catch((err) => {
                 console.log(err);
@@ -82,12 +80,10 @@ const Notifications = () => {
   }, [activityId]);
 
   const Notification = (notification) => {
-    
-
     const handleSubmit = async () => {
       setActivityId(notification.notification.activityId);
       setNotificationId(notification.notification._id);
-      console.log(activityId,notificationId);
+      console.log(activityId, notificationId);
       const response = await joinActivity({
         onSuccess: handleSuccess,
         onError: (error) => {
@@ -111,10 +107,7 @@ const Notifications = () => {
             </div>
           </div>
           <div className={styles.notification_button}>
-            <SubmitButton
-              label={"Accept"}
-              submitHandler={handleSubmit}
-            />
+            <SubmitButton label={"Accept"} submitHandler={handleSubmit} />
           </div>
         </div>
       </>
@@ -162,7 +155,7 @@ const Notifications = () => {
 
     // }
 
-    console.log(activityId,user,activity)
+    console.log(activityId, user, activity);
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
         activityId: activity.id,
@@ -178,21 +171,28 @@ const Notifications = () => {
           })
           .then((response) => {
             setActivity(response.data.activity);
-            axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/remove-notification",{
-              id:notificationId
-            }, {
-              headers: {
-                "x-access-token": token,
-              },
-              }
-            ).then((response) => {
-              console.log(response);
-              router.push("/notifications");
-            }
-            ).catch((err) => {
-              console.log(err);
-            }
-            );
+            axios
+              .post(
+                ENV.PROTOCOL +
+                  ENV.HOST +
+                  ENV.PORT +
+                  "/user/remove-notification",
+                {
+                  id: notificationId,
+                },
+                {
+                  headers: {
+                    "x-access-token": token,
+                  },
+                }
+              )
+              .then((response) => {
+                console.log(response);
+                router.push("/notifications");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           });
       })
       .catch((err) => {

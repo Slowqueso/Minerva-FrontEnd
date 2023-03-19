@@ -175,7 +175,7 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
                 ></LabelText>
                 <LabelText
                   label={"# JOINING PRICE"}
-                  text={activity.join_price}
+                  text={`$${activity.join_price}`}
                 ></LabelText>
               </div>
               <div className={styles.flex_wrapper}>

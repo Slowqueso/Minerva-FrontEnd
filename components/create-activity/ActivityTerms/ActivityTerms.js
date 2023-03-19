@@ -82,11 +82,10 @@ const ActivityTerms = ({ setProgress }) => {
   const successHandler = async (tx) => {
     await tx.wait(1);
     dispatch({
-      type: "info",
+      type: "success",
       message: "Terms Added Successfully!",
       title: "Tx Notification",
       position: "bottomR",
-      icon: "bell",
     });
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-terms", {
