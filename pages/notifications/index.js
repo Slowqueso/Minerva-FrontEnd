@@ -26,7 +26,6 @@ const Notifications = () => {
   const [notificationId, setNotificationId] = useState();
   const [handleSubmited, setHandleSubmited] = useState(false);
 
-
   const { chainId: chainIdHex, account } = useMoralis();
   const chainId = parseInt(chainIdHex);
   const ActivityAddress =
@@ -85,14 +84,14 @@ const Notifications = () => {
     setNotificationId(notification.notification._id);
     const handleSubmit = async () => {
       setHandleSubmited(true);
-      // const response = await joinActivity({
-      //   onSuccess: handleSuccess,
-      //   onError: (error) => {
-      //     handleError(error);
-      //   },
-      // });
-      // console.log(response);
-      handleSuccess();
+      const response = await joinActivity({
+        onSuccess: handleSuccess,
+        onError: (error) => {
+          handleError(error);
+        },
+      });
+      console.log(response);
+      // handleSuccess();
     };
     return (
       <>
@@ -222,9 +221,7 @@ const Notifications = () => {
             setNotificationId(response.data.notifications[0]._id);
             setNotifications(response.data.notifications);
             setLoading(false);
-      
-          }
-          else{
+          } else {
             setLoading(false);
             setError("No Notifications");
           }
