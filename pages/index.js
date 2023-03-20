@@ -163,8 +163,8 @@ export default function Home() {
               Blockchain node.The Proof-of-Stake is what assures the owner of
               the activity security about their idea and ensures the appropriate
               implementation. Once an Activity is created or a new member joins
-              an existing Activity, a ‘Proof of Stake’ document is generated
-              very similar to a Digital Signature.
+              an existing Activity, a Proof of Stake document is generated very
+              similar to a Digital Signature.
             </p>
 
             {/* <Link href={"/login"}>
@@ -199,8 +199,8 @@ export default function Home() {
             <h2>Proof-of-Work</h2>
             {/* <h3>Integrity, Security and Non-repudiation</h3> */}
             <p>
-              Maintaining proof of an individual’s work is a very crucial part
-              of Integrity. At Minerva, ‘Proof-of-work’ for each user in an
+              Maintaining proof of an individual&apos;s work is a very crucial
+              part of Integrity. At Minerva, Proof-of-work for each user in an
               Activity is maintained via Tasks. Similar to Activity, every task
               assigned and completed it registered in the blockchain
               ledger.Establishing Proof-of-work and ensuring the commencement of
@@ -230,7 +230,7 @@ export default function Home() {
             <h3>Relative and Intrinsic</h3>
             <p>
               Valuation is the process of determining the present value of a
-              company or asset. It involves analyzing a company's financial
+              company or asset. It involves analyzing a company&apos;s financial
               statements and other relevant information, such as its industry
               and market conditions, to estimate its worth. The valuation of a
               company is a subjective process and the value that is arrived at

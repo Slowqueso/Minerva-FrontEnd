@@ -250,8 +250,12 @@ const Notifications = () => {
           </div>
         ) : notifications.length > 0 ? (
           <div className={styles.notifications_list}>
-            {notifications.map((notification) => {
-              return <Notification notification={notification} />;
+            {notifications.map((notification, index) => {
+              return (
+                <span key={index}>
+                  <Notification notification={notification} />
+                </span>
+              );
             })}
           </div>
         ) : (
