@@ -12,12 +12,14 @@ import {
   faCaretRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import MyActivity from "./MyActivity";
 import ENV from "../../../static_files/hostURL"
+import { UserContext } from "../FullLayout";
 
 const SideNav = () => {
-  const [user, setUser] = useState();
+  const {user} = useContext(UserContext);
+  // const [user, setUser] = useState();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
   const [no_notifications, setNoNotifications] = useState(0);
@@ -29,23 +31,23 @@ const SideNav = () => {
     }
     const token = localStorage.getItem("_USID");
     if (token) {
-      axios
-        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/info", {
-          headers: {
-            "x-access-token": token,
-          },
-        })
-        .then((response) => {
-          if (response.data.authenticated) {
-            setUser(response.data.user);
-          } else {
-            setUser(false);
-          }
-        })
-        .catch((err) => {
-          setUser(false);
-          console.log(err);
-        });
+      // axios
+      //   .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/info", {
+      //     headers: {
+      //       "x-access-token": token,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     if (response.data.authenticated) {
+      //       setUser(response.data.user);
+      //     } else {
+      //       setUser(false);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     setUser(false);
+      //     console.log(err);
+      //   });
         axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/get-no-of-notifications", {
           headers: {
             "x-access-token": token,
