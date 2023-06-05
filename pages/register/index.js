@@ -83,7 +83,6 @@ const Register = () => {
 
   const checkWalletAddress = async () => {
     const response = await getUserCredits();
-    console.log(response[1]);
     if (response[1]) {
       setIsWalletRegistered(true);
       return setErrorMessage("Error: Wallet already registered!");

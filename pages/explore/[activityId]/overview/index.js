@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ENV from "../../../../static_files/hostURL";
 import { Loading } from "web3uikit";
+import Comments from "../../../../components/Comments/Comments";
 import Link from "next/link";
 
 const Overview = () => {
@@ -53,6 +54,11 @@ const Overview = () => {
             <div>
               <h3>About Activity</h3>
               <p className={styles.desc}>{activity.desc}</p>
+            </div>
+          </section>
+          <section className={styles.content_container}>
+            <div>
+              <Comments activityId={activityId} />
             </div>
           </section>
           {activity.fields.map((field, index) => {
