@@ -28,7 +28,8 @@ const ActivityDetails = ({ activity, setProgress }) => {
   const [loader, setLoader] = useState(false);
   const [preImage, setPreImage] = useState();
   const [errorMessage, setErrorMessage] = useState("");
-  
+  const [buttondisabled, setButtondisabled] = useState(false);
+
   
   const handleValidation = () => {
     
@@ -106,20 +107,40 @@ const ActivityDetails = ({ activity, setProgress }) => {
   };
 
   const handleSubmit = async () => {
-    
+    setButtondisabled(true);
     if (((imageFile && fileName) || preImage) && !handleValidation())  {
-      const formData = new FormData();
+      const formData = {}
       if(imageFile && fileName){
-        formData.append("activityLogo", imageFile, fileName);
+        // formData.append("activityLogo", imageFile, fileName);
+        await axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/aws/image-upload/activityLogo").then((res) => {
+          if(res){
+            const {URL,imagename} = res.data;
+            formData = Object.assign(formData, {  activityLogo: imagename });
+            
+             axios
+              .put(URL, imageFile, {
+                headers: {
+                  "Content-type": imageFile.type,
+                },
+                
+              })
+              .then((res) => {
+                if (res.status === 200) {
+                  console.log(res.config.url.split("?")[0],imagename);
+                  setFileName(imagename);
+                  
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });  
+          }
+        })
       }
+      formData = Object.assign(formData, { title, description, selectedLevel, memberLimit, durationPeriod, joinPrice, categories });
+
       
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("selectedLevel", selectedLevel);
-      formData.append("memberLimit", memberLimit);
-      formData.append("durationPeriod", durationPeriod);
-      formData.append("joinPrice", joinPrice);
-      formData.append("categories", categories);
+      console.log(formData)
       try {
         // setLoader(true);
         if (!activity) {
@@ -131,7 +152,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
             formData,
             {
               headers: {
-                "Content-type": "multipart/form-data",
+                // "Content-type": "multipart/form-data",
                 "x-access-token": localStorage.getItem("_USID"),
               },
             }
@@ -149,7 +170,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
             formData,
             {
               headers: {
-                "Content-type": "multipart/form-data",
+                // "Content-type": "multipart/form-data",
                 "x-access-token": localStorage.getItem("_USID"),
               },
             }
@@ -160,11 +181,13 @@ const ActivityDetails = ({ activity, setProgress }) => {
           }
         }
       } catch (err) {
+        setButtondisabled(false);
         setLoader(false);
         setErrorMessage(err.response.data.msg);
         console.log(err);
       }
     } else {
+      setButtondisabled(false);
       setErrorMessage(handleValidation());
     }
   };
@@ -261,6 +284,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
           ) : null}
           <div className={styles.flex_end}>
             <SubmitButton
+            isDisabled={buttondisabled}
               submitHandler={handleSubmit}
               label={activity ? "Update Changes" : "Save as Draft"}
             ></SubmitButton>

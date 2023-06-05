@@ -64,19 +64,25 @@ const Overview = () => {
                 </div>
                 {field.imageFile ? (
                   <Link
-                    href={`${
-                      ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/" + field.imageFile
-                    }`}
+                    href={
+                      field.imageFile
+                    //   `${
+                    //   ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/" + field.imageFile
+                    // }`
+                  }
                   >
                     <a target="_blank">
                       <img
-                        src={`${
-                          ENV.PROTOCOL +
-                          ENV.HOST +
-                          ENV.PORT +
-                          "/" +
+                        src={
                           field.imageFile
-                        }`}
+                        //   `${
+                        //   ENV.PROTOCOL +
+                        //   ENV.HOST +
+                        //   ENV.PORT +
+                        //   "/" +
+                        //   field.imageFile
+                        // }`
+                      }
                       ></img>
                     </a>
                   </Link>
