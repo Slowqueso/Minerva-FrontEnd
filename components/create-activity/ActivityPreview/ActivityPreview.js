@@ -51,10 +51,7 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
   const [errorMessage, setErrorMessage] = useState();
   const [button, setButton] = useState(false);
   const editActivity = () => {
-    // router.push(`/create-activity/edit-activity/${activityId}`);
     setProgress(0);
-    // decrementStatus(activityId, setProgress,0);
-    // console.log("yes");
   };
 
   // Deployment of Activity

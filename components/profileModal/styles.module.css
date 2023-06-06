@@ -94,7 +94,7 @@
   top: 7.5vh;
   width: 320px;
   flex-direction: column;
-  background: rgba(92, 92, 92, 0.14);
+  background: rgba(63, 63, 63, 0.14);
   border-radius: 10px;
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
@@ -131,7 +131,7 @@
   border-radius: 50%;
   overflow: hidden;
   transition: 200ms ease;
-  border: 3px solid rgba(192, 192, 192, 0.5);
+  border: 3px solid rgba(68, 68, 68, 0.5019607843);
 }
 .modalv2_modal .modal_header .profile_pic_container h3 {
   z-index: 20;
@@ -164,7 +164,7 @@
 .modalv2_modal .modal_body {
   height: 250px;
   border-radius: 20px;
-  background: rgba(192, 192, 192, 0.486);
+  background: rgba(68, 68, 68, 0.5019607843);
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.32);
   -webkit-backdrop-filter: blur(7.5px);
           backdrop-filter: blur(7.5px);
@@ -196,7 +196,7 @@
   font-size: 0.75em;
   width: -moz-fit-content;
   width: fit-content;
-  color: #C8C8C8;
+  color: #c8c8c8;
   margin: auto;
   text-transform: uppercase;
   font-weight: 400;

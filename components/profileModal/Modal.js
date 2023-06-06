@@ -69,7 +69,7 @@ export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
     contractAddress: ActivityAddress,
     functionName: "getUserCredits",
     params: {
-      _userAddress: account,
+      userAddress: account,
     },
   });
 

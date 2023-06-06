@@ -82,6 +82,7 @@ export default function Home() {
       <section className={styles.page}>
         <header>
           <Navbar></Navbar>
+
           <div className={styles.header_line_wrapper}>
             <h1 className={`unselectable ${styles.header_line}`}>
               <span className={highlightIndex === 0 ? styles.highlight : ""}>
@@ -125,6 +126,9 @@ export default function Home() {
                   <span>Get Started</span>
                 </button>
               </Link>
+            </div>
+            <div className={styles.glow1}>
+              <Image src={"/assets/Glow.png"} height={800} width={800}></Image>
             </div>
             <canvas ref={canvasRef} />
           </div>
