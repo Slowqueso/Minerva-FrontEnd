@@ -4,15 +4,14 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import ProfileModal, { Modalv2 } from "../../profileModal/Modal";
 import axios from "axios";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ConnectButton } from "web3uikit";
 import ENV from "../../../static_files/hostURL";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useMoralis } from "react-moralis";
 
 const Navbar = () => {
+  const { account } = useMoralis();
   const router = useRouter();
   const [profileModalVisibility, setProfileModalVisibility] = useState(false);
   const [user, setUser] = useState();
@@ -23,10 +22,12 @@ const Navbar = () => {
         .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
           headers: {
             "x-access-token": token,
+            "wallet-address": account,
           },
         })
         .then((response) => {
           if (response.data.authenticated) {
+            console.log("----" + response.data);
             setUser(response.data.user);
           }
         })
@@ -56,14 +57,7 @@ const Navbar = () => {
               onClick={() => {
                 setProfileModalVisibility(!profileModalVisibility);
               }}
-              // onMouseOver={() => {
-              //   setProfileModalVisibility({ display: "flex" });
-              // }}
-              // onMouseLeave={() => {
-              //   setProfileModalVisibility({ display: "none" });
-              // }}
             >
-              {/* <FontAwesomeIcon icon={faUser} color="white"></FontAwesomeIcon> */}
               <div
                 style={{
                   borderRadius: "50%",
@@ -105,10 +99,7 @@ const Navbar = () => {
                   {router.pathname === "/login" ? "Sign Up" : "Login"}
                 </h3>
               </Link>
-            ) : // <Link href={"login"}>
-            //   <h3 className={styles.link_text}>Login</h3>
-            // </Link>
-            null}
+            ) : null}
           </>
         )}
       </div>
