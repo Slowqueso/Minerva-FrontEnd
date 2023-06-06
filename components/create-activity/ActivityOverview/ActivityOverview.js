@@ -124,13 +124,45 @@ const ActivityOverview = () => {
       },
     ]);
   };
-  const sendHeaderWithImage = (entry, index) => {
-    const formData = new FormData();
-    formData.append("activityAsset", entry.imageFile, entry.fileName);
-    formData.append("header", entry.fieldHeader);
-    formData.append("description", entry.fieldDescription);
-    formData.append("activityId", activityId);
-    formData.append("index", index);
+  const sendHeaderWithImage = async(entry, index) => {
+    const formData = {};
+    await axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/aws/image-upload/activityOverview").then((res) => {
+      if(res){
+        const {URL,imagename} = res.data;
+        formData["activityAsset"] = imagename;
+        
+         axios
+          .put(URL, entry.imageFile, {
+            headers: {
+              "Content-type": entry.imageFile.type,
+            },
+            
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              
+              
+              
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            return false;
+          });  
+      }
+    })
+    // formData["activityAsset"] = entry.imageFile;
+    formData["header"] = entry.fieldHeader;
+    formData["description"] = entry.fieldDescription;
+    formData["activityId"] = activityId;
+    formData["index"] = index;
+
+    // const formData = new FormData();
+    // formData.append("activityAsset", entry.imageFile, entry.fileName);
+    // formData.append("header", entry.fieldHeader);
+    // formData.append("description", entry.fieldDescription);
+    // formData.append("activityId", activityId);
+    // formData.append("index", index);
     axios
       .post(
         ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/add-fields",
@@ -150,7 +182,7 @@ const ActivityOverview = () => {
 
   const handleSubmit = () => {
     let flag = false;
-    inputFields.forEach((entry, index) => {
+    inputFields.forEach(async(entry, index) => {
       console.log(entry);
       if (entry.fileName === "") {
         axios
@@ -170,7 +202,7 @@ const ActivityOverview = () => {
             return false;
           });
       } else {
-        flag = sendHeaderWithImage(entry, index);
+        flag =await sendHeaderWithImage(entry, index);
       }
     });
     if (flag) {

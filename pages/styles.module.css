@@ -10,6 +10,9 @@
   justify-content: flex-start;
   align-items: start;
   justify-content: space-around;
+  justify-content: flex-start;
+  align-items: start;
+  justify-content: space-around;
   margin-top: 5rem;
 }
 .page .introduction_container:nth-of-type(3) .introduction,
@@ -17,9 +20,13 @@
 .page .introduction_container:nth-of-type(5) .introduction {
   align-items: start;
   justify-content: flex-start;
+  align-items: start;
+  justify-content: flex-start;
   padding-top: 0;
 }
 .page .introduction_container:nth-of-type(7) .introduction {
+  align-items: center;
+  justify-content: center;
   align-items: center;
   justify-content: center;
 }
@@ -27,6 +34,7 @@
   text-align: center;
 }
 .page .introduction_container:nth-of-type(5) {
+  justify-content: flex-end;
   justify-content: flex-end;
   gap: 3rem;
 }
@@ -45,6 +53,7 @@
   height: auto;
   transition: 200ms ease;
   padding: 2rem;
+  border: 2px solid rgb(207, 207, 207);
   border: 2px solid rgb(207, 207, 207);
   border-radius: 25px;
 }
@@ -66,6 +75,9 @@
 }
 .page .introduction_container .introduction {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
   flex-direction: column;
   justify-content: center;
   align-self: center;
@@ -119,6 +131,7 @@
   transition: all 0.2s ease-in-out;
   background: black;
   box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 3px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0 3px 15px 6px rgba(255, 148, 237, 0.13), 0 0 20px 8px rgba(189, 148, 255, 0.1294117647);
+  box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 3px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0 3px 15px 6px rgba(255, 148, 237, 0.13), 0 0 20px 8px rgba(189, 148, 255, 0.1294117647);
 }
 .page .introduction_container .introduction .start_button:hover {
   background: #cb59ff;
@@ -148,6 +161,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .page header .header_line_wrapper .header_line {
   margin: 0;
@@ -174,7 +190,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: center;
+  align-items: center;
   margin: auto;
+  flex-direction: column;
   flex-direction: column;
 }
 .page .banner h1 {
@@ -199,6 +218,7 @@
 }
 .page .banner .banner_image:hover {
   box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 5px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0px 0px 15px 6px rgba(255, 148, 237, 0.13), 0px 0 20px 8px rgba(189, 148, 255, 0.1294117647);
+  box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 5px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0px 0px 15px 6px rgba(255, 148, 237, 0.13), 0px 0 20px 8px rgba(189, 148, 255, 0.1294117647);
 }
 .page h3.additional {
   font-family: var(--fs-poppins-200);
@@ -222,7 +242,9 @@
   border-radius: 50%;
   display: flex;
   justify-content: center;
+  justify-content: center;
   margin: auto;
+  align-items: center;
   align-items: center;
   --start-color: #7928ca;
   --end-color: #ff6eec;
@@ -236,6 +258,7 @@
   display: block;
   min-height: 7rem;
   width: 1px;
+  background: linear-gradient(358deg, rgba(243, 140, 255, 0), #ec82ff);
   background: linear-gradient(358deg, rgba(243, 140, 255, 0), #ec82ff);
 }
 .page .timeline_1 h3 {
@@ -254,8 +277,10 @@
 }
 .timeline_1:nth-of-type(2) span {
   background: linear-gradient(358deg, #b0f2ff, rgba(135, 235, 255, 0)) !important;
+  background: linear-gradient(358deg, #b0f2ff, rgba(135, 235, 255, 0)) !important;
 }
 .timeline_1:nth-of-type(2) span:nth-of-type(2) {
+  background: linear-gradient(358deg, rgba(135, 235, 255, 0), #b0f2ff) !important;
   background: linear-gradient(358deg, rgba(135, 235, 255, 0), #b0f2ff) !important;
 }
 
@@ -266,8 +291,10 @@
 }
 .timeline_1:nth-of-type(4) span {
   background: linear-gradient(358deg, #79f1a4, rgba(135, 235, 255, 0)) !important;
+  background: linear-gradient(358deg, #79f1a4, rgba(135, 235, 255, 0)) !important;
 }
 .timeline_1:nth-of-type(4) span:nth-of-type(2) {
+  background: linear-gradient(358deg, rgba(135, 235, 255, 0), #79f1a4) !important;
   background: linear-gradient(358deg, rgba(135, 235, 255, 0), #79f1a4) !important;
 }
 
@@ -276,6 +303,7 @@
   --end-color: #ff6eec;
 }
 .timeline_1:nth-of-type(6) span {
+  background: linear-gradient(358deg, #ec82ff, rgba(243, 140, 255, 0));
   background: linear-gradient(358deg, #ec82ff, rgba(243, 140, 255, 0));
 }
 
@@ -299,6 +327,8 @@
 .highlight {
   color: #cb59ff; /* default highlight color */
   transition: color 0.5s ease; /* transition effect on color change */
+  color: #cb59ff; /* default highlight color */
+  transition: color 0.5s ease; /* transition effect on color change */
 }
 
 .highlight:nth-of-type(2) {
@@ -307,4 +337,5 @@
 
 .highlight:nth-of-type(3) {
   color: #79f1a4;
+}/*# sourceMappingURL=styles.module.css.map */
 }/*# sourceMappingURL=styles.module.css.map */

@@ -127,7 +127,7 @@ export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
         </div>
         <div className={styles.user_tag_info}>
           <div className={styles.tag}>
-            <h1>{userCredits}</h1>
+            <h1>{user.credit_score}</h1>
             <h3>Credit Score</h3>
           </div>
           <div className={styles.tag}>

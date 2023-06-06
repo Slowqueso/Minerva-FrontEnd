@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import FullLayout from "../../../components/Layout/FullLayout";
 import styles from "./styles.module.css";
 import MyProfileNavbar from "../../../components/my-profile/navbar/MyProfileNavbar";
@@ -7,11 +7,13 @@ import SubmitButton from "../../../components/form/SubmitButton";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 import { useNotification } from "web3uikit";
+import { UserContext } from "../../../components/Layout/FullLayout";
 
 const Security = () => {
+  const { user } = useContext(UserContext);
   const [isChecked, setIsChecked] = useState(false);
-  const [email, setEmail] = useState("");
-  const partialEmail =email.replace(
+  
+  const partialEmail =user.email.replace(
     /(..)(.{1,2})(?=.*@)/g,
     (_, a, b) => a + '*'.repeat(b.length)
 );
@@ -89,18 +91,6 @@ const Security = () => {
           console.log(err);
         });
 
-      axios
-        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info/email", {
-          headers: {
-            "x-access-token": token,
-          },
-        })
-        .then((response) => {
-          setEmail(response.data.email);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
 
     } else {
       router.push("/login");

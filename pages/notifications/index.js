@@ -14,107 +14,62 @@ import getNumericDate from "../../utils/dateConverter";
 import convertUsdToETH from "../../utils/usdConverter";
 import { ethers } from "ethers";
 
-const Notifications = () => {
-  const router = useRouter();
-  const [notifications, setNotifications] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const [user, setUser] = useState();
-  const [activity, setActivity] = useState();
-  const [activityId, setActivityId] = useState();
-  const [notificationId, setNotificationId] = useState();
-  const [handleSubmited, setHandleSubmited] = useState(false);
 
-  const { chainId: chainIdHex, account } = useMoralis();
-  const chainId = parseInt(chainIdHex);
-  const ActivityAddress =
-    chainId in contractAddresses ? contractAddresses[chainId][0] : null;
-
-  const [ethPrice, setEthPrice] = useState();
-  const dispatch = useNotification();
-  const getWeiAmount = async (join_price) => {
-    const ethValue = await convertUsdToETH(join_price);
-    const weiAmount = ethers.utils.parseEther(ethValue.toString());
-    return weiAmount;
-  };
-  useEffect(() => {
-    if (activity) {
-      getWeiAmount(activity.join_price).then((value) => {
-        setEthPrice(value);
-      });
-    }
-  }, [activity]);
+const Notification = (props) => {
+  
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("_USID");
-    if (activityId) {
+    if (token) {
       axios
-        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/get-one", {
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
           headers: {
-            "x-activity-id": activityId,
+            "x-access-token": token,
           },
         })
-        .then(async (response) => {
-          if (response) {
-            setActivity(response.data.activity);
-            axios
-              .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
-                headers: {
-                  "x-access-token": token,
-                },
-              })
-              .then((response) => {
-                if (response.data.authenticated) {
-                  setUser(response.data.user);
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+        .then((response) => {
+          if (response.data.authenticated) {
+            setUser(response.data.user);
+            
           }
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [activityId]);
-
-  const Notification = (notification) => {
-    setActivityId(notification.notification.activityId);
-    setNotificationId(notification.notification._id);
-    const handleSubmit = async () => {
-      setHandleSubmited(true);
-      const response = await joinActivity({
-        onSuccess: handleSuccess,
-        onError: (error) => {
-          handleError(error);
+    axios
+      .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/get-one", {
+        headers: {
+          "x-activity-id": props.notification.activityId,
         },
+      })
+      .then(async (response) => {
+        if (response) {
+          setActivity(response.data.activity);
+          getWeiAmount(response.data.activity.join_price).then((value) => {
+            setEthPrice(value);
+            
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      console.log(response);
-      // handleSuccess();
-    };
-    return (
-      <>
-        <div className={styles.notification}>
-          <div className={styles.notification_content}>
-            <div className={styles.notification_header}>
-              <h1>{notification.notification.notification_title}</h1>
-            </div>
-            <div className={styles.notification_body}>
-              <p>{notification.notification.notification_description}</p>
-              <h3>
-                {getOrderedDate(notification.notification.notification_date)}
-              </h3>
-            </div>
-          </div>
-          <div className={styles.notification_button}>
-            <SubmitButton label={"Accept"} submitHandler={handleSubmit} />
-          </div>
-        </div>
-      </>
-    );
-  };
+  }, []);
 
+  const [activity, setActivity] = useState({});
+  const [ethPrice, setEthPrice] = useState();
+  const dispatch = useNotification();
+  const { chainId: chainIdHex, account } = useMoralis();
+  const chainId = parseInt(chainIdHex);
+  const ActivityAddress =
+    chainId in contractAddresses ? contractAddresses[chainId][0] : null;
+  const getWeiAmount = async (join_price) => {
+    const ethValue = await convertUsdToETH(join_price);
+    const weiAmount = ethers.utils.parseEther(ethValue.toString());
+    return weiAmount;
+  };
   const { runContractFunction: joinActivity } = useWeb3Contract({
     abi,
     contractAddress: ActivityAddress,
@@ -122,7 +77,7 @@ const Notifications = () => {
     params:
       activity && user
         ? {
-            _activityID: activityId,
+            _activityID: activity.public_ID,
             _username: user ? user.username : "",
             _dateOfJoin: getNumericDate(),
             _tenureInMonths: 2,
@@ -140,25 +95,15 @@ const Notifications = () => {
       position: "bottomR",
     });
   };
-  const handleSuccess = async () => {
+  const handleSuccess = async (activity_ID,notification_ID) => {
     // await tx.wait(1);
+    
     const token = localStorage.getItem("_USID");
-    // if(token){
-    //   axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/joinrequest", {
-    //     activityId: activity.id,
-    //    },{
-    //     headers: {
-    //       "x-access-token": token,
-    //     },
-    //    }).then((response) => {
-    //     console.log(response);
-    //   });
-
-    // }
+   
 
     axios
       .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
-        activityId: activity.id,
+        activityId: activity_ID,
         userId: user.id,
         registeredAddress: account,
       })
@@ -166,7 +111,7 @@ const Notifications = () => {
         axios
           .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/get-one", {
             headers: {
-              "x-activity-id": activityId,
+              "x-activity-id": activity_ID,
             },
           })
           .then((response) => {
@@ -178,7 +123,7 @@ const Notifications = () => {
                   ENV.PORT +
                   "/user/remove-notification",
                 {
-                  id: notificationId,
+                  id: notification_ID,
                 },
                 {
                   headers: {
@@ -187,7 +132,7 @@ const Notifications = () => {
                 }
               )
               .then((response) => {
-                router.push("/notifications");
+                props.fetchNotifications();
               })
               .catch((err) => {
                 console.log(err);
@@ -197,13 +142,67 @@ const Notifications = () => {
       .catch((err) => {
         console.log(err);
       });
-    // handleNewNotification("Activity Joined Successfully!");
+      dispatch({
+        type: "info",
+        message: "Activity Joined Successfully!",
+        title: "Join Successfully!",
+        position: "bottomR",
+      });
   };
+  const handleSubmit = async () => {
+    console.log(ethPrice)
+    if(props.notification.activityId){
+      
+      
+    
+    console.log(activity,user)
+    const response = await joinActivity({
+      onSuccess:()=>{handleSuccess(props.notification.activityId,props.notification._id)
+        },
+      onError: (error) => {
+        handleError(error);
+        console.log(error)
+      },
+      
+    });
+    
+    console.log(response);}
+    
+    
+  };
+  return (
+    <>
+      <div className={styles.notification}>
+        <div className={styles.notification_content}>
+          <div className={styles.notification_header}>
+            <h1>{props.notification.notification_title}</h1>
+          </div>
+          <div className={styles.notification_body}>
+            <p>{props.notification.notification_description}</p>
+            <h3>
+              {getOrderedDate(props.notification.notification_date)}
+            </h3>
+          </div>
+        </div>
+        <div className={styles.notification_button}>
+          <SubmitButton label={"Accept"} submitHandler={handleSubmit} />
+        </div>
+      </div>
+    </>
+  );
+};
 
-  useEffect(() => {
-    setLoading(true);
+
+
+
+const Notifications = () => {
+  
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); 
+
+  const fetchNotifications = async () => {
     const token = localStorage.getItem("_USID");
-
     if (token) {
       axios
         .post(
@@ -217,8 +216,7 @@ const Notifications = () => {
         )
         .then((response) => {
           if (response && response.data.notifications.length > 0) {
-            setActivityId(response.data.notifications[0].activityId);
-            setNotificationId(response.data.notifications[0]._id);
+            
             setNotifications(response.data.notifications);
             setLoading(false);
           } else {
@@ -232,7 +230,12 @@ const Notifications = () => {
           setError("Something went wrong");
         });
     }
-  }, [handleSubmited]);
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    fetchNotifications();
+  },[]);
 
   return (
     <FullLayout>
@@ -253,7 +256,7 @@ const Notifications = () => {
             {notifications.map((notification, index) => {
               return (
                 <span key={index}>
-                  <Notification notification={notification} />
+                  <Notification fetchNotifications={fetchNotifications} notification={notification} />
                 </span>
               );
             })}

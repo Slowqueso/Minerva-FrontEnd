@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ENV from "../../../../static_files/hostURL";
 import { Loading } from "web3uikit";
+import Comments from "../../../../components/Comments/Comments";
 import Link from "next/link";
 
 const Overview = () => {
@@ -55,6 +56,11 @@ const Overview = () => {
               <p className={styles.desc}>{activity.desc}</p>
             </div>
           </section>
+          <section className={styles.content_container}>
+            <div>
+              <Comments activityId={activityId} />
+            </div>
+          </section>
           {activity.fields.map((field, index) => {
             return (
               <section className={styles.content_container} key={index}>
@@ -64,19 +70,25 @@ const Overview = () => {
                 </div>
                 {field.imageFile ? (
                   <Link
-                    href={`${
-                      ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/" + field.imageFile
-                    }`}
+                    href={
+                      field.imageFile
+                    //   `${
+                    //   ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/" + field.imageFile
+                    // }`
+                  }
                   >
                     <a target="_blank">
                       <img
-                        src={`${
-                          ENV.PROTOCOL +
-                          ENV.HOST +
-                          ENV.PORT +
-                          "/" +
+                        src={
                           field.imageFile
-                        }`}
+                        //   `${
+                        //   ENV.PROTOCOL +
+                        //   ENV.HOST +
+                        //   ENV.PORT +
+                        //   "/" +
+                        //   field.imageFile
+                        // }`
+                      }
                       ></img>
                     </a>
                   </Link>
