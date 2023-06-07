@@ -61,16 +61,14 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
   // const ID = window.location.href.split("/").pop();
   const ActivityAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
-
   const dispatch = useNotification();
-
   const { runContractFunction: createActivity } = useWeb3Contract({
     abi,
     contractAddress: ActivityAddress,
     functionName: "createActivity",
     params: activity
       ? {
-          _id: activityId,
+          _id: activity.public_ID,
           _username: user ? user.username : "",
           _title: activity ? activity.title : null,
           _desc: activity ? activity.description : null,

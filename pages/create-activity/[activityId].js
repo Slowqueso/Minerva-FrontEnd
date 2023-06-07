@@ -130,7 +130,13 @@ const CreateActivity = () => {
       {progress >= 66 && progress < 100 ? (
         <ActivityTerms setProgress={setProgress}></ActivityTerms>
       ) : null}
-      {progress == 100 ? <ActivityOverview /> : null}
+      {progress == 100 ? (
+        <ActivityOverview
+          setActivity={setActivity}
+          activity={activity}
+          setProgress={setProgress}
+        />
+      ) : null}
     </FullLayout>
   );
 };

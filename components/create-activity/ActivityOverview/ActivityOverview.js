@@ -83,10 +83,9 @@ const FieldImage = ({ inputFields, index, setInputFields }) => {
   );
 };
 
-const ActivityOverview = () => {
+const ActivityOverview = ({ setActivity, activity, setProgress }) => {
   const router = useRouter();
   const activityId = router.query.activityId;
-  const [progress, setProgress] = useState();
   const [inputFields, setInputFields] = useState([
     {
       fieldHeader: "",
@@ -124,33 +123,36 @@ const ActivityOverview = () => {
       },
     ]);
   };
-  const sendHeaderWithImage = async(entry, index) => {
+  const sendHeaderWithImage = async (entry, index) => {
     const formData = {};
-    await axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/aws/image-upload/activityOverview").then((res) => {
-      if(res){
-        const {URL,imagename} = res.data;
-        formData["activityAsset"] = imagename;
-        
-         axios
-          .put(URL, entry.imageFile, {
-            headers: {
-              "Content-type": entry.imageFile.type,
-            },
-            
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              
-              
-              
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            return false;
-          });  
-      }
-    })
+    await axios
+      .get(
+        ENV.PROTOCOL +
+          ENV.HOST +
+          ENV.PORT +
+          "/aws/image-upload/activityOverview"
+      )
+      .then((res) => {
+        if (res) {
+          const { URL, imagename } = res.data;
+          formData["activityAsset"] = imagename;
+
+          axios
+            .put(URL, entry.imageFile, {
+              headers: {
+                "Content-type": entry.imageFile.type,
+              },
+            })
+            .then((res) => {
+              if (res.status === 200) {
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              return false;
+            });
+        }
+      });
     // formData["activityAsset"] = entry.imageFile;
     formData["header"] = entry.fieldHeader;
     formData["description"] = entry.fieldDescription;
@@ -182,7 +184,7 @@ const ActivityOverview = () => {
 
   const handleSubmit = () => {
     let flag = false;
-    inputFields.forEach(async(entry, index) => {
+    inputFields.forEach(async (entry, index) => {
       console.log(entry);
       if (entry.fileName === "") {
         axios
@@ -202,7 +204,7 @@ const ActivityOverview = () => {
             return false;
           });
       } else {
-        flag =await sendHeaderWithImage(entry, index);
+        flag = await sendHeaderWithImage(entry, index);
       }
     });
     if (flag) {
@@ -210,6 +212,41 @@ const ActivityOverview = () => {
       router.push(`/explore`);
     }
   };
+  useEffect(() => {
+    if (activityId) {
+      axios
+        .get(
+          ENV.PROTOCOL +
+            ENV.HOST +
+            ENV.PORT +
+            `/activity/drafts/get-activity/${activityId}`,
+          {
+            headers: {
+              "x-access-token": localStorage.getItem("_USID"),
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.status === "success") {
+            if (response.data.activity._status === 2) {
+              setProgress(66);
+            } else if (response.data.activity._status === 3) {
+              setProgress(100);
+            } else {
+              setTimeout(() => setActivity(response.data.activity), 500);
+            }
+          }
+        })
+        .catch((err) => {
+          if (err.response.data) {
+            setErrorMessage(err.response.data.msg);
+          } else {
+            setErrorMessage("Error 404: Not Found");
+          }
+          console.log(err);
+        });
+    }
+  }, [activityId]);
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.wrapper_title}>
