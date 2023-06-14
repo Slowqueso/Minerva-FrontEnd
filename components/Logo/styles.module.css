@@ -1,35 +1,23 @@
 .logo_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
+  justify-content: space-around;
   width: fit-content;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0;
   height: 35px;
-  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
-
 .logo_container img {
   height: 25px;
   position: relative;
   top: -12px;
-  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
 .logo_text {
-  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   font-size: 30px;
   font-family: var(--fs-cinzel-400);
-  background: -webkit-gradient(linear, left top, right top, from(#d47aff), color-stop(21.66%, #ff78bd), color-stop(52.22%, #fffbfc), color-stop(74.33%, #ff79e2));
   background: linear-gradient(90deg, #d47aff 0%, #ff78bd 21.66%, #fffbfc 52.22%, #ff79e2 74.33%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40,7 +28,5 @@
 
 .logo_container:hover {
   cursor: pointer;
-  -webkit-filter: brightness(0.7);
-          filter: brightness(0.7);
-}
-/*# sourceMappingURL=styles.module.css.map */
+  filter: brightness(0.7);
+}/*# sourceMappingURL=styles.module.css.map */

@@ -56,7 +56,6 @@
   border-radius: 100%;
   background-color: #1d1d1d;
   padding: 0.75rem;
-  width: -moz-fit-content;
   width: fit-content;
   transition: 200ms ease;
   margin: auto;
@@ -79,7 +78,6 @@
   padding: 0.2rem 0.75rem;
   border-radius: 3px;
   background: #3a3a3a;
-  height: -moz-fit-content;
   height: fit-content;
 }
 .tag_container h3 {
@@ -95,7 +93,8 @@
   justify-content: space-between;
   margin: 0rem 0rem 0.5rem 0rem;
 }
-.space_between h3, .space_between h4 {
+.space_between h3,
+.space_between h4 {
   margin: 0px;
 }
 
@@ -156,7 +155,6 @@
   font-family: var(--fs-poppins-400);
   color: white;
   margin: 0px;
-  width: -moz-max-content;
   width: max-content;
   text-shadow: #111111 0px 0px 10px;
 }
@@ -212,4 +210,335 @@
 }
 .cardv2:hover .cardv2_inner .content .title::after {
   transform: scaleX(1);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 2rem;
+  width: 100%;
+  margin: auto;
+  --card-height: 330px;
+}
+.grid .cardv3 {
+  margin: 0rem 1rem 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  width: 330px;
+  height: var(--card-height);
+  display: flex;
+  flex-direction: column;
+  background: #1c1c1c;
+  --image-height: 200px;
+  transition: 200ms ease;
+  border-radius: 10px;
+}
+.grid .cardv3 .activity_logo {
+  transition: 200ms ease;
+  width: 100%;
+  transition-delay: 200ms;
+  height: var(--image-height);
+  min-height: var(--image-height);
+}
+.grid .cardv3 .inner_container {
+  background-color: #1C1C1C;
+  padding: 0.75rem 1rem 0rem 1rem;
+  transition: 200ms ease-in-out;
+  transition-delay: 200ms;
+  max-height: calc(var(--card-height) - var(--image-height) - 1rem);
+  overflow: hidden;
+}
+.grid .cardv3 .inner_container .title_container p {
+  font-family: var(--fs-inter-400);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  line-height: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.07em;
+  color: #716B6B;
+}
+.grid .cardv3 .inner_container .title_container p span {
+  margin-left: 0.5rem;
+}
+.grid .cardv3 .inner_container .title_container h4 {
+  font-family: var(--fs-inter-400);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #E6E6E6;
+  margin: 0.8rem 0;
+}
+.grid .cardv3 .inner_container .space_between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.grid .cardv3 .inner_container .space_between .inner__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.grid .cardv3 .inner_container .space_between .inner__container span {
+  font-family: var(--fs-inter-400);
+  font-weight: 500;
+  font-size: 20px;
+  align-items: center;
+  color: #E6E6E6;
+}
+.grid .cardv3 .inner_container .space_between .inner__container p {
+  font-family: var(--fs-inter-400);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #716B6B;
+  margin: 0.5rem 0.4rem;
+}
+.grid .cardv3 .inner_container .desc_container {
+  margin: 1.8rem 0 0 0;
+}
+.grid .cardv3 .inner_container .desc_container p {
+  font-family: var(--fs-inter-400);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  color: #B2B2B2;
+}
+.grid .cardv3 .inner_container .price_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #292828;
+}
+.grid .cardv3 .inner_container .price_container button {
+  padding: 0.6rem 1rem;
+  outline: none;
+  border: none;
+  border-radius: 0.2rem;
+  font-family: var(--fs-inter-400);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.04em;
+}
+.grid .cardv3 .inner_container .price_container .view_btn button {
+  background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
+  color: #000000;
+  z-index: 10;
+}
+.grid .cardv3 .inner_container .price_container .view_btn button:hover {
+  cursor: pointer;
+  background: linear-gradient(90deg, #C93232 -14.67%, #C34BD7 16.86%, #C898DF 46.5%, #D763CB 82.45%, #D25151 105.16%);
+}
+.grid .cardv3 .inner_container .price_container .flag_btn button {
+  background: #2B2B2B;
+  border: 1px solid #505050;
+  color: #A6A6A6;
+}
+.grid .cardv3 .inner_container .price_container .flag_btn button:hover {
+  cursor: pointer;
+  background: #2C2C2C;
+  border: 1px solid #555555;
+  color: #BEBEBE;
+}
+.grid .cardv3:hover .activity_logo {
+  opacity: 0;
+}
+.grid .cardv3:hover .inner_container {
+  min-height: calc(var(--card-height));
+  transform: translateY(calc(-1 * (var(--card-height) - var(--image-height) + 4.3rem)));
+  cursor: pointer;
+}
+.grid .cardv3:hover .inner_container .background {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+  mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+  z-index: -1;
+}
+.grid .cardv3:hover .inner_container .background .tiles {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile {
+  position: absolute;
+  background: rgba(214, 99, 255, 0.05);
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_4, .grid .cardv3:hover .inner_container .background .tiles .tile.tile_6, .grid .cardv3:hover .inner_container .background .tiles .tile.tile_10 {
+  animation-delay: -2s;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_3, .grid .cardv3:hover .inner_container .background .tiles .tile.tile_5, .grid .cardv3:hover .inner_container .background .tiles .tile.tile_8 {
+  animation-delay: -4s;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_2, .grid .cardv3:hover .inner_container .background .tiles .tile.tile_9 {
+  animation-delay: -6s;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_1 {
+  top: 0;
+  left: 0;
+  height: 10%;
+  width: 22.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_2 {
+  top: 0;
+  left: 22.5%;
+  height: 10%;
+  width: 27.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_3 {
+  top: 0;
+  left: 50%;
+  height: 10%;
+  width: 27.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_4 {
+  top: 0;
+  left: 77.5%;
+  height: 10%;
+  width: 22.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_5 {
+  top: 10%;
+  left: 0;
+  height: 22.5%;
+  width: 22.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_6 {
+  top: 10%;
+  left: 22.5%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_7 {
+  top: 10%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_8 {
+  top: 10%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_9 {
+  top: 32.5%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.grid .cardv3:hover .inner_container .background .tiles .tile.tile_10 {
+  top: 32.5%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+@keyframes tile {
+  0%, 12.5%, 100% {
+    opacity: 1;
+  }
+  25%, 82.5% {
+    opacity: 0;
+  }
+}
+.grid .cardv3:hover .inner_container .background .line {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.grid .cardv3:hover .inner_container .background .line:before, .grid .cardv3:hover .inner_container .background .line:after {
+  content: "";
+  position: absolute;
+  background: rgba(16, 185, 129, 0.05);
+  transition: transform 0.35s;
+}
+.grid .cardv3:hover .inner_container .background .line:before {
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+.grid .cardv3:hover .inner_container .background .line:after {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+.grid .cardv3:hover .inner_container .background .line.line_1:before {
+  top: 10%;
+}
+.grid .cardv3:hover .inner_container .background .line.line_1:after {
+  left: 22.5%;
+}
+.grid .cardv3:hover .inner_container .background .line.line_1:before, .grid .cardv3:hover .inner_container .background .line.line_1:after {
+  transition-delay: 0.3s;
+}
+.grid .cardv3:hover .inner_container .background .line.line_2:before {
+  top: 32.5%;
+}
+.grid .cardv3:hover .inner_container .background .line.line_2:after {
+  left: 50%;
+}
+.grid .cardv3:hover .inner_container .background .line.line_2:before, .grid .cardv3:hover .inner_container .background .line.line_2:after {
+  transition-delay: 0.15s;
+}
+.grid .cardv3:hover .inner_container .background .line.line_3:before {
+  top: 55%;
+}
+.grid .cardv3:hover .inner_container .background .line.line_3:after {
+  right: 22.5%;
+}
+.grid .cardv3:hover .inner_container:hover .background .tiles {
+  opacity: 1;
+  transition-delay: 0.25s;
+}
+.grid .cardv3:hover .inner_container:hover .background .tiles .tile {
+  animation-name: tile;
+}
+.grid .cardv3:hover .inner_container:hover .background .line {
+  opacity: 1;
+  transition-duration: 0.15s;
+}
+.grid .cardv3:hover .inner_container:hover .background .line:before {
+  transform: scaleX(1);
+}
+.grid .cardv3:hover .inner_container:hover .background .line:after {
+  transform: scaleY(1);
+}
+.grid .cardv3:hover .inner_container:hover .background .line.line_1:before, .grid .cardv3:hover .inner_container:hover .background .line.line_1:after {
+  transition-delay: 0s;
+}
+.grid .cardv3:hover .inner_container:hover .background .line.line_2:before, .grid .cardv3:hover .inner_container:hover .background .line.line_2:after {
+  transition-delay: 0.15s;
+}
+.grid .cardv3:hover .inner_container:hover .background .line.line_3:before, .grid .cardv3:hover .inner_container:hover .background .line.line_3:after {
+  transition-delay: 0.3s;
+}
+.grid .cardv3 .inner_container {
+  transition: 200ms ease;
+  min-height: initial;
+  transform: none;
 }/*# sourceMappingURL=styles.module.css.map */

@@ -53,4 +53,12 @@
   color: white;
   font-weight: 300;
   cursor: default;
+}
+
+.activity_container {
+  display: flex;
+  flex-direction: row;
+}
+.activity_container .activity_form {
+  width: 70%;
 }/*# sourceMappingURL=styles.module.css.map */

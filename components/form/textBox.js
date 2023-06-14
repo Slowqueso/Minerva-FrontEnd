@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TextBox = ({ label, name, inputUpdate, isPassword, value }) => {
+const TextBox = ({ label, name, inputUpdate, isPassword, value, onChange }) => {
   const [isSelected, setIsSelected] = useState(false);
   return (
     <div className="textOnInput">
@@ -23,6 +23,7 @@ const TextBox = ({ label, name, inputUpdate, isPassword, value }) => {
           // value={value ? value : ""}
           onChange={(e) => {
             inputUpdate(e.target.value);
+            // onChange(e.target.value);
           }}
         />
       ) : (
@@ -37,6 +38,7 @@ const TextBox = ({ label, name, inputUpdate, isPassword, value }) => {
           value={value}
           onChange={(e) => {
             inputUpdate(e.target.value);
+            // onChange(e.target.value);
           }}
         />
       )}

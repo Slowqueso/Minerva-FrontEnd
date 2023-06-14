@@ -3,7 +3,6 @@
   background: #111111;
   padding: 1rem 1.5rem;
 }
-
 .container .supported_apps h3 {
   font-family: "Inter";
   font-style: normal;
@@ -13,7 +12,6 @@
   color: #ffffff;
   margin-bottom: 1rem;
 }
-
 .container .supported_apps h4 {
   font-family: "Inter";
   font-style: normal;
@@ -24,40 +22,28 @@
   margin: 0;
   color: #969696;
 }
-
 .container .supported_apps .apps {
   margin-top: 1.5rem;
 }
-
 .container .supported_apps .apps .app {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   padding: 3px;
   background: #1f1f1f;
   border-radius: 10px;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
 }
-
 .container .supported_apps .apps .app:hover {
   cursor: pointer;
   background: #2f2f2f;
 }
-
 .container .integration_body {
   margin: 0;
   margin-top: 2rem;
   padding: 0;
   width: 70%;
 }
-
 .container .integration_body .body_header {
   font-family: "Inter";
   font-style: normal;
@@ -68,12 +54,7 @@
   margin-top: 1rem;
   margin-left: 2rem;
   /* identical to box height */
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   color: #ffffff;
-}
-/*# sourceMappingURL=styles.module.css.map */
+}/*# sourceMappingURL=styles.module.css.map */

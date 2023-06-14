@@ -8,6 +8,7 @@ import ENV from "../../static_files/hostURL";
 import FormError from "../../components/form/formError";
 import { useRouter } from "next/router";
 import ActivityPreview from "../../components/create-activity/ActivityPreview/ActivityPreview";
+import ActivitySuggestions from "../../components/create-activity/ActivitySuggestions/ActivitySuggestions";
 
 const TimeLineGraph = ({ progress }) => {
   const colourArray = [
@@ -71,6 +72,7 @@ const CreateActivity = () => {
   const router = useRouter();
   const [progress, setProgress] = useState(0);
   const [user, setUser] = useState();
+  const [hintsArray, setHintsArray] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("_USID");
@@ -106,11 +108,20 @@ const CreateActivity = () => {
       {progress < 33 ? (
         user ? (
           user.credit_score >= 100 ? (
-            <ActivityDetails
-              setProgress={setProgress}
-              user={user}
-              progress={progress}
-            ></ActivityDetails>
+            <div className={styles.activity_container}>
+              <div className={styles.activity_form}>
+                <ActivityDetails
+                  setProgress={setProgress}
+                  user={user}
+                  progress={progress}
+                  setHint={setHintsArray}
+                ></ActivityDetails>
+              </div>
+              <div className={styles.hints_container}>
+                <ActivitySuggestions getHint={hintsArray}></ActivitySuggestions>
+              </div>
+            </div>
+
           ) : (
             <FormError
               errorMessage={
