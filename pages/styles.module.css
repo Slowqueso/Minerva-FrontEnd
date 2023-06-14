@@ -36,6 +36,7 @@
 }
 .page .introduction_container {
   width: var(--max-width);
+  position: relative;
   margin: auto;
 }
 .page .introduction_container .side_image {
@@ -50,6 +51,19 @@
 .page .introduction_container .side_image:hover {
   box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 3px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0 3px 15px 6px rgba(255, 148, 237, 0.13), 0 0 20px 8px rgba(189, 148, 255, 0.1294117647);
 }
+.page .introduction_container .glow1 {
+  position: absolute;
+  top: 3rem;
+  z-index: 1;
+  right: 0rem;
+  background-color: transparent;
+}
+.page .introduction_container canvas {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  right: 0;
+}
 .page .introduction_container .introduction {
   display: flex;
   flex-direction: column;
@@ -61,6 +75,7 @@
 .page .introduction_container .introduction h2 {
   font-family: var(--fs-poppins-200);
   font-size: 3em;
+  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(89.79deg, #000000 0.18%, #cb59ff 0.19%, #ff4de2 24.51%, #fff7fe 53.65%, rgba(255, 148, 237, 0.8) 79.09%, #bd94ff 99.86%);
   -webkit-background-clip: text;
@@ -90,6 +105,7 @@
   position: relative;
   z-index: 10;
   padding: 1rem 4.5rem;
+  width: -moz-fit-content;
   width: fit-content;
   margin-top: 4rem;
   background: transparent;
@@ -125,6 +141,7 @@
   transition: all 0.2s ease-in-out;
 }
 .page header .header_line_wrapper {
+  width: -moz-fit-content;
   width: fit-content;
   margin: 2rem auto;
   display: flex;
@@ -135,6 +152,7 @@
 .page header .header_line_wrapper .header_line {
   margin: 0;
   color: white;
+  width: -moz-fit-content;
   width: fit-content;
   font-size: 5.5em;
   font-family: var(--fs-inter-400);
@@ -162,6 +180,7 @@
 .page .banner h1 {
   font-family: var(--fs-poppins-200);
   font-size: 3em;
+  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(89.79deg, #000000 0.18%, #cb59ff 0.19%, #ff4de2 24.51%, #fff7fe 53.65%, rgba(255, 148, 237, 0.8) 79.09%, #bd94ff 99.86%);
   -webkit-background-clip: text;
@@ -183,6 +202,7 @@
 .page h3.additional {
   font-family: var(--fs-poppins-200);
   font-size: 1.25em;
+  width: -moz-fit-content;
   width: fit-content;
   color: gray;
   font-weight: 600;
@@ -190,6 +210,7 @@
 }
 .page .timeline_1 {
   margin: auto;
+  width: -moz-fit-content;
   width: fit-content;
   position: relative;
   margin-top: 2rem;

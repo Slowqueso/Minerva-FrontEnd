@@ -9,18 +9,14 @@ import SubmitButton from "../../form/SubmitButton";
 import Image from "next/image";
 import { Modalv2 } from "../../profileModal/Modal";
 
+
 const Navbar = () => {
-  const [user, setUser] = useState(null);
+  
+  // const [user, setUser] = useState(null);
   const [profileModalVisibility, setProfileModalVisibility] = useState(false);
   const router = useRouter();
 
-  const handleClick = () => {
-    if (user) {
-      router.push("/create-activity");
-    } else {
-      router.push("/login");
-    }
-  };
+  const [user, setUser] = useState();
   useEffect(() => {
     const token = localStorage.getItem("_USID");
     if (token) {
@@ -33,8 +29,6 @@ const Navbar = () => {
         .then((response) => {
           if (response.data.authenticated) {
             setUser(response.data.user);
-          } else {
-            setUser(null);
           }
         })
         .catch((err) => {
@@ -42,6 +36,15 @@ const Navbar = () => {
         });
     }
   }, []);
+
+  const handleClick = () => {
+    if (user) {
+      router.push("/create-activity");
+    } else {
+      router.push("/login");
+    }
+  };
+ 
   return (
     <>
       <nav className={styles.navbar}>

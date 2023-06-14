@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import FullLayout from "../../../components/Layout/FullLayout";
@@ -15,19 +15,22 @@ import { ethers } from "ethers";
 import convertUsdToETH from "../../../utils/usdConverter";
 import Link from "next/link";
 import DonationModal from "../../../components/DonationModal/Modal";
+import { UserContext } from "../../../components/Layout/FullLayout";
 
 const ActivityProfile = () => {
+  const { user } = useContext(UserContext);
   const router = useRouter();
   const activityId = router.query.activityId;
   const [ethPrice, setEthPrice] = useState();
   const [ethValue, setEthValue] = useState();
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
   const [activity, setActivity] = useState();
   const [isMember, setIsMember] = useState(false);
   const [DModalActive, setDModalActive] = useState(false);
   const { chainId: chainIdHex, account } = useMoralis();
   const chainId = parseInt(chainIdHex);
   const [activityStatus, setActivityStatus] = useState();
+  const [request_sent, setRequestSent] = useState(false);
   const ActivityAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
@@ -77,7 +80,9 @@ const ActivityProfile = () => {
           "x-access-token": token,
         },
        }).then((response) => {
-        console.log(response);
+        console.log(response.data.msg);
+        handleNewNotification(response.data.msg);
+        setRequestSent(true);
       });
 
     }
@@ -103,7 +108,7 @@ const ActivityProfile = () => {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-    handleNewNotification("Join Request Sent Successfully!");
+    
   };
 
   const toggleDModal = () => {
@@ -136,10 +141,10 @@ const ActivityProfile = () => {
     });
   };
   useEffect(() => {
-    
     if (activity && user) {
       
       setIsMember(activity.members.some((member) => member.id === user.id));
+      setRequestSent(activity.join_requests.some((request) => request.user_id === user.id));
       
     }
   }, [activity, user]);
@@ -163,21 +168,21 @@ const ActivityProfile = () => {
         .then(async (response) => {
           if (response) {
             setActivity(response.data.activity);
-            axios
-              .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
-                headers: {
-                  "x-access-token": token,
-                },
-              })
-              .then((response) => {
-                if (response.data.authenticated) {
-                  console.log(response);
-                  setUser(response.data.user);
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+            // axios
+            //   .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
+            //     headers: {
+            //       "x-access-token": token,
+            //     },
+            //   })
+            //   .then((response) => {
+            //     if (response.data.authenticated) {
+                  
+            //       setUser(response.data.user);
+            //     }
+            //   })
+            //   .catch((err) => {
+            //     console.log(err);
+            //   });
           }
         })
         .catch((err) => {
@@ -290,7 +295,14 @@ const ActivityProfile = () => {
                     submitHandler={toggleDModal}
                   ></SubmitButton>
                 )}
-                {isMember || !activityStatus ? null : (
+                {isMember || !activityStatus ? null : request_sent ? (
+                <>
+                <SubmitButton
+                  label={"Request Sent"}
+                  isTransparent={true}
+                  isDisabled={true}
+                ></SubmitButton>
+                </>):(
                   <>
                     <SubmitButton
                       label={"Join"}

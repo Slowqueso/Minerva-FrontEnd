@@ -69,7 +69,7 @@ export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
     contractAddress: ActivityAddress,
     functionName: "getUserCredits",
     params: {
-      _userAddress: account,
+      userAddress: account,
     },
   });
 
@@ -87,7 +87,7 @@ export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
     if (account) {
       loadUserCredits();
     }
-  }, []);
+  }, [account]);
   return (
     <div className={styles.modalv2_modal} id="exception">
       <div

@@ -57,21 +57,55 @@ const DetailsForm = () => {
 
   const handleSubmit = async () => {
     if (imageFile && fileName) {
-      const formData = new FormData();
-      formData.append("profileImage", imageFile, fileName);
-      formData.append("houseAddress", houseAddress);
-      formData.append("district", district);
-      formData.append("state", state);
-      formData.append("country", country);
-      formData.append("postalCode", postalCode);
-      formData.append("occupation", selectedOccupation);
+      const formData = {};
+
+      await axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/aws/image-upload/profilePic").then((res) => {
+        if(res){
+          const {URL,imagename} = res.data;
+          formData = Object.assign(formData, {  profilePic: imagename });
+          
+           axios
+            .put(URL, imageFile, {
+              headers: {
+                "Content-type": imageFile.type,
+              },
+              
+            })
+            .then((res) => {
+              if (res.status === 200) {
+                console.log(res.config.url.split("?")[0],imagename);
+                setFileName(imagename);
+                
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });  
+        }
+      })
+
+      formData = Object.assign(formData, {
+        houseAddress,
+        district,
+        state,
+        country,
+        postalCode,
+        occupation: selectedOccupation,
+      });
+      // formData.append("profileImage", imageFile, fileName);
+      // formData.append("houseAddress", houseAddress);
+      // formData.append("district", district);
+      // formData.append("state", state);
+      // formData.append("country", country);
+      // formData.append("postalCode", postalCode);
+      // formData.append("occupation", selectedOccupation);
       try {
         const res = await axios.put(
           ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/information/register",
           formData,
           {
             headers: {
-              "Content-Type": "multipart/form-data",
+              // "Content-Type": "multipart/form-data",
               "x-access-token": localStorage.getItem("_USID"),
             },
           }
