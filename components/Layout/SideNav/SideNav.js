@@ -12,13 +12,14 @@ import {
   faCaretRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MyActivity from "./MyActivity";
-import ENV from "../../../static_files/hostURL"
+import ENV from "../../../static_files/hostURL";
 import { UserContext } from "../FullLayout";
-
+import { useMoralis } from "react-moralis";
 const SideNav = () => {
-  const {user} = useContext(UserContext);
+  const { deactivateWeb3 ,logout,isInitialized} = useMoralis();
+  const { user } = useContext(UserContext);
   // const [user, setUser] = useState();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
@@ -48,20 +49,22 @@ const SideNav = () => {
       //     setUser(false);
       //     console.log(err);
       //   });
-        axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/get-no-of-notifications", {
-          headers: {
-            "x-access-token": token,
-          },
-        })
-        .then((response) => {
-          console.log(response)
-          setNoNotifications(response.data.count);
-        }
+      axios
+        .get(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/get-no-of-notifications",
+          {
+            headers: {
+              "x-access-token": token,
+            },
+          }
         )
+        .then((response) => {
+          console.log(response);
+          setNoNotifications(response.data.count);
+        })
         .catch((err) => {
           console.log(err);
-        }
-        );
+        });
     }
   }, []);
 
@@ -149,11 +152,7 @@ const SideNav = () => {
           <Link href={"/notifications"}>
             <div className="flex">
               <h3>Notifications</h3>
-              {no_notifications > 0 ? (
-                <h4>{no_notifications}</h4>
-              ) : null
-                }
-              
+              {no_notifications > 0 ? <h4>{no_notifications}</h4> : null}
             </div>
           </Link>
         </li>
@@ -177,7 +176,11 @@ const SideNav = () => {
               color="red"
             ></FontAwesomeIcon>
             <h3
-              onClick={() => {
+              onClick={async() => {
+                localStorage.removeItem("provider");
+                // setWeb3Status("disconnected");
+                deactivateWeb3();
+                if (isInitialized) logout();
                 localStorage.removeItem("_USID");
                 router.replace("/login");
               }}
