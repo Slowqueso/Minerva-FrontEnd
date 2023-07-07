@@ -15,7 +15,6 @@
   background-clip: text;
   font-size: 2.5em;
   margin: 0px;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .my_profile h3 {

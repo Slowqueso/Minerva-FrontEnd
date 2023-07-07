@@ -19,9 +19,7 @@
 .section_1 .activity_info .activity_logo .logo_wrapper {
   border-radius: 50%;
   overflow: hidden;
-  height: -moz-fit-content;
   height: fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -141,9 +139,7 @@
 .section_3 .join_request_container .join_request .join_request_user .join_request_user_logo {
   border-radius: 50%;
   overflow: hidden;
-  height: -moz-fit-content;
   height: fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -187,9 +183,7 @@
 }
 .section_3 .join_request_container .join_request .join_request_buttons button:main,
 .section_3 .join_request_container .join_request .join_request_buttons button:focus {
-  -webkit-user-select: auto;
-     -moz-user-select: auto;
-          user-select: auto;
+  user-select: auto;
 }
 .section_3 .join_request_container .join_request .join_request_buttons button:hover:not(:disabled) {
   filter: brightness(1.1);

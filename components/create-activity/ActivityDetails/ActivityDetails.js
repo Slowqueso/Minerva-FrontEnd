@@ -14,7 +14,7 @@ import { Loading } from "web3uikit";
 import { useRouter } from "next/router";
 import incrementStatus from "../../../utils/api/incrementActivity";
 
-const ActivityDetails = ({ activity, setProgress }) => {
+const ActivityDetails = ({ activity, setProgress, setHint }) => {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState(null);
@@ -28,17 +28,39 @@ const ActivityDetails = ({ activity, setProgress }) => {
   const [loader, setLoader] = useState(false);
   const [preImage, setPreImage] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+
+  const fetchHints = (value) => {
+    //  axios
+    //   .post(
+    //     ENV.PROTOCOL +
+    //     ENV.HOST +
+    //     ENV.PORT +
+    //     `/activity/activity-suggestions`,
+    //     {
+    //       keyword: value.toString(),
+    //     }
+    //   )
+    //   .then((res) => {
+    //     setHint(res.data.activities);
+    //   });
+  };
+
+  const handleChange = (value) => {
+    setTitle(value);
+    fetchHints(value);
+  };
+
   const [buttondisabled, setButtondisabled] = useState(false);
 
   
   const handleValidation = () => {
-    
-    if (!title || !description || !selectedLevel || !memberLimit || !durationPeriod || !joinPrice || !categories ) {
-      
+
+    if (!title || !description || !selectedLevel || !memberLimit || !durationPeriod || !joinPrice || !categories) {
+
       return "Please fill all the fields";
     }
-    
-    let error={
+
+    let error = {
       title: "",
       description: "",
       categories: "",
@@ -47,56 +69,56 @@ const ActivityDetails = ({ activity, setProgress }) => {
       memberLimit: "",
       joinPrice: "",
       ifImage: "",
-      
+
     }
     //title validation
     if (!title.trim()) {
-      error.title= "Title is required";
+      error.title = "Title is required";
     } else {
       error.title = null;
     }
-    
+
     //description validation
     if (!description.trim()) {
-      error.description= "Description is required";
+      error.description = "Description is required";
     } else {
       error.description = null;
     }
 
-    if(!categories.trim()){
-      error.categories= "Categories is required";
-    }else{
+    if (!categories.trim()) {
+      error.categories = "Categories is required";
+    } else {
       error.categories = null;
     }
 
     //wheter member limit is a number
     if (isNaN(memberLimit)) {
-      error.memberLimit= "Member limit must be a number";
+      error.memberLimit = "Member limit must be a number";
     } else {
       error.memberLimit = null;
     }
 
     //wheter duration period is a number
     if (isNaN(durationPeriod)) {
-      error.durationPeriod= "Duration period must be a number";
+      error.durationPeriod = "Duration period must be a number";
     } else {
       error.durationPeriod = null;
     }
 
     //wheter join price is a number
     if (isNaN(joinPrice)) {
-      error.joinPrice= "Join price must be a number";
-    } else {   
+      error.joinPrice = "Join price must be a number";
+    } else {
       error.joinPrice = null;
     }
 
     //wheter image is uploaded
-    
-    if(preImage){
+
+    if (preImage) {
       error.ifImage = null;
-    } 
+    }
     else if (!imageFile || !fileName) {
-      error.ifImage= "Image is required";
+      error.ifImage = "Image is required";
     }
 
     else {
@@ -146,9 +168,9 @@ const ActivityDetails = ({ activity, setProgress }) => {
         if (!activity) {
           const res = await axios.post(
             ENV.PROTOCOL +
-              ENV.HOST +
-              ENV.PORT +
-              "/activity/create-activity/create-draft",
+            ENV.HOST +
+            ENV.PORT +
+            "/activity/create-activity/create-draft",
             formData,
             {
               headers: {
@@ -164,9 +186,9 @@ const ActivityDetails = ({ activity, setProgress }) => {
         } else {
           const res = await axios.post(
             ENV.PROTOCOL +
-              ENV.HOST +
-              ENV.PORT +
-              `/activity/upd-activity/${activity.id}`,
+            ENV.HOST +
+            ENV.PORT +
+            `/activity/upd-activity/${activity.id}`,
             formData,
             {
               headers: {
@@ -192,7 +214,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
     }
   };
   useEffect(() => {
-    
+
     if (activity) {
       setTitle(activity.title);
       setDescription(activity.description);
@@ -202,7 +224,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
       setPreImage(activity.logo);
       setMemberLimit(activity.member_limit);
       setJoinPrice(activity.join_price);
-     
+
     }
   }, [activity]);
   return (
@@ -221,6 +243,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
                   inputUpdate={setTitle}
                   name={"title"}
                   value={title}
+                  onChange={handleChange}
                 ></TextBox>
               </div>
               <div className={styles.tb_aligner}>
@@ -291,7 +314,7 @@ const ActivityDetails = ({ activity, setProgress }) => {
           </div>
         </form>
       )}
-      
+
     </div>
   );
 };

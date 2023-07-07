@@ -141,7 +141,6 @@ const ActivityProfile = () => {
     });
   };
   useEffect(() => {
-    console.log(activity,user)
     if (activity && user) {
       
       setIsMember(activity.members.some((member) => member.id === user.id));

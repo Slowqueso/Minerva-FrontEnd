@@ -36,6 +36,7 @@
 }
 .page .introduction_container {
   width: var(--max-width);
+  position: relative;
   margin: auto;
 }
 .page .introduction_container .side_image {
@@ -49,6 +50,19 @@
 }
 .page .introduction_container .side_image:hover {
   box-shadow: 0 0 5px 2px rgba(202, 89, 255, 0.2), 3px 0 10px 4px rgba(255, 77, 225, 0.1450980392), 0 3px 15px 6px rgba(255, 148, 237, 0.13), 0 0 20px 8px rgba(189, 148, 255, 0.1294117647);
+}
+.page .introduction_container .glow1 {
+  position: absolute;
+  top: 3rem;
+  z-index: 1;
+  right: 0rem;
+  background-color: transparent;
+}
+.page .introduction_container canvas {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  right: 0;
 }
 .page .introduction_container .introduction {
   display: flex;
@@ -178,8 +192,7 @@
 .page .banner .banner_image {
   overflow: hidden;
   border-radius: 26px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border: 2px solid darkgray;
   transition: 200ms ease;
 }

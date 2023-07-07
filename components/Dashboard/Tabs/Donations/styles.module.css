@@ -51,7 +51,6 @@
 }
 .section_3 .settings_container .setting div {
   align-items: flex-end;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 0.5rem;
 }

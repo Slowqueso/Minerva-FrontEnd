@@ -28,7 +28,6 @@
   padding: 0 35px;
   position: relative;
   color: #ffffff;
-  height: -moz-fit-content;
   height: fit-content;
   max-height: 50vh;
   overflow-y: auto;

@@ -14,10 +14,10 @@ import { abi, contractAddresses } from "../../constants";
 import { useNotification } from "web3uikit";
 import { Loading } from "web3uikit";
 import { DeleteUser } from "../../utils/api/DeleteUser";
+import ENV from "../../static_files/hostURL";
 
 const Register = () => {
   const router = useRouter();
-  const { account, chainId: chainIdHex } = useMoralis();
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [username, setUsername] = useState("");
@@ -29,31 +29,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isWalletRegistered, setIsWalletRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState();
-  const chainId = parseInt(chainIdHex);
-  const ActivityAddress =
-    chainId in contractAddresses ? contractAddresses[chainId][0] : null;
   const dispatch = useNotification();
-
-  const { runContractFunction: registerUser } = useWeb3Contract({
-    abi,
-    contractAddress: ActivityAddress,
-    functionName: "registerUser",
-  });
-
-  const { runContractFunction: getUserCount } = useWeb3Contract({
-    abi,
-    contractAddress: ActivityAddress,
-    functionName: "getUserCount",
-  });
-
-  const { runContractFunction: getUserCredits } = useWeb3Contract({
-    abi,
-    contractAddress: ActivityAddress,
-    functionName: "getUserCredits",
-    params: {
-      _userAddress: account,
-    },
-  });
 
   useEffect(() => {
     setIsLoading(true);
@@ -81,60 +57,31 @@ const Register = () => {
     setIsLoading(false);
   }, []);
 
-  const checkWalletAddress = async () => {
-    const response = await getUserCredits();
-    if (response[1]) {
-      setIsWalletRegistered(true);
-      return setErrorMessage("Error: Wallet already registered!");
-    }
-    setIsWalletRegistered(false);
-    setErrorMessage("");
-  };
-
-  useEffect(() => {
-    if (account) {
-      checkWalletAddress();
-    }
-  }, [account]);
-
   const handleSubmit = async () => {
     setIsLoading(true);
     if (termsApproval) {
-      if (account) {
-        if (password === repassword && !isWalletRegistered) {
-          const userCountInHex = await getUserCount();
-          axios
-            .post("http://localhost:3001/user/register", {
-              username,
-              password,
-              email,
-              contact,
-              fname,
-              lname,
-              walletAddress: account,
-              public_ID: parseInt(userCountInHex) + 1,
-            })
-            .then(async (response) => {
-              const response1 = await registerUser({
-                onSuccess: () => handleSuccess(response),
-                onError: (err) => {
-                  DeleteUser(response.data.uid);
-                  setErrorMessage(err.message);
-                  setIsLoading(false);
-                },
-              });
-            })
-            .catch((err) => {
-              console.log(err);
+      if (password === repassword && !isWalletRegistered) {
+        axios
+          .post(`${ENV.PROTOCOL}${ENV.HOST}${ENV.PORT}/user/register`, {
+            username,
+            password,
+            email,
+            contact,
+            fname,
+            lname,
+          })
+          .then(async (response) => {
+            handleSuccess(response);
+          })
+          .catch((err) => {
+            console.log(err);
+            if (err.response.data) {
               setErrorMessage(err.response.data.msg);
-              setIsLoading(false);
-            });
-        } else {
-          setErrorMessage("Error:" + " Passwords don't match!");
-          setIsLoading(false);
-        }
+            }
+          });
+        setIsLoading(false);
       } else {
-        setErrorMessage("Connect to a Wallet first!");
+        setErrorMessage("Error:" + " Passwords don't match!");
         setIsLoading(false);
       }
     } else {
@@ -152,7 +99,6 @@ const Register = () => {
       title: "Tx Notification",
       position: "bottomR",
     });
-
     localStorage.setItem("_USID", response.data.token);
     router.push("/register/2");
   };
@@ -214,14 +160,14 @@ const Register = () => {
                 inputUpdate={setRepassword}
               ></TextBox>
             </div>
-            <div
+            {/* <div
               className="space-between"
               onClick={(e) => {
                 e.preventDefault();
               }}
             >
               <ConnectButton />
-            </div>
+            </div> */}
             <div className="space-between">
               <RadioConfirmation
                 label="Agree with"

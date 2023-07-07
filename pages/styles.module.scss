@@ -38,6 +38,7 @@
   .introduction_container {
     //   border: 1px solid white;
     width: var(--max-width);
+    position: relative;
     margin: auto;
     // align-items: center;
     .side_image {
@@ -56,7 +57,19 @@
           /* blue shadow */ 0 0 20px 8px #bd94ff21;
       }
     }
-
+    .glow1 {
+      position: absolute;
+      top: 3rem;
+      z-index: 1;
+      right: 0rem;
+      background-color: transparent;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      right: 0;
+    }
     .introduction {
       display: flex;
       flex-direction: column;

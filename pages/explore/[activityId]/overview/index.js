@@ -12,6 +12,7 @@ const Overview = () => {
   const router = useRouter();
   const activityId = router.query.activityId;
   const [activity, setActivity] = useState();
+  const [activityOwner, setActivityOwner] = useState();
 
   useEffect(() => {
     if (activityId) {
@@ -24,6 +25,7 @@ const Overview = () => {
         .then((response) => {
           if (response) {
             setActivity(response.data.activity);
+            setActivityOwner(response.data.activity.owner.id);
           }
         })
         .catch((err) => {
@@ -31,6 +33,7 @@ const Overview = () => {
         });
     }
   }, [activityId]);
+
   return (
     <ActivityProfilePage>
       <div className={styles.view_tab}>
@@ -56,11 +59,7 @@ const Overview = () => {
               <p className={styles.desc}>{activity.desc}</p>
             </div>
           </section>
-          <section className={styles.content_container}>
-            <div>
-              <Comments activityId={activityId} />
-            </div>
-          </section>
+
           {activity.fields.map((field, index) => {
             return (
               <section className={styles.content_container} key={index}>
@@ -96,6 +95,12 @@ const Overview = () => {
               </section>
             );
           })}
+
+          <section className={styles.content_container}>
+            <div>
+              <Comments activityId={activityId} activityOwner={activityOwner} />
+            </div>
+          </section>
         </>
       ) : (
         <div className={styles.centralise}>
