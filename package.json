@@ -32,7 +32,7 @@
     "react-moralis": "^1.4.2",
     "three": "^0.150.1",
     "web3": "^1.8.2",
-    "web3uikit": "^1.0.4"
+    "web3uikit": "3.5.1"
   },
   "devDependencies": {
     "eslint": "8.23.0",

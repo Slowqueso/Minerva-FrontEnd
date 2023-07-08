@@ -56,6 +56,7 @@
   border-radius: 100%;
   background-color: #1d1d1d;
   padding: 0.75rem;
+  width: -moz-fit-content;
   width: fit-content;
   transition: 200ms ease;
   margin: auto;
@@ -78,6 +79,7 @@
   padding: 0.2rem 0.75rem;
   border-radius: 3px;
   background: #3a3a3a;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .tag_container h3 {
@@ -155,6 +157,7 @@
   font-family: var(--fs-poppins-400);
   color: white;
   margin: 0px;
+  width: -moz-max-content;
   width: max-content;
   text-shadow: #111111 0px 0px 10px;
 }

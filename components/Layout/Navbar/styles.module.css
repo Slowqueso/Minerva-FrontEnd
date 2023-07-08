@@ -1,20 +1,24 @@
 .navbar {
   border-bottom: 0.1px solid #484848;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
+  background-image: linear-gradient(134deg, hsla(191, 100%, 57%, 0.199), rgba(0, 0, 0, 0) 30%);
 }
 
 .nav_links {
   display: flex;
   align-items: center;
 }
+.nav_links button {
+  scale: 0.8;
+}
 
 .link_text {
   font-family: var(--fs-montserrat-300);
-  font-size: 16px;
-  margin: 0rem 3rem;
+  font-size: 12px;
+  margin: 0rem 2rem;
   font-weight: 100;
   transition: 0.3s ease-out;
   color: white;

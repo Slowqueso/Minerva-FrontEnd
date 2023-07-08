@@ -36,6 +36,7 @@
   border: 1px solid #3a3a3a;
   color: white;
   font-family: var(--fs-poppins-200);
+  width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem 1.5rem;
   margin-left: 1rem;
@@ -49,6 +50,7 @@
 }
 
 .add_field {
+  width: -moz-fit-content;
   width: fit-content;
   margin-left: 1rem;
   background: transparent;

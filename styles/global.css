@@ -18,14 +18,18 @@
   --palette-dark-grey: #171717;
   --palette-medium-grey: #939393;
   --palette-light-grey: #dbdbdb;
-  --palette-text-grey: #E6E6E6;
-  --palette-text-green: #64CF8F;
-  --palette-darker-grey: #3A3A3A;
+  --palette-text-grey: #e6e6e6;
+  --palette-text-green: #64cf8f;
+  --palette-darker-grey: #3a3a3a;
   --palette-mdark-grey: #494949;
-  --palette-text-green-active: #3F8059;
-  --palette-dark-red: #BC0000;
-  --palette-light-red: #FF7A7A;
-  --palette-hot-pink: #FF79E2;
+  --palette-text-green-active: #3f8059;
+  --palette-dark-red: #bc0000;
+  --palette-light-red: #ff7a7a;
+  --palette-hot-pink: #ff79e2;
+  --palette-primary-blue: #58feff;
+  --palette-secondary-blue: #23d6ff;
+  --palette-primary-orange: #fdd62b;
+  --palette-secondary-orange: #e87308;
   /* Global fonts */
   --fs-poppins-400: "Poppins", sans-serif;
   --fs-josef-400: "Josefin Sans", sans-serif;
@@ -56,9 +60,7 @@ body {
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -120,18 +122,22 @@ input {
   border: 0px solid transparent;
 }
 
-a, h3.hyperlink {
+a,
+h3.hyperlink {
   text-decoration: none;
   color: var(--palette-text-green);
   margin-left: 1ch;
   font-weight: 400;
 }
 
-a, h3.hyperlink:hover {
+a,
+h3.hyperlink:hover {
   cursor: pointer;
 }
 
-h3, a, label {
+h3,
+a,
+label {
   font-family: var(--fs-poppins-200);
 }
 

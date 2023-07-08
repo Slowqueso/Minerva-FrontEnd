@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 // @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 
 *,
 *::before,
@@ -20,23 +20,27 @@
   --palette-dark-grey: #171717;
   --palette-medium-grey: #939393;
   --palette-light-grey: #dbdbdb;
-  --palette-text-grey: #E6E6E6;
-  --palette-text-green: #64CF8F;
-  --palette-darker-grey: #3A3A3A;
+  --palette-text-grey: #e6e6e6;
+  --palette-text-green: #64cf8f;
+  --palette-darker-grey: #3a3a3a;
   --palette-mdark-grey: #494949;
-  --palette-text-green-active: #3F8059;
-  --palette-dark-red: #BC0000;
-  --palette-light-red: #FF7A7A;
-  --palette-hot-pink: #FF79E2;
+  --palette-text-green-active: #3f8059;
+  --palette-dark-red: #bc0000;
+  --palette-light-red: #ff7a7a;
+  --palette-hot-pink: #ff79e2;
+  --palette-primary-blue: #58feff;
+  --palette-secondary-blue: #23d6ff;
+  --palette-primary-orange: #fdd62b;
+  --palette-secondary-orange: #e87308;
   /* Global fonts */
   --fs-poppins-400: "Poppins", sans-serif;
   --fs-josef-400: "Josefin Sans", sans-serif;
   --fs-josef-600: "Josefin Sans", sans-serif;
   --fs-poppins-200: "Poppins", sans-serif;
-  --fs-cinzel-400: 'Cinzel', serif;
-  --fs-montserrat-300: 'Montserrat', sans-serif;
-  --fs-inter-800: 'Inter', sans-serif;
-  --fs-inter-400: 'Inter', sans-serif; 
+  --fs-cinzel-400: "Cinzel", serif;
+  --fs-montserrat-300: "Montserrat", sans-serif;
+  --fs-inter-800: "Inter", sans-serif;
+  --fs-inter-400: "Inter", sans-serif;
 }
 html {
   scroll-behavior: smooth;
@@ -50,7 +54,11 @@ body {
   scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(300px);
   scroll-snap-points-x: repeat(300px);
-  background-image: linear-gradient(180deg, var(--palette-gradient-black) 0%, var(--palette-gradient-grey) 99.48%)
+  background-image: linear-gradient(
+    180deg,
+    var(--palette-gradient-black) 0%,
+    var(--palette-gradient-grey) 99.48%
+  );
 }
 .unselectable {
   -webkit-touch-callout: none;
@@ -63,72 +71,76 @@ body {
 ::-webkit-scrollbar {
   width: 0px;
 }
-ul{
+ul {
   list-style: none;
 }
-.flex{
+.flex {
   display: flex;
 }
-.centralise{
+.centralise {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: auto;
   // border: 1px solid black;
   padding: 2rem;
-  .divider{
+  .divider {
     width: 100%;
-    
+
     display: flex;
     align-items: center;
   }
   height: 100vh;
 }
 
-.space-between{
+.space-between {
   display: flex;
   justify-content: space-between;
 }
 
-.flex-together{
+.flex-together {
   display: flex;
   // border: 1px solid green;
   align-items: center;
-  input[type=checkbox]{
+  input[type="checkbox"] {
     margin: 1rem;
   }
-  a{
+  a {
     margin-left: 1ch;
   }
 }
 
-.flex-end{
+.flex-end {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
 
-input{
+input {
   box-shadow: none;
   border: 0px solid transparent;
 }
 
-a, h3.hyperlink{
+a,
+h3.hyperlink {
   text-decoration: none;
   color: var(--palette-text-green);
   margin-left: 1ch;
   font-weight: 400;
 }
-a, h3.hyperlink:hover{
+a,
+h3.hyperlink:hover {
   cursor: pointer;
 }
 
-h3, a, label{
+h3,
+a,
+label {
   font-family: var(--fs-poppins-200);
 }
 
@@ -151,11 +163,11 @@ h3, a, label{
   font-size: 12px;
 }
 
-.margin-auto{
+.margin-auto {
   margin: auto;
 }
 
-.parent-section{
+.parent-section {
   margin-left: 3rem;
   width: 100%;
   height: 84vh;

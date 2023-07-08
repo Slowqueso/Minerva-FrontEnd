@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  createContext, useEffect } from "react";
+import { createContext, useEffect } from "react";
 import SideNav from "./SideNav/SideNav";
 import axios from "axios";
 import Navbar from "./Navbar/Navbar";
@@ -22,22 +22,21 @@ const FullLayout = ({ children }) => {
         .then((response) => {
           if (response.data.authenticated) {
             setUser(response.data.user);
-            
           }
         })
         .catch((err) => {
           console.log(err);
         });
-        console.log(user)
+      console.log(user);
     }
   }, []);
 
   return (
     <UserContext.Provider value={{ user }}>
-      <div>
-        <Navbar></Navbar>
-        <div className="flex">
-          <SideNav></SideNav>
+      <div className="flex">
+        <SideNav></SideNav>
+        <div style={{ width: "100%" }}>
+          <Navbar></Navbar>
           <Workspace>{children}</Workspace>
         </div>
       </div>

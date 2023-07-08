@@ -1,4 +1,3 @@
-import Logo from "../../Logo/Logo";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -38,7 +37,7 @@ const Navbar = () => {
   }, []);
   return (
     <nav className={styles.navbar}>
-      <Logo></Logo>
+      {/* <Logo></Logo> */}
       <div className={styles.nav_links}>
         <Link href={"/explore"}>
           <h3 className={styles.link_text}>Explore</h3>
@@ -49,7 +48,14 @@ const Navbar = () => {
         <Link href={"/contact-us"}>
           <h3 className={styles.link_text}>Contact Us</h3>
         </Link>
-        {user ? <ConnectButton></ConnectButton> : null}
+        {user ? (
+          // <div style={{ scale: "0.8" }}>
+          <ConnectButton
+            chainId={80001}
+            // className={styles.connect_button}
+          ></ConnectButton>
+        ) : // </div>
+        null}
         {user ? (
           <>
             <div
@@ -62,8 +68,8 @@ const Navbar = () => {
                 style={{
                   borderRadius: "50%",
                   overflow: "hidden",
-                  height: "40px",
-                  width: "40px",
+                  height: "32px",
+                  width: "32px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -76,8 +82,8 @@ const Navbar = () => {
                       ? user.profile_pic
                       : "/assets/default_profile.svg"
                   }
-                  height={40}
-                  width={40}
+                  height={32}
+                  width={32}
                 ></Image>
               </div>
             </div>

@@ -2,12 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 0rem;
+  position: fixed;
+  width: 100%;
+  -webkit-backdrop-filter: blur(28px);
+          backdrop-filter: blur(28px);
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.26);
+  height: 8%;
+}
+.navbar * {
+  margin: 0;
+  padding: 0;
 }
 .navbar .wrapper {
   width: 80%;
   display: flex;
   margin: auto;
-  padding: 2.5rem 0rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -29,11 +40,22 @@
   position: relative;
   right: 15%;
 }
+.navbar .wrapper .nav_links button {
+  margin: 0;
+  font-size: 12px;
+  padding: 0.5rem 1.5rem;
+}
+.navbar .wrapper .nav_links button h3 {
+  min-width: -moz-max-content;
+  min-width: max-content;
+}
 
 .link_text {
   font-family: var(--fs-montserrat-300);
-  font-size: 16px;
+  font-size: 12px;
   margin: 0;
+  min-width: -moz-max-content;
+  min-width: max-content;
   font-weight: 100;
   transition: 0.3s ease-out;
   color: white;
