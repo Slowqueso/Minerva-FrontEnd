@@ -8,12 +8,37 @@ import axios from "axios";
 import ENV from "../../static_files/hostURL";
 import Navbar from "../../components/Layout/Navbar/Navbar";
 import TextWithHyperlink from "../../components/form/TextWithHyperlink";
+import { useMoralis } from "react-moralis";
+import { ConnectButton } from "web3uikit";
+
 
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { account, chainId: chainIdHex ,l} = useMoralis();
+  
+
+  useEffect(() => {
+    if (account) {
+      console.log(account);
+      axios
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/walletLogin", {
+          headers: {
+            "x-wallet-address": account,
+          },
+        })
+        .then((res) => {
+          if (res.data.status === "ok") {
+            localStorage.setItem("_USID", res.data.user);
+            router.push("/explore");
+          } else {
+            console.log(res.data);
+          }
+        });
+    }
+  }, [account]);
 
   useEffect(() => {
     const token = localStorage.getItem("_USID");
@@ -49,11 +74,16 @@ const Login = () => {
         ) {
           localStorage.setItem("_USID", response.data.user);
           router.push("/explore");
-        } else if (response.data.status === "ok" && response.data.email_auth === true) {
-          
+        } else if (
+          response.data.status === "ok" &&
+          response.data.email_auth === true
+        ) {
           axios
             .post(
-              ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/two-factor/generate-otp-login",
+              ENV.PROTOCOL +
+                ENV.HOST +
+                ENV.PORT +
+                "/two-factor/generate-otp-login",
               {
                 email: email,
               }
@@ -108,11 +138,25 @@ const Login = () => {
               label={"Login"}
               submitHandler={handleSubmit}
             ></SubmitButton>
+            
           </form>
+          <ConnectButton />
         </div>
       </section>
     </>
   );
 };
 
+// const EnableWeb3 = () => {
+//   const { web3, enableWeb3, isWeb3Enabled, isWeb3EnableLoading, web3EnableError } = useMoralis()
+
+//   if(isWeb3Enabled){
+//     return null
+//   }
+
+//   return <div>
+//     {web3EnableError && <FormError errorMessage={web3EnableError} />}
+//     <button onClick={() => enableWeb3()} disabled={isWeb3EnableLoading}>Enable web3</button>
+//   </div>
+// }
 export default Login;

@@ -23,7 +23,7 @@ const MyActivity = () => {
         )
         .then((response) => {
           setActivities(response.data.activities);
-          console.log(activities)
+          console.log(activities);
         })
         .catch((err) => {
           setActivities(false);
@@ -81,7 +81,10 @@ const MyActivity = () => {
           {activities.map((activity, index) => {
             if (activity.role === 4) {
               return (
-                <Link href={`/explore/${activity.public_ID}/overview`} key={index}>
+                <Link
+                  href={`/explore/${activity.public_ID}/overview`}
+                  key={index}
+                >
                   <li className={styles.activity_container}>
                     <span className={styles.activity_logo}>
                       <Image
@@ -100,7 +103,7 @@ const MyActivity = () => {
           <br />
           <h3 className={styles.role_header}>draft</h3>
           {activities.map((activity, index) => {
-            if (activity.status <4) {
+            if (activity.status < 4) {
               return (
                 <Link href={`/create-activity/${activity.id}`} key={index}>
                   <li className={styles.activity_container}>
@@ -119,9 +122,8 @@ const MyActivity = () => {
             }
           })}
         </ul>
-      ) : (
-        <Loading />
-      )}
+      ) : // <Loading />
+      null}
     </>
   );
 };

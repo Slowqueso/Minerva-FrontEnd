@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "./styles.module.css";
-import Logo from "../../Logo/Logo";
+import { LogoInLine } from "../../Logo/Logo";
 import Link from "next/link";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
@@ -9,9 +9,7 @@ import SubmitButton from "../../form/SubmitButton";
 import Image from "next/image";
 import { Modalv2 } from "../../profileModal/Modal";
 
-
 const Navbar = () => {
-  
   // const [user, setUser] = useState(null);
   const [profileModalVisibility, setProfileModalVisibility] = useState(false);
   const router = useRouter();
@@ -44,12 +42,12 @@ const Navbar = () => {
       router.push("/login");
     }
   };
- 
+
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.wrapper}>
-          <Logo></Logo>
+          <LogoInLine></LogoInLine>
           <div className={styles.nav_links}>
             <Link href={"/explore"}>
               <h3 className={styles.link_text}>Explore</h3>
