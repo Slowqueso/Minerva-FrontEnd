@@ -1,17 +1,23 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect , useContext} from "react";
 import styles from "./styles.module.css";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 import occupations from "../../../static_files/occupations";
 import { Loading } from "web3uikit";
 import { Router, useRouter } from "next/router";
+import Link from "next/link";
 import Image from "next/image";
 import { useMoralis } from "react-moralis";
 import { useWeb3Contract } from "react-moralis";
 import { abi, contractAddresses } from "../../../constants";
 import { useNotification } from "web3uikit";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TextBoxProfile from "../../../components/form/TextBoxProfile";
+import TextArea3 from "../../../components/form/TextArea3";
+import SubmitButton from "../../../components/form/SubmitButton";
+import SelectMenu from "../../../components/form/SelectMenu";
+import { UserContext } from "../../../components/Layout/FullLayout";
 
 const AccountOverview = () => {
   const dispatch = useNotification();
@@ -20,16 +26,19 @@ const AccountOverview = () => {
   const [email, setEmail] = useState();
   const [dob, setDob] = useState();
   const [country, setCountry] = useState();
-  const [occupation, setOccupation] = useState();
+  const [title, setTitle] = useState();
+  const [selectedOccupation, setSelectedOccupation] = useState(1);
   const [description, setDescription] = useState();
   const [profilePic, setProfilePic] = useState();
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [buttondisabled, setButtondisabled] = useState(false);
   const router = useRouter();
   const chainId = parseInt(chainIdHex);
   const ContractAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
   const { tab } = router.query;
+  const { user } = useContext(UserContext);
 
   const { runContractFunction: registerUser } = useWeb3Contract({
     abi,
@@ -79,6 +88,9 @@ const AccountOverview = () => {
       console.log(error);
     }
   };
+  const handleSubmit = async () => {
+    setButtondisabled(true);
+  };
   useEffect(() => {
     console.log(account);
     const token = localStorage.getItem("_USID");
@@ -121,38 +133,97 @@ const AccountOverview = () => {
         </div>
       ) : (
         <div className={styles.account_overview}>
-          <h1>Account Overview</h1>
-          <h3>Profile</h3>
-          <table>
-            <tbody>
-              <tr>
-                <th>Username</th>
-                <td>{username}</td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>
-                  <a href="mailto:">{email}</a>
-                </td>
-              </tr>
-              <tr>
-                <th>Date of Birth</th>
-                <td>{dob}</td>
-              </tr>
-              <tr>
-                <th>Country</th>
-                <td>{country}</td>
-              </tr>
-              <tr>
-                <th>Occupation</th>
-                <td>{occupation}</td>
-              </tr>
-              <tr>
-                <th>Description</th>
-                <td>{description}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={styles.details_container}>
+            <div className={styles.inner_div}>
+              <div className={styles.profile_pic_container}>
+                <img src={profilePic} alt="profile" />
+              </div>
+              <div className={styles.details}>
+                <h4>{user.username}</h4>
+                <p>loremipusm Lorem ipsum</p>
+                <p>{user.email}</p>
+              </div>
+            </div>
+            <div className={styles.edit_profile}>
+              Edit
+              <Link href="/account/edit">
+                <a>
+                  <FontAwesomeIcon
+                    color="#BFBFBF"
+                    size="lg"
+                    icon={faEdit}
+                  ></FontAwesomeIcon>
+                </a>
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.wrapper}>
+            <div className={styles.personal_info}>
+              <div className={styles.heading_container}>
+                <h4>Personal Information</h4>
+              </div>
+              <form>
+                <div className={styles.twobytwo}>
+                  <TextBoxProfile
+                    label={"Username"}
+                    placeholder={"username"}
+                    inputUpdate={setUsername}
+                    value={username}
+                  />
+                  <TextBoxProfile
+                    label={"Email"}
+                    placeholder={"Email"}
+                    inputUpdate={setEmail}
+                    value={email}
+                  />
+                </div>
+
+                <div className={styles.twobytwo}>
+                  <TextBoxProfile
+                    label={"Date of Birth"}
+                    placeholder={"Date of Birth"}
+                    inputUpdate={setDob}
+                    value={dob}
+                  />
+                  <TextBoxProfile
+                    label={"Country"}
+                    placeholder={"Country"}
+                    inputUpdate={setCountry}
+                    value={country}
+                  />
+                </div>
+
+                <div className={styles.twobytwo}>
+                  <TextBoxProfile
+                    label={"Title"}
+                    placeholder={"Title"}
+                    inputUpdate={setTitle}
+                    value={title}
+                  />
+                  <SelectMenu
+                    label={"Occupation"}
+                    objectArray={occupations}
+                    name={"occupation"}
+                    changeHandler={setSelectedOccupation}
+                  ></SelectMenu>
+                </div>
+
+                <TextArea3
+                  label={"Description"}
+                  inputUpdate={setDescription}
+                  name={"desc"}
+                  value={description}
+                ></TextArea3>
+                <SubmitButton
+                  isDisabled={buttondisabled}
+                  submitHandler={handleSubmit}
+                  label={"Save Changes"}
+                ></SubmitButton>
+              </form>
+            </div>
+            <div className={styles.glow}></div>
+          </div>
         </div>
       )}
       <section className={styles.account_overview}>

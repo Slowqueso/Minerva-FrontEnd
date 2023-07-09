@@ -75,7 +75,6 @@
 .page .introduction_container .introduction h2 {
   font-family: var(--fs-poppins-200);
   font-size: 3em;
-  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(89.79deg, #000000 0.18%, #cb59ff 0.19%, #ff4de2 24.51%, #fff7fe 53.65%, rgba(255, 148, 237, 0.8) 79.09%, #bd94ff 99.86%);
   -webkit-background-clip: text;
@@ -105,7 +104,6 @@
   position: relative;
   z-index: 10;
   padding: 1rem 4.5rem;
-  width: -moz-fit-content;
   width: fit-content;
   margin-top: 4rem;
   background: transparent;
@@ -141,7 +139,6 @@
   transition: all 0.2s ease-in-out;
 }
 .page header .header_line_wrapper {
-  width: -moz-fit-content;
   width: fit-content;
   margin: 2rem auto;
   display: flex;
@@ -152,7 +149,6 @@
 .page header .header_line_wrapper .header_line {
   margin: 0;
   color: white;
-  width: -moz-fit-content;
   width: fit-content;
   font-size: 5.5em;
   font-family: var(--fs-inter-400);
@@ -180,7 +176,6 @@
 .page .banner h1 {
   font-family: var(--fs-poppins-200);
   font-size: 3em;
-  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(89.79deg, #000000 0.18%, #cb59ff 0.19%, #ff4de2 24.51%, #fff7fe 53.65%, rgba(255, 148, 237, 0.8) 79.09%, #bd94ff 99.86%);
   -webkit-background-clip: text;
@@ -202,7 +197,6 @@
 .page h3.additional {
   font-family: var(--fs-poppins-200);
   font-size: 1.25em;
-  width: -moz-fit-content;
   width: fit-content;
   color: gray;
   font-weight: 600;
@@ -210,7 +204,6 @@
 }
 .page .timeline_1 {
   margin: auto;
-  width: -moz-fit-content;
   width: fit-content;
   position: relative;
   margin-top: 2rem;

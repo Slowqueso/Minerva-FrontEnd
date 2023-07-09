@@ -1,26 +1,28 @@
 @import url("../global.css");
 .textOnInput {
   position: relative;
-  margin: 1rem 1rem;
+  margin: 1rem 0;
   width: 100%;
 }
 .textOnInput input {
   width: 100%;
-  padding: 0.75rem 7px;
-  border-radius: 3px;
+  width: 100%;
+  padding: 0.6rem 7px;
+  border-radius: 5px;
   box-shadow: none;
-  background-color: var(--palette-mdark-grey);
-  color: white;
+  background-color: #1A1A1A;
+  color: #E6E6E6;
   font-family: var(--fs-poppins-200);
+  font-size: 0.7em;
 }
 .textOnInput textarea {
   border: 1px solid transparent;
   width: 100%;
   padding: 0.75rem 7px;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: none;
-  background-color: var(--palette-mdark-grey);
-  color: white;
+  background-color: #1A1A1A;
+  color: #E6E6E6;
   font-family: var(--fs-poppins-200);
 }
 
@@ -51,29 +53,51 @@
   font-family: var(--fs-poppins-200);
 }
 
+.textOnInputProfile {
+  position: relative;
+  margin: 1rem 0;
+  width: 100%;
+}
+.textOnInputProfile label {
+  color: #E6E6E6;
+  font-family: var(--fs-poppins-200);
+  font-size: 0.8em;
+  margin: 0 0 0.4em 0.2em;
+}
+.textOnInputProfile input {
+  width: 100%;
+  padding: 0.6rem 7px;
+  border-radius: 5px;
+  box-shadow: none;
+  background-color: #1A1A1A;
+  color: #E6E6E6;
+  font-family: var(--fs-poppins-200);
+  font-size: 0.7em;
+}
+.textOnInputProfile textarea {
+  border: 1px solid transparent;
+  width: 100%;
+  padding: 0.75rem 7px;
+  border-radius: 5px;
+  box-shadow: none;
+  background-color: #1A1A1A;
+  color: #E6E6E6;
+  font-family: var(--fs-poppins-200);
+}
+
 section.form-only {
   max-height: 100vh;
   background-image: linear-gradient(180deg, var(--palette-gradient-black) 0%, var(--palette-gradient-black) 99.48%);
 }
 
 .textOnInput label {
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  padding: 2px;
-  z-index: 1;
-  font-family: var(--fs-poppins-400);
-}
-
-.textOnInput label:after {
-  content: " ";
-  background-image: linear-gradient(180deg, var(--palette-dark-grey) 75%, var(--palette-mdark-grey) 25%);
-  width: 100%;
-  height: 15px;
-  position: absolute;
+  position: relative;
+  top: 0;
   left: 0;
-  bottom: 7px;
-  z-index: -1;
+  color: #E6E6E6;
+  font-family: var(--fs-poppins-200);
+  font-size: 0.8em;
+  margin: 0 0 0.4em 0.2em;
 }
 
 .label {
@@ -219,15 +243,14 @@ section.form-only {
 }
 
 .options-menu {
-  background: var(--palette-mdark-grey);
+  border: 1px solid transparent;
   width: 100%;
-  padding: 0.75rem 7px;
-  border-radius: 3px;
+  padding: 0.5rem 7px;
+  border-radius: 5px;
   box-shadow: none;
-  background-color: var(--palette-mdark-grey);
-  color: white;
+  background-color: #1A1A1A;
+  color: #E6E6E6;
   font-family: var(--fs-poppins-200);
-  border: none;
 }
 
 .activity-assets {
