@@ -20,7 +20,7 @@ import ENV from "../../../static_files/hostURL";
 import { UserContext } from "../FullLayout";
 import { useMoralis } from "react-moralis";
 const SideNav = () => {
-  const { deactivateWeb3 ,logout,isInitialized} = useMoralis();
+  const { deactivateWeb3, logout, isInitialized } = useMoralis();
   const { user } = useContext(UserContext);
   // const [user, setUser] = useState();
   const [isActive, setIsActive] = useState(false);
@@ -36,33 +36,14 @@ const SideNav = () => {
     }
     const token = localStorage.getItem("_USID");
     if (token) {
-      // axios
-      //   .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/info", {
-      //     headers: {
-      //       "x-access-token": token,
-      //     },
-      //   })
-      //   .then((response) => {
-      //     if (response.data.authenticated) {
-      //       setUser(response.data.user);
-      //     } else {
-      //       setUser(false);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     setUser(false);
-      //     console.log(err);
-      //   });
-    }
-      axios
-        .get(
-          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/get-no-of-notifications",
-          {
-            headers: {
-              "x-access-token": token,
-            },
-          }
-        )
+      axios.get(
+        ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/get-no-of-notifications",
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      );
       axios
         .get(
           ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/get-no-of-notifications",
@@ -77,10 +58,8 @@ const SideNav = () => {
           console.log(response);
           setNoNotifications(response.data.count);
         })
-        })
         .catch((err) => {
           console.log(err);
-        });
         });
     }
   }, []);
@@ -201,7 +180,7 @@ const SideNav = () => {
               color="red"
             ></FontAwesomeIcon>
             <h3
-              onClick={async() => {
+              onClick={async () => {
                 localStorage.removeItem("provider");
                 // setWeb3Status("disconnected");
                 deactivateWeb3();
