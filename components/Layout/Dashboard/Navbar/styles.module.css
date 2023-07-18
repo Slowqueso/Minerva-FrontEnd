@@ -3,6 +3,7 @@
   padding: 2rem;
   padding-top: 1rem;
   background-color: #1B1B1B;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .dashboard_nav .nav_list {

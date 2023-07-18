@@ -1,4 +1,4 @@
-import { React, useState, useEffect , useContext} from "react";
+import { React, useState, useEffect, useContext } from "react";
 import styles from "./styles.module.css";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
@@ -17,7 +17,7 @@ import TextBoxProfile from "../../../components/form/TextBoxProfile";
 import TextArea3 from "../../../components/form/TextArea3";
 import SubmitButton from "../../../components/form/SubmitButton";
 import SelectMenu from "../../../components/form/SelectMenu";
-import { UserContext } from "../../../components/Layout/FullLayout";
+import { UserContext } from "../../../pages/_app";
 
 const AccountOverview = () => {
   const dispatch = useNotification();
@@ -92,42 +92,23 @@ const AccountOverview = () => {
     setButtondisabled(true);
   };
   useEffect(() => {
-    console.log(account);
-    const token = localStorage.getItem("_USID");
-    if (token) {
-      axios
-        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
-          headers: {
-            "wallet-address": account,
-            "x-access-token": token,
-          },
-        })
-        .then((response) => {
-          if (response.data.authenticated) {
-            setIsLoading(false);
-            setUsername(response.data.user.username);
-            setEmail(response.data.user.email);
-            // setDob(response.data.user.dob);
-            setCountry(response.data.user.address.country);
-            setProfilePic(response.data.user.profile_pic);
-            var occtemp = occupations.find(
-              (item) => item.value == response.data.user.occupation
-            );
-            setOccupation(occtemp.label);
-            setIsRegistered(response.data.user.isUserRegistered);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      Router.push("/login");
+    if (user) {
+      setIsLoading(false);
+      setUsername(user.username);
+      setEmail(user.email);
+      // setDob(response.data.user.dob);
+      setCountry(user.address.country);
+      setProfilePic(user.profile_pic);
+      var occtemp = occupations.find((item) => item.value == user.occupation);
+      setSelectedOccupation(occtemp.label);
+      setTitle("");
+      setIsRegistered(user.isUserRegistered);
     }
-  }, [account]);
+  }, [user, account]);
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && !user ? (
         <div className="centralise" style={{ height: "40vh" }}>
           <Loading></Loading>
         </div>
@@ -215,11 +196,13 @@ const AccountOverview = () => {
                   name={"desc"}
                   value={description}
                 ></TextArea3>
-                <SubmitButton
-                  isDisabled={buttondisabled}
-                  submitHandler={handleSubmit}
-                  label={"Save Changes"}
-                ></SubmitButton>
+                <div style={{ margin: "1.5rem 0rem" }}>
+                  <SubmitButton
+                    isDisabled={buttondisabled}
+                    submitHandler={handleSubmit}
+                    label={"Save Changes"}
+                  ></SubmitButton>
+                </div>
               </form>
             </div>
             <div className={styles.glow}></div>

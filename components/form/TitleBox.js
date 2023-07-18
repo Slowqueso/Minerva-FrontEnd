@@ -2,11 +2,11 @@ import React, { useState } from "react";
 const TitleBox = ({ label, name, inputUpdate, isPassword, value, index }) => {
   const [isSelected, setIsSelected] = useState(false);
   return (
-    <div className="textOnInput">
+    <div className="textOnInputProfile">
       <label
-        className="label f-12"
+        className="label f-16"
         htmlFor={name}
-        style={isSelected ? { display: "block" } : { display: "none" }}
+        // style={isSelected ? { display: "block" } : { display: "none" }}
       >
         {label}
       </label>
@@ -17,7 +17,6 @@ const TitleBox = ({ label, name, inputUpdate, isPassword, value, index }) => {
         onFocus={() => setIsSelected(true)}
         onBlur={() => setIsSelected(false)}
         id={name}
-        placeholder={isSelected ? "" : label}
         value={value}
         onChange={(e) => {
           inputUpdate(index, e);

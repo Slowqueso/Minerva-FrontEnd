@@ -54,6 +54,7 @@
 .page .introduction_container .introduction h2 {
   font-family: var(--fs-poppins-200);
   font-size: 2.5em;
+  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(90deg, var(--palette-primary-blue) 0%, #fffbfc 52.22%, var(--palette-secondary-blue) 74.33%);
   -webkit-background-clip: text;
@@ -83,6 +84,7 @@
   position: relative;
   z-index: 10;
   padding: 0.5rem 3.5rem;
+  width: -moz-fit-content;
   width: fit-content;
   margin-top: 2rem;
   background: transparent;
@@ -149,6 +151,7 @@
 .page header .header_line_wrapper .header_line {
   margin: 0;
   color: white;
+  width: -moz-fit-content;
   width: fit-content;
   font-size: 5em;
   font-family: var(--fs-inter-400);
@@ -177,6 +180,7 @@
 .page .banner h1 {
   font-family: var(--fs-poppins-200);
   font-size: 2.5em;
+  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(90deg, var(--palette-primary-blue) 0%, #fffbfc 52.22%, var(--palette-secondary-blue) 74.33%);
   -webkit-background-clip: text;
@@ -188,7 +192,8 @@
 .page .banner .banner_image {
   overflow: hidden;
   border-radius: 26px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border: 2px solid darkgray;
   transition: 200ms ease;
 }
@@ -202,6 +207,7 @@
 .page .content_container h1 {
   font-family: var(--fs-inter-400);
   font-size: 2em;
+  width: -moz-fit-content;
   width: fit-content;
   color: rgb(65, 65, 65);
 }
@@ -220,6 +226,7 @@
 .page .content_container .content h2 {
   font-family: var(--fs-poppins-200);
   font-size: 2.5em;
+  width: -moz-fit-content;
   width: fit-content;
   background: linear-gradient(90deg, var(--palette-primary-blue) 0%, #fffbfc 52.22%, var(--palette-secondary-blue) 74.33%);
   -webkit-background-clip: text;
@@ -278,6 +285,7 @@
 .page h3.additional {
   font-family: var(--fs-poppins-200);
   font-size: 1.25em;
+  width: -moz-fit-content;
   width: fit-content;
   color: gray;
   font-weight: 600;
@@ -285,6 +293,7 @@
 }
 .page .timeline_1 {
   margin: auto;
+  width: -moz-fit-content;
   width: fit-content;
   position: relative;
   margin-top: 2rem;

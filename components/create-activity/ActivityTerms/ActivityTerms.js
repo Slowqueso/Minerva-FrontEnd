@@ -14,12 +14,15 @@ import { useNotification } from "web3uikit";
 import axios from "axios";
 import { abi, contractAddresses } from "../../../constants/index";
 import incrementStatus from "../../../utils/api/incrementActivity";
+import TextBoxProfile from "../../form/TextBoxProfile";
+import TextArea3 from "../../form/TextArea3";
 import {
   getActivityById,
   getActivityPublicId,
 } from "../../../utils/api/GetActivity";
+import Error from "../Error/Error";
 
-const ActivityTerms = ({ setProgress }) => {
+const ActivityTerms = ({ activity, setProgress, errorType }) => {
   const router = useRouter();
   const dispatch = useNotification();
   const activityId = router.query.activityId;
@@ -94,7 +97,8 @@ const ActivityTerms = ({ setProgress }) => {
       })
       .then((response) => {
         if (response) {
-          incrementStatus(activityId, setProgress, 100, setErrorMessage);
+          incrementStatus(activityId);
+          router.push(`/create-activity/${activityId}/overview`);
         }
       })
       .catch((err) => {
@@ -115,68 +119,91 @@ const ActivityTerms = ({ setProgress }) => {
   };
 
   useEffect(() => {
-    if (activityId) {
-      loadPublicID();
+    if (activity) {
+      if (activity._status !== 2) {
+        console.log("yes");
+        router.push(`/create-activity/${activity.id}`);
+      }
+      setPublicId(activity.public_ID);
     }
-  }, [activityId]);
+  }, [activity]);
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.wrapper_title}>Add Terms and Conditions</h1>
-      <form className={styles.form_container}>
-        {inputFields.map((inputfield, index) => {
-          return (
-            <div key={index} style={{ marginBottom: "1rem" }}>
-              <div className={styles.flex_between}>
-                <div style={{ width: "100%" }}>
-                  <div className="flex">
-                    <TextBox
-                      label={"Term Title"}
-                      name={"termTitle"}
-                      value={inputfield.termTitle}
-                      index={index}
-                      inputUpdate={handleChangeInput}
-                    ></TextBox>
-                  </div>
-                  <div className="flex">
-                    <TextArea
-                      label={"Term Description"}
-                      name={"termDescription"}
-                      value={inputfield.termDescription}
-                      index={index}
-                      inputUpdate={handleChangeInput}
-                    ></TextArea>
-                  </div>
-                </div>
-              </div>
-              <DeleteButton
-                clickHandler={() => handleRemoveFields(index)}
-              ></DeleteButton>
-            </div>
-          );
-        })}
-
-        <button onClick={handleAddFields} className={styles.add_field}>
-          <FontAwesomeIcon
-            icon={faPlus}
-            size="lg"
-            color="white"
-          ></FontAwesomeIcon>
-          <span>Add Term</span>
-        </button>
-        {errorMessage ? (
-          <div className="space-between">
-            <FormError errorMessage={errorMessage}></FormError>
+    <section className={styles.outer_wrapper}>
+      {!errorType ? <div className={styles.glow}></div> : null}
+      {!errorType ? (
+        <div className={styles.wrapper}>
+          <div className={styles.heading_container}>
+            <h4>Activity Terms</h4>
           </div>
-        ) : null}
-        <div className="flex-end">
-          <SubmitButton
-            submitHandler={handleSubmit}
-            label={"Save and Deploy"}
-          ></SubmitButton>
+          <form className={styles.form_container}>
+            {inputFields.map((inputfield, index) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    marginBottom: "1rem",
+                    borderBottom: "1px dotted #dbdbdb",
+                  }}
+                >
+                  <div className={styles.flex_between}>
+                    <div style={{ width: "100%" }}>
+                      <div className={styles.flex}>
+                        <TextBox
+                          label={"Term Title"}
+                          name={"termTitle"}
+                          value={inputfield.termTitle}
+                          index={index}
+                          inputUpdate={handleChangeInput}
+                        ></TextBox>
+                      </div>
+                      <div className={styles.flex}>
+                        <TextArea3
+                          label={"Term Description"}
+                          name={"termDescription"}
+                          value={inputfield.termDescription}
+                          index={index}
+                          inputUpdate={handleChangeInput}
+                        ></TextArea3>
+                      </div>
+                    </div>
+                  </div>
+                  <DeleteButton
+                    label={"Remove Term"}
+                    clickHandler={() => handleRemoveFields(index)}
+                  ></DeleteButton>
+                </div>
+              );
+            })}
+
+            <button onClick={handleAddFields} className={styles.add_field}>
+              <FontAwesomeIcon
+                icon={faPlus}
+                size="lg"
+                color="white"
+              ></FontAwesomeIcon>
+              <span>Add Term</span>
+            </button>
+            {errorMessage ? (
+              <div className="space-between">
+                <FormError errorMessage={errorMessage}></FormError>
+              </div>
+            ) : null}
+            <div className="flex-end">
+              <SubmitButton
+                submitHandler={handleSubmit}
+                label={"Save and Deploy"}
+              ></SubmitButton>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      ) : (
+        <Error
+          title={errorType.response.data.msg}
+          statusCode={errorType.response.status}
+        ></Error>
+      )}
+    </section>
   );
 };
 

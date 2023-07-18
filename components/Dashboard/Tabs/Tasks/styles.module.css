@@ -16,12 +16,14 @@
   font-family: var(--fs-inter-400);
 }
 .taskSection .dropdownBtn {
+  width: -moz-fit-content;
   width: fit-content;
   background: #1b1b1b;
   color: #bfbfbf;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  height: -moz-max-content;
   height: max-content;
   display: flex;
   align-items: center;
@@ -57,6 +59,7 @@
   padding: 0 35px;
   position: relative;
   color: #ffffff;
+  height: -moz-fit-content;
   height: fit-content;
   max-height: 50vh;
   overflow-y: auto;
@@ -97,6 +100,7 @@
 }
 .taskSection .wrapper .row section button {
   margin: 0;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .taskSection .wrapper .row section .icon {
@@ -224,11 +228,13 @@
 .modal_container .modal {
   width: 60%;
   border: 1px solid rgb(53, 53, 53);
+  height: -moz-fit-content;
   height: fit-content;
   overflow-y: scroll;
   background: rgba(29, 29, 29, 0.541);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
   padding: 3rem;
 }
 .modal_container .modal .close_button {

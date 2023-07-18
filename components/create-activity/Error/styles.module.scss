@@ -1,0 +1,35 @@
+.wrapper {
+  width: 100%;
+  margin-top: 2rem;
+  //   margin-left: 2rem;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0px 2px 7px 5px rgba(255, 4, 50, 0.075);
+  //   border: 1px solid #1f1f1f;
+  background: #0d0d0d;
+  --content-color: #525252;
+  .error_icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0rem auto;
+    color: var(--content-color);
+  }
+  h3 {
+    color: var(--content-color);
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+  }
+  p {
+    font-family: var(--fs-inter-400);
+    font-size: 11px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    color: #8e8e8e;
+    a {
+      margin: 0;
+      color: var(--palette-primary-blue);
+    }
+  }
+}

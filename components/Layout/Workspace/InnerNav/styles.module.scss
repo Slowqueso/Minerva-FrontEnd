@@ -1,0 +1,51 @@
+.account_navbar {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  // margin: 2em 0 2em 2em;
+  background-color: #0d0d0d;
+  padding: 2rem 1rem;
+  border-radius: 15px 0 0 15px;
+  border-right: 1px solid #171717;
+  gap: 1.5rem;
+  h3 {
+    font-size: 12px;
+    color: #bfbfbf;
+    margin: 0;
+    padding: 0.25rem 1rem;
+    transition: 200ms ease;
+    border-radius: 5px;
+    min-width: 100%;
+    width: max-content;
+    font-weight: 400;
+    margin-left: 0.5rem;
+    &:hover {
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(90deg, #429394 0%, #000 100%);
+      box-shadow: 0px 0px 4px 0px #58feff;
+    }
+    svg {
+      margin-left: 0.5rem;
+    }
+  }
+  .active {
+    color: white;
+    background: linear-gradient(90deg, #429394 0%, #000 100%);
+    box-shadow: 0px 0px 4px 0px #58feff;
+  }
+  .disabled {
+    opacity: 0.5;
+    &:hover {
+      color: #bfbfbf;
+      cursor: default;
+      background: none;
+      box-shadow: none;
+    }
+  }
+
+  // a:hover {
+  //   color: #ffffff;
+  //   transform: translateX(10px);
+  // }
+}

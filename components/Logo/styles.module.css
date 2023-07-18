@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-center;
   flex-direction: column;
+  width: -moz-fit-content;
   width: fit-content;
   align-items: center;
   padding: 1.5rem 0rem;

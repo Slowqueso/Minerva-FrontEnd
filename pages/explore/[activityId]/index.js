@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import FullLayout from "../../../components/Layout/FullLayout";
@@ -15,7 +15,7 @@ import { ethers } from "ethers";
 import convertUsdToETH from "../../../utils/usdConverter";
 import Link from "next/link";
 import DonationModal from "../../../components/DonationModal/Modal";
-import { UserContext } from "../../../components/Layout/FullLayout";
+import { UserContext } from "../../../pages/_app";
 
 const ActivityProfile = () => {
   const { user } = useContext(UserContext);
@@ -72,21 +72,25 @@ const ActivityProfile = () => {
   const handleSuccess = async (tx) => {
     // await tx.wait(1);
     const token = localStorage.getItem("_USID");
-    if(token){
-      axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/joinrequest", {
-        activityId: activity.id,
-       },{
-        headers: {
-          "x-access-token": token,
-        },
-       }).then((response) => {
-        console.log(response.data.msg);
-        handleNewNotification(response.data.msg);
-        setRequestSent(true);
-      });
-
+    if (token) {
+      axios
+        .post(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/joinrequest",
+          {
+            activityId: activity.id,
+          },
+          {
+            headers: {
+              "x-access-token": token,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.msg);
+          handleNewNotification(response.data.msg);
+          setRequestSent(true);
+        });
     }
-    
 
     // axios
     //   .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/join-activity", {
@@ -108,7 +112,6 @@ const ActivityProfile = () => {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-    
   };
 
   const toggleDModal = () => {
@@ -142,10 +145,10 @@ const ActivityProfile = () => {
   };
   useEffect(() => {
     if (activity && user) {
-      
       setIsMember(activity.members.some((member) => member.id === user.id));
-      setRequestSent(activity.join_requests.some((request) => request.user_id === user.id));
-      
+      setRequestSent(
+        activity.join_requests.some((request) => request.user_id === user.id)
+      );
     }
   }, [activity, user]);
 
@@ -176,7 +179,7 @@ const ActivityProfile = () => {
             //   })
             //   .then((response) => {
             //     if (response.data.authenticated) {
-                  
+
             //       setUser(response.data.user);
             //     }
             //   })
@@ -188,7 +191,6 @@ const ActivityProfile = () => {
         .catch((err) => {
           console.log(err);
         });
-      
     }
   }, [activityId]);
 
@@ -204,23 +206,23 @@ const ActivityProfile = () => {
         .then((response) => {
           setActivityStatus(response.data.isOpen);
         });
-        if(token){
+      if (token) {
         axios
-        .post(
-          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/viewed",
-          {
-            activityId: activity.id,
-          },
-          {
-            headers: {
-              "x-access-token": token,
+          .post(
+            ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/viewed",
+            {
+              activityId: activity.id,
             },
-          }
-        )
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        });
+            {
+              headers: {
+                "x-access-token": token,
+              },
+            }
+          )
+          .then((res) => {})
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
   }, [activity]);
@@ -296,13 +298,14 @@ const ActivityProfile = () => {
                   ></SubmitButton>
                 )}
                 {isMember || !activityStatus ? null : request_sent ? (
-                <>
-                <SubmitButton
-                  label={"Request Sent"}
-                  isTransparent={true}
-                  isDisabled={true}
-                ></SubmitButton>
-                </>):(
+                  <>
+                    <SubmitButton
+                      label={"Request Sent"}
+                      isTransparent={true}
+                      isDisabled={true}
+                    ></SubmitButton>
+                  </>
+                ) : (
                   <>
                     <SubmitButton
                       label={"Join"}
