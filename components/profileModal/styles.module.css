@@ -90,13 +90,14 @@
   position: fixed;
   right: 2.5rem;
   top: 7.5vh;
-  width: 320px;
+  width: 16rem;
   flex-direction: column;
-  background: rgba(63, 63, 63, 0.14);
-  border-radius: 10px;
+  border-radius: 5px;
+  background: #0f0f0f;
   backdrop-filter: blur(2px);
   z-index: 10000;
-  --image-height: 115px;
+  --image-height: 100px;
+  overflow: hidden;
 }
 .modalv2_modal .close_button {
   position: absolute;
@@ -158,9 +159,9 @@
   opacity: 1;
 }
 .modalv2_modal .modal_body {
-  height: 250px;
-  border-radius: 20px;
-  background: rgba(68, 68, 68, 0.5019607843);
+  height: fit-content;
+  border-radius: 0 0 5px 5px;
+  background: #101010;
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(7.5px);
   z-index: -2;
@@ -168,31 +169,248 @@
   padding-top: calc(var(--image-height) / 2 + 0.5rem);
 }
 .modalv2_modal .modal_body .user_info .header_text {
-  font-size: 2em;
+  font-size: 1.1em;
+  font-weight: 700;
 }
 .modalv2_modal .modal_body .user_info h3 {
+  margin-top: 0.7em;
+  font-weight: 600;
+  color: #969696;
   text-transform: none;
 }
 .modalv2_modal .modal_body .user_tag_info {
   display: flex;
   justify-content: space-around;
   margin-top: 1.5rem;
+  background: #232323;
+}
+.modalv2_modal .modal_body .user_tag_info .tag {
+  padding: 0.4rem 0;
+  width: 100%;
+}
+.modalv2_modal .modal_body .user_tag_info .tag:first-child {
+  border-right: 1px solid #444444;
 }
 .modalv2_modal .modal_body h1 {
   margin: auto;
   width: fit-content;
   color: white;
   font-family: var(--fs-montserrat-300);
-  font-size: 1.25em;
+  font-size: 1em;
 }
 .modalv2_modal .modal_body h3 {
   margin: 0;
-  font-size: 0.75em;
+  font-size: 0.57em;
+  font-weight: 700;
   width: fit-content;
-  color: #c8c8c8;
+  color: #969BA1;
   margin: auto;
   text-transform: uppercase;
   font-weight: 400;
+}
+.modalv2_modal .modal_body .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 1rem;
+  z-index: 10000;
+}
+.modalv2_modal .modal_body .wrapper .inner_container {
+  margin: 0.6rem 0 0 0;
+  padding: 0.6rem 1rem;
+}
+.modalv2_modal .modal_body .wrapper .inner_container span {
+  color: #a7aaae;
+  text-align: center;
+  font-family: var(--fs-inter-800);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0 0 0 1rem;
+}
+.modalv2_modal .modal_body .wrapper .inner_container:last-child {
+  margin: 0.8rem 0 0.8rem 0;
+}
+.modalv2_modal .modal_body .wrapper .inner_container:hover {
+  background: #2D2D2D;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modalv2_modal .background {
+  border-radius: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+  mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+  z-index: -5;
+}
+@keyframes tile {
+  0%, 12.5%, 100% {
+    opacity: 1;
+  }
+  25%, 82.5% {
+    opacity: 0;
+  }
+}
+.modalv2_modal .background .tiles {
+  opacity: 1;
+  transition-delay: 0.25s;
+}
+.modalv2_modal .background .tiles .tile {
+  position: absolute;
+  background: rgba(88, 254, 255, 0.05);
+  animation-name: tile;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  opacity: 1;
+}
+.modalv2_modal .background .tiles .tile.tile_4, .modalv2_modal .background .tiles .tile.tile_6, .modalv2_modal .background .tiles .tile.tile_10 {
+  animation-delay: -2s;
+}
+.modalv2_modal .background .tiles .tile.tile_3, .modalv2_modal .background .tiles .tile.tile_5, .modalv2_modal .background .tiles .tile.tile_8 {
+  animation-delay: -4s;
+}
+.modalv2_modal .background .tiles .tile.tile_2, .modalv2_modal .background .tiles .tile.tile_9 {
+  animation-delay: -6s;
+}
+.modalv2_modal .background .tiles .tile.tile_1 {
+  top: 0;
+  left: 0;
+  height: 10%;
+  width: 22.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_2 {
+  top: 0;
+  left: 22.5%;
+  height: 10%;
+  width: 27.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_3 {
+  top: 0;
+  left: 50%;
+  height: 10%;
+  width: 27.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_4 {
+  top: 0;
+  left: 77.5%;
+  height: 10%;
+  width: 22.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_5 {
+  top: 10%;
+  left: 0;
+  height: 22.5%;
+  width: 22.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_6 {
+  top: 10%;
+  left: 22.5%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_7 {
+  top: 10%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_8 {
+  top: 10%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_9 {
+  top: 32.5%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+.modalv2_modal .background .tiles .tile.tile_10 {
+  top: 32.5%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+.modalv2_modal .background .line {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition-duration: 0.15s;
+  transition: opacity 0.35s;
+}
+.modalv2_modal .background .line:before, .modalv2_modal .background .line:after {
+  content: "";
+  position: absolute;
+  background: rgba(16, 185, 129, 0.05);
+  transition: transform 0.35s;
+}
+.modalv2_modal .background .line:before {
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: 0 50%;
+  transform: scaleX(1);
+}
+.modalv2_modal .background .line:after {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform-origin: 50% 0;
+  transform: scaleY(1);
+}
+.modalv2_modal .background .line.line_1:before {
+  top: 10%;
+}
+.modalv2_modal .background .line.line_1:after {
+  left: 22.5%;
+}
+.modalv2_modal .background .line.line_1:before, .modalv2_modal .background .line.line_1:after {
+  transition-delay: 0.3s;
+}
+.modalv2_modal .background .line.line_2:before {
+  top: 32.5%;
+}
+.modalv2_modal .background .line.line_2:after {
+  left: 50%;
+}
+.modalv2_modal .background .line.line_2:before, .modalv2_modal .background .line.line_2:after {
+  transition-delay: 0.15s;
+}
+.modalv2_modal .background .line.line_3:before {
+  top: 55%;
+}
+.modalv2_modal .background .line.line_3:after {
+  right: 22.5%;
+}
+.modalv2_modal .glow1 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 7em;
+  height: 7em;
+  border-radius: 50%;
+  background: #984d07;
+  filter: blur(80.5px);
+  z-index: -1;
+}
+.modalv2_modal .glow2 {
+  position: absolute;
+  bottom: 10rem;
+  right: 0;
+  width: 7em;
+  height: 7em;
+  border-radius: 50%;
+  background: #46c9c9;
+  filter: blur(80.5px);
+  z-index: -1;
 }
 .modalv2_modal h1 {
   margin: 0;

@@ -1,23 +1,59 @@
-.color_red {
-  color: red;
+.login_section {
+  display: flex;
+  flex-direction: row;
 }
-
-.form_header {
-  margin: 0px;
+.login_section .background {
+  width: 70%;
+  height: 100%;
+}
+.login_section .background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.login_section .form_container {
+  height: fit-content;
+  padding: 3rem 3rem;
+  border-radius: 15px;
+  background: #0D0D0D;
+  box-shadow: 0px 0px 19px 2px rgba(88, 254, 255, 0.27);
+  position: relative;
+  right: 10%;
+  top: 15%;
+}
+.login_section .form_container .form_header {
+  font-family: var(--fs-inter-800);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 800;
   text-align: center;
-  margin: auto;
-  color: white;
-  font-family: var(--fs-montserrat-300);
-  font-size: 26px;
-  font-weight: 200;
-  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#23D6FF, #58FEFF, #FFFBFC, #E87308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  letter-spacing: 1.4px;
+  margin: 0;
 }
-
-.form_container {
-  padding: 1.5rem;
-  background: var(--palette-dark-grey);
+.login_section .form_container .inner_paragraph {
+  color: #E6E6E6;
+  font-family: var(--fs-inter-400);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
 }
-
-.space_between {
-  margin: 0px 1rem;
+.login_section .form_container .signup_container {
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+}
+.login_section .form_container .login_form {
+  margin: 1rem 0 0 0;
+}
+.login_section .form_container .connect_btn {
+  width: fit-content;
+  background-color: #23D6FF;
 }/*# sourceMappingURL=login.module.css.map */

@@ -106,7 +106,7 @@ export default function Home() {
             </h3>
           </div>
           <div className={styles.background}>
-            <Image src={"/assets/Layer-top.png"} layout="fill"></Image>
+            <Image src={"/assets/mi.png"} layout="fill"></Image>
           </div>
         </header>
         <section>

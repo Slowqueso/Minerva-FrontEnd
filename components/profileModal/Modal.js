@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Loading } from "web3uikit";
 import Image from "next/image";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faUser, faBell, faGear, faFileCircleQuestion, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMoralis } from "react-moralis";
 import { useWeb3Contract } from "react-moralis";
@@ -116,27 +116,98 @@ export const Modalv2 = ({ modalVisibility, setModalVisibility, user }) => {
                 width={115}
               ></Image>
             </div>
-            <h3>My Profile</h3>
+            <h3>My Profiles</h3>
           </div>
         </Link>
       </div>
       <div className={styles.modal_body}>
         <div className={styles.user_info}>
           <h1 className={styles.header_text}>{user.username}</h1>
-          <h3 style={{ fontWeight: "300" }}>{user.email}</h3>
+          <h3>{user.email}</h3>
         </div>
         <div className={styles.user_tag_info}>
           <div className={styles.tag}>
             <h1>{userCredits}</h1>
-            <h3>Credit Score</h3>
+            <h3>Credits</h3>
           </div>
           <div className={styles.tag}>
             <h1>8</h1>
             <h3>Followers</h3>
           </div>
         </div>
+        <div className={styles.wrapper}>
+          <Link href={"/my-profile"}>
+            <div className={styles.inner_container}>
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{ color: "#9da2a8", }}
+                size={"m"}
+              ></FontAwesomeIcon>
+              <span className={styles.button}>My Profile</span>
+            </div>
+          </Link>
+          <Link href={"/notifications"}>
+            <div className={styles.inner_container}>
+              <FontAwesomeIcon
+                icon={faBell}
+                style={{ color: "#9da2a8", }}
+                size={"m"}
+              ></FontAwesomeIcon>
+              <span className={styles.button}>Notifications</span>
+            </div>
+          </Link>
+          {/* <Link href={"/my-profile"}>
+              <div className={styles.inner_container}>
+                <FontAwesomeIcon
+                  icon={faGear}
+                  style={{ color: "#9da2a8", }}
+                  size={"m"}
+                ></FontAwesomeIcon>
+                <span className={styles.button}>User Settings</span>
+              </div>
+            </Link>
+            <Link href={"/my-profile"}>
+              <div className={styles.inner_container}>
+                <FontAwesomeIcon
+                  icon={faFileCircleQuestion}
+                  style={{ color: "#9da2a8", }}
+                  size={"m"}
+                ></FontAwesomeIcon>
+                <span className={styles.button}>Help Center</span>
+              </div>
+            </Link> */}
+          <Link href={"/"}>
+            <div className={styles.inner_container}>
+              <FontAwesomeIcon
+                icon={faArrowRightFromBracket}
+                style={{ color: "#9da2a8", }}
+                size={"m"}
+              ></FontAwesomeIcon>
+              <span className={styles.button}>Log out</span>
+            </div>
+          </Link>
+        </div>
       </div>
-      <div></div>
+      <div className={styles.background}>
+        <div className={styles.tiles}>
+          <div className={`${styles.tile} ${styles.tile_1}`}></div>
+          <div className={`${styles.tile} ${styles.tile_2}`}></div>
+          <div className={`${styles.tile} ${styles.tile_3}`}></div>
+          <div className={`${styles.tile} ${styles.tile_4}`}></div>
+
+          <div className={`${styles.tile} ${styles.tile_5}`}></div>
+          <div className={`${styles.tile} ${styles.tile_6}`}></div>
+          <div className={`${styles.tile} ${styles.tile_7}`}></div>
+          <div className={`${styles.tile} ${styles.tile_8}`}></div>
+        </div>
+
+        <div className={`${styles.line} ${styles.line_1}`}></div>
+        <div className={`${styles.line} ${styles.line_2}`}></div>
+        <div className={`${styles.line} ${styles.line_3}`}></div>
+
+      </div>
+      <div className={styles.glow1}></div>
+      <div className={styles.glow2}></div>
     </div>
   );
 };

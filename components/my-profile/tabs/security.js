@@ -2,7 +2,7 @@ import { React, useState, useEffect, useContext } from "react";
 import FullLayout from "../../../components/Layout/FullLayout";
 import styles from "./styles.module.css";
 import MyProfileNavbar from "../../../components/my-profile/navbar/MyProfileNavbar";
-import TextBox2 from "../../../components/form/textbox2";
+import TextBoxProfile from "../../../components/form/TextBoxProfile";
 import SubmitButton from "../../../components/form/SubmitButton";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
@@ -12,11 +12,11 @@ import { UserContext } from "../../../components/Layout/FullLayout";
 const Security = () => {
   const { user } = useContext(UserContext);
   const [isChecked, setIsChecked] = useState(false);
-  
-  const partialEmail =user.email.replace(
+
+  const partialEmail = user.email.replace(
     /(..)(.{1,2})(?=.*@)/g,
     (_, a, b) => a + '*'.repeat(b.length)
-);
+  );
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
   const dispatch = useNotification();
@@ -41,9 +41,9 @@ const Security = () => {
   }
 
   function handleSubmit() {
-    
+
     const token = localStorage.getItem("_USID");
-    
+
     if (token) {
       console.log(token)
       axios
@@ -67,7 +67,7 @@ const Security = () => {
             title: "Password Alert",
             position: "bottomR",
           });
-          
+
         })
         .catch((err) => {
           console.log(err);
@@ -98,29 +98,33 @@ const Security = () => {
   }, []);
   return (
     <>
-      
-          <div className={styles.security}>
-            <h1>Security</h1>
+      <div className={styles.security_wrapper}>
+        <div className={styles.glow1}></div>
+        <div className={styles.security}>
+          <div className={styles.heading_container}>
+            <h4>Security</h4>
+          </div>
+          <div className={styles.inner_container}>
             <h3>Change Password</h3>
             <form>
               {/* <TextBox label={"Old Password"} /> */}
-              <div className="space-between">
-              <TextBox2
-                label={"New Password"}
-                inputUpdate={setPassword}
-                isPassword={true}
-              />
-              <TextBox2
-                label={"Confirm New Password"}
-                inputUpdate={setRePassword}
-                isPassword={true}
-              />
+              <div className={styles.twobytwo}>
+                <TextBoxProfile
+                  label={"New Password"}
+                  inputUpdate={setPassword}
+                  isPassword={true}
+                />
+                <TextBoxProfile
+                  label={"Confirm New Password"}
+                  inputUpdate={setRePassword}
+                  isPassword={true}
+                />
               </div>
               <div className={`flex-end ${styles.button}`}>
-              <SubmitButton
-                label={"Change Password"}
-                submitHandler={handleSubmit}
-              />
+                <SubmitButton
+                  label={"Change Password"}
+                  submitHandler={handleSubmit}
+                />
               </div>
             </form>
             <h3>Two-Factor Authentication</h3>
@@ -147,7 +151,13 @@ const Security = () => {
               <p>Receive Unique Authentication codes at {partialEmail}</p>
             </div>
           </div>
-        
+
+
+        </div>
+        <div className={styles.glow}></div>
+      </div>
+
+
     </>
   );
 };

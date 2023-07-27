@@ -1,5 +1,5 @@
 import styles from "./login.module.css";
-import TextBox from "../../components/form/textBox";
+import TextBoxProfile from "../../components/form/TextBoxProfile";
 import SubmitButton from "../../components/form/SubmitButton";
 import React, { useState, useEffect } from "react";
 import FormError from "../../components/form/formError";
@@ -11,14 +11,12 @@ import TextWithHyperlink from "../../components/form/TextWithHyperlink";
 import { useMoralis } from "react-moralis";
 import { ConnectButton } from "web3uikit";
 
-
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { account, chainId: chainIdHex ,l} = useMoralis();
-  
+  const { account, chainId: chainIdHex, l } = useMoralis()
 
   useEffect(() => {
     if (account) {
@@ -81,9 +79,9 @@ const Login = () => {
           axios
             .post(
               ENV.PROTOCOL +
-                ENV.HOST +
-                ENV.PORT +
-                "/two-factor/generate-otp-login",
+              ENV.HOST +
+              ENV.PORT +
+              "/two-factor/generate-otp-login",
               {
                 email: email,
               }
@@ -103,24 +101,34 @@ const Login = () => {
   return (
     <>
       <Navbar></Navbar>
-      <section className={`centralise form-only`} style={{ height: "93vh" }}>
+      <section className={styles.login_section} style={{ height: "93vh" }}>
+        <div className={styles.background}>
+          <img src={"/assets/planetrm.png"} />
+        </div>
         <div className={styles.form_container} style={{ width: "25%" }}>
-          <h3 className={styles.form_header}>Login to Minerva</h3>
+          <h3 className={styles.form_header}>Login</h3>
+          <div className={styles.signup_container}>
+            <TextWithHyperlink
+              text={"Don’t have an account yet?"}
+              href={"/register"}
+              hyperlink={"Signup"}
+            ></TextWithHyperlink>
+          </div>
           <form className={styles.login_form}>
             <div className="space-between">
-              <TextBox
+              <TextBoxProfile
                 label="Email"
                 name="email"
                 inputUpdate={setEmail}
-              ></TextBox>
+              ></TextBoxProfile>
             </div>
             <div className="space-between">
-              <TextBox
+              <TextBoxProfile
                 isPassword={true}
                 label="Password"
                 name="Password"
                 inputUpdate={setPassword}
-              ></TextBox>
+              ></TextBoxProfile>
             </div>
             <div className="space-between">
               {errorMessage ? (
@@ -133,14 +141,15 @@ const Login = () => {
                 href={"/forgot-password"}
                 hyperlink={"Reset Password"}
               ></TextWithHyperlink>
+          <ConnectButton/>
+
             </div>
             <SubmitButton
               label={"Login"}
               submitHandler={handleSubmit}
             ></SubmitButton>
-            
+
           </form>
-          <ConnectButton />
         </div>
       </section>
     </>
