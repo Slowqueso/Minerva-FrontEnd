@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-const DeleteButton = ({ clickHandler }) => {
+const DeleteButton = ({ clickHandler, label }) => {
   return (
     <button
       className={styles.delete_button}
@@ -10,7 +10,7 @@ const DeleteButton = ({ clickHandler }) => {
         clickHandler();
       }}
     >
-      Delete Term
+      {label}
     </button>
   );
 };

@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { createContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SideNav from "./SideNav/SideNav";
 import axios from "axios";
 import Navbar from "./Navbar/Navbar";
 import Workspace from "./Workspace/Workspace";
+import { useMoralis } from "react-moralis";
+import { UserContext } from "../../pages/_app";
 import ENV from "../../static_files/hostURL";
 
-export const UserContext = createContext();
+// export const UserContext = createContext();
 
 const FullLayout = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const { account } = useMoralis();
+  const { setUser } = React.useContext(UserContext);
+  // const [user, setUser] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("_USID");
-    if (token) {
+    if (token && account) {
       axios
         .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
           headers: {
             "x-access-token": token,
+            "wallet-address": account,
           },
         })
         .then((response) => {
@@ -27,12 +31,11 @@ const FullLayout = ({ children }) => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(user);
     }
-  }, []);
+  }, [account]);
 
   return (
-    <UserContext.Provider value={{ user }}>
+    <>
       <div className="flex">
         <SideNav></SideNav>
         <div style={{ width: "100%" }}>
@@ -40,7 +43,7 @@ const FullLayout = ({ children }) => {
           <Workspace>{children}</Workspace>
         </div>
       </div>
-    </UserContext.Provider>
+    </>
   );
 };
 

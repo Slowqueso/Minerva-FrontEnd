@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProfileModal, { Modalv2 } from "../../profileModal/Modal";
 import axios from "axios";
 import { ConnectButton } from "web3uikit";
@@ -8,33 +8,12 @@ import ENV from "../../../static_files/hostURL";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useMoralis } from "react-moralis";
+import { UserContext } from "../../../pages/_app";
 
 const Navbar = () => {
-  const { account } = useMoralis();
   const router = useRouter();
   const [profileModalVisibility, setProfileModalVisibility] = useState(false);
-  const [user, setUser] = useState();
-  useEffect(() => {
-    const token = localStorage.getItem("_USID");
-    if (token) {
-      axios
-        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/info", {
-          headers: {
-            "x-access-token": token,
-            "wallet-address": account,
-          },
-        })
-        .then((response) => {
-          if (response.data.authenticated) {
-            console.log("----" + response.data);
-            setUser(response.data.user);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
+  const { user, setUser } = useContext(UserContext);
   return (
     <nav className={styles.navbar}>
       {/* <Logo></Logo> */}

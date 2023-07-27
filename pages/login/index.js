@@ -1,7 +1,7 @@
 import styles from "./login.module.css";
 import TextBoxProfile from "../../components/form/TextBoxProfile";
 import SubmitButton from "../../components/form/SubmitButton";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FormError from "../../components/form/formError";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -10,13 +10,15 @@ import Navbar from "../../components/Layout/Navbar/Navbar";
 import TextWithHyperlink from "../../components/form/TextWithHyperlink";
 import { useMoralis } from "react-moralis";
 import { ConnectButton } from "web3uikit";
+import { UserContext } from "../_app";
 
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { account, chainId: chainIdHex, l } = useMoralis()
+  const { setUpdateUser } = useContext(UserContext);
+  const { account, chainId: chainIdHex, l } = useMoralis();
 
   useEffect(() => {
     if (account) {
@@ -71,6 +73,7 @@ const Login = () => {
           response.data.email_auth === false
         ) {
           localStorage.setItem("_USID", response.data.user);
+          setUpdateUser(true);
           router.push("/explore");
         } else if (
           response.data.status === "ok" &&
@@ -115,14 +118,14 @@ const Login = () => {
             ></TextWithHyperlink>
           </div>
           <form className={styles.login_form}>
-            <div className="space-between">
+            <div className={styles.textBoxContainer}>
               <TextBoxProfile
                 label="Email"
                 name="email"
                 inputUpdate={setEmail}
               ></TextBoxProfile>
             </div>
-            <div className="space-between">
+            <div className={styles.textBoxContainer}>
               <TextBoxProfile
                 isPassword={true}
                 label="Password"
@@ -130,7 +133,7 @@ const Login = () => {
                 inputUpdate={setPassword}
               ></TextBoxProfile>
             </div>
-            <div className="space-between">
+            <div className={styles.textBoxContainer}>
               {errorMessage ? (
                 <FormError errorMessage={errorMessage}></FormError>
               ) : null}

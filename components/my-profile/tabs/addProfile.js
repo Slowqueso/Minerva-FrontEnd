@@ -194,65 +194,83 @@ const AddProfile = () => {
               }`}
           >
             <form>
-              <TextBoxProfile
-                label={"Name of Institution"}
-                placeholder={"NameOfInstitution"}
-                inputUpdate={setNameOfInstitution}
-                value={name_of_institution}
-              />
-              <TextBoxProfile
-                label={"Student Email"}
-                placeholder={"StudentEmail"}
-                inputUpdate={setStudentEmail}
-                value={student_email}
-              />
-              <TextBoxProfile
-                label={"Degree"}
-                placeholder={"Degree"}
-                inputUpdate={setDegree}
-                value={degree}
-              />
-              <div className={styles.twobytwo}>
+              <div className={styles.textBoxContainer}>
                 <TextBoxProfile
-                  label={"Course Name"}
-                  placeholder={"Course"}
-                  inputUpdate={setCourseName}
-                  value={course_name}
-                />
-                <TextBoxProfile
-                  label={"Course Duration"}
-                  placeholder={"CourseDuration"}
-                  inputUpdate={setCourseDuration}
-                  value={course_duration}
-                />
-                <TextBoxProfile
-                  label={"Field of Study"}
-                  placeholder={"FieldOfStudy"}
-                  inputUpdate={setFieldOfStudy}
-                  value={field_of_study}
-                />
-                <TextBoxProfile
-                  label={"Join Date"}
-                  placeholder={"JoinDate"}
-                  inputUpdate={setJoinDate}
-                  value={join_date}
+                  label={"Name of Institution"}
+                  placeholder={"NameOfInstitution"}
+                  inputUpdate={setNameOfInstitution}
+                  value={name_of_institution}
                 />
               </div>
-              <TextBoxProfile
-                label={"Grade"}
-                placeholder={"Grade"}
-                inputUpdate={setGrade}
-                value={grade}
-              />
+              <div className={styles.textBoxContainer}>
+                <TextBoxProfile
+                  label={"Student Email"}
+                  placeholder={"StudentEmail"}
+                  inputUpdate={setStudentEmail}
+                  value={student_email}
+                />
+              </div>
+              <div className={styles.textBoxContainer}>
+                <TextBoxProfile
+                  label={"Degree"}
+                  placeholder={"Degree"}
+                  inputUpdate={setDegree}
+                  value={degree}
+                />
+              </div>
+              <div className={styles.twobytwo}>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Course Name"}
+                    placeholder={"Course"}
+                    inputUpdate={setCourseName}
+                    value={course_name}
+                  />
+                </div>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Course Duration"}
+                    placeholder={"CourseDuration"}
+                    inputUpdate={setCourseDuration}
+                    value={course_duration}
+                  />
+                </div>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Field of Study"}
+                    placeholder={"FieldOfStudy"}
+                    inputUpdate={setFieldOfStudy}
+                    value={field_of_study}
+                  />
+                </div>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Join Date"}
+                    placeholder={"JoinDate"}
+                    inputUpdate={setJoinDate}
+                    value={join_date}
+                  />
+                </div>
+              </div>
+              <div className={styles.textBoxContainer}>
+                <TextBoxProfile
+                  label={"Grade"}
+                  placeholder={"Grade"}
+                  inputUpdate={setGrade}
+                  value={grade}
+                />
+              </div>
               {studentError ? (
                 <div className={styles.input_divider}>
                   <FormError errorMessage={studentError}></FormError>
                 </div>
               ) : null}
-              <SubmitButton
-                label={"Save Student Profile"}
-                submitHandler={handleStudentSubmit}
-              />
+              <div className={styles.submitBtn}>
+                <SubmitButton
+                  label={"Save Student Profile"}
+                  submitHandler={handleStudentSubmit}
+                />
+              </div>
             </form>
           </div>
         </div>
@@ -266,47 +284,59 @@ const AddProfile = () => {
             className={`${styles.dropdownForm} ${isJobOpen && styles.show}`}
           >
             <form>
-              <TextBoxProfile
-                label={"Company Name"}
-                placeholder={"CompanyName"}
-                inputUpdate={setCompanyName}
-                value={company_name}
-              />
-              <div className={styles.twobytwo}>
+              <div className={styles.textBoxContainer}>
                 <TextBoxProfile
-                  label={"Job Designation"}
-                  placeholder={"JobDesignation"}
-                  inputUpdate={setJobDesignation}
-                  value={job_designation}
-                />
-                <TextBoxProfile
-                  label={"Location"}
-                  placeholder={"Location"}
-                  inputUpdate={setLocation}
-                  value={location}
+                  label={"Company Name"}
+                  placeholder={"CompanyName"}
+                  inputUpdate={setCompanyName}
+                  value={company_name}
                 />
               </div>
-              <TextBoxProfile
-                label={"Job Description"}
-                placeholder={"JobDescription"}
-                inputUpdate={setJobDescription}
-                value={job_description}
-              />
-              <TextBoxProfile
-                label={"Qualifications"}
-                placeholder={"Qualifications"}
-                inputUpdate={setQualifications}
-                value={qualifications}
-              />
+              <div className={styles.twobytwo}>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Job Designation"}
+                    placeholder={"JobDesignation"}
+                    inputUpdate={setJobDesignation}
+                    value={job_designation}
+                  />
+                </div>
+                <div className={styles.textBoxContainer}>
+                  <TextBoxProfile
+                    label={"Location"}
+                    placeholder={"Location"}
+                    inputUpdate={setLocation}
+                    value={location}
+                  />
+                </div>
+              </div>
+              <div className={styles.textBoxContainer}>
+                <TextBoxProfile
+                  label={"Job Description"}
+                  placeholder={"JobDescription"}
+                  inputUpdate={setJobDescription}
+                  value={job_description}
+                />
+              </div>
+              <div className={styles.textBoxContainer}>
+                <TextBoxProfile
+                  label={"Qualifications"}
+                  placeholder={"Qualifications"}
+                  inputUpdate={setQualifications}
+                  value={qualifications}
+                />
+              </div>
               {jobError ? (
                 <div className={styles.input_divider}>
                   <FormError errorMessage={jobError}></FormError>
                 </div>
               ) : null}
-              <SubmitButton
-                label={"Save Job Profile"}
-                submitHandler={handleJobSubmit}
-              />
+              <div className={styles.submitBtn}>
+                <SubmitButton
+                  label={"Save Job Profile"}
+                  submitHandler={handleJobSubmit}
+                />
+              </div>
             </form>
           </div>
         </div>

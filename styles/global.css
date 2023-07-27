@@ -52,9 +52,7 @@ body {
   min-height: 100vh;
   width: 100%;
   scroll-snap-type: mandatory;
-  scroll-snap-points-y: repeat(300px);
-  scroll-snap-points-x: repeat(300px);
-  background-image: linear-gradient(180deg, var(--palette-gradient-black) 0%, var(--palette-gradient-grey) 99.48%);
+  background: linear-gradient(180deg, #171717 0%, #171717 100%);
 }
 
 .unselectable {

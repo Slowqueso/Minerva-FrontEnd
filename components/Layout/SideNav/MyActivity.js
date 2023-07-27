@@ -122,10 +122,21 @@ const MyActivity = () => {
             }
           })}
         </ul>
-      ) : // <Loading />
-      null}
+      ) : (
+        <>
+          <ul className={styles.activities_list}>
+            <h3 className={styles.role_header}>creations</h3>
+            <br />
+            <h3 className={styles.role_header}>participated in</h3>
+            <br />
+            <h3 className={styles.role_header}>applied to</h3>
+            <br />
+            <h3 className={styles.role_header}>draft</h3>
+          </ul>
+        </>
+      )}
     </>
   );
 };
 
-export default MyActivity;
+export default React.memo(MyActivity);

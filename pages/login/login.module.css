@@ -53,6 +53,9 @@
 .login_section .form_container .login_form {
   margin: 1rem 0 0 0;
 }
+.login_section .form_container .login_form .textBoxContainer {
+  margin: 0.8rem 0;
+}
 .login_section .form_container .connect_btn {
   width: fit-content;
   background-color: #23D6FF;

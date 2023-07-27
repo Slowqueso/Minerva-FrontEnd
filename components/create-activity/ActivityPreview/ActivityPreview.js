@@ -14,6 +14,8 @@ import incrementStatus from "../../../utils/api/incrementActivity";
 import FormError from "../../form/formError";
 import updateOwnerAddress from "../../../utils/api/updateOwnerAddress";
 import { AddPublicId } from "../../../utils/api/AddPublicId";
+import Link from "next/link";
+import Error from "../Error/Error";
 
 const LabelText = ({ label, text }) => {
   return (
@@ -30,7 +32,7 @@ const CategoryTag = ({ categories, user }) => {
     <div className={styles.labelText_wrapper}>
       <h4 className={styles.title}># CATEGORIES</h4>
       {
-        <div className={styles.flex_wrapper}>
+        <div className="flex">
           {array.map((category, index) => {
             return (
               <div key={index} className={styles.tag_container}>
@@ -44,14 +46,14 @@ const CategoryTag = ({ categories, user }) => {
   );
 };
 
-const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
+const ActivityPreview = ({ activity, user, errorType }) => {
   const router = useRouter();
   // const [activity, setActivity] = useState();
   const activityId = router.query.activityId;
   const [errorMessage, setErrorMessage] = useState();
   const [button, setButton] = useState(false);
   const editActivity = () => {
-    setProgress(0);
+    router.push(`/create-activity/${activityId}/draft`);
   };
 
   // Deployment of Activity
@@ -93,7 +95,8 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
     console.log("Public ID: " + response);
     await AddPublicId(activityId, parseInt(response), setErrorMessage);
     updateOwnerAddress(activityId, account);
-    incrementStatus(activityId, setProgress, 66);
+    incrementStatus(activityId);
+    router.push(`/create-activity/${activityId}/terms-and-conditions`);
     handleNewNotification();
   };
 
@@ -111,7 +114,6 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
     const response = await createActivity({
       onSuccess: handleSuccess,
       onError: (error) => {
-        console.log(error);
         setButton(false);
       },
     });
@@ -119,109 +121,115 @@ const ActivityPreview = ({ activity, setActivity, setProgress, user }) => {
   };
 
   useEffect(() => {
-    if (activityId) {
-      axios
-        .get(
-          ENV.PROTOCOL +
-            ENV.HOST +
-            ENV.PORT +
-            `/activity/drafts/get-activity/${activityId}`,
-          {
-            headers: {
-              "x-access-token": localStorage.getItem("_USID"),
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data.status === "success") {
-            if (response.data.activity._status === 2) {
-              setProgress(66);
-            } else if (response.data.activity._status === 3) {
-              setProgress(100);
-            } else {
-              setTimeout(() => setActivity(response.data.activity), 500);
-            }
-          }
-        })
-        .catch((err) => {
-          if (err.response.data) {
-            setErrorMessage(err.response.data.msg);
-          } else {
-            setErrorMessage("Error 404: Not Found");
-          }
-          console.log(err);
-        });
+    if (activity) {
+      if (activity._status !== 1) {
+        router.push(`/create-activity/${activityId}`);
+      }
     }
-  }, [activityId]);
+  }, []);
   return (
-    <div className={styles.wrapper}>
-      {activity ? (
-        <div>
-          <div className={`${styles.flex_wrapper} ${styles.margin_bottom}`}>
-            <div className={styles.activity_logo}>
-              <img src={activity.logo} title={`${activity.title}'s logo`} />
-            </div>
-            <div className={`${styles.inner_wrapper} `}>
-              <div className={styles.flex_wrapper}>
-                <LabelText label={"# TITLE"} text={activity.title}></LabelText>
+    <section
+      style={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        paddingLeft: "2rem",
+      }}
+    >
+      {!errorType ? <div className={styles.glow}></div> : null}
+      {!errorType ? (
+        <div className={styles.wrapper}>
+          <div className={styles.heading_container}>
+            <h4>Activity Preview</h4>
+          </div>
+          {activity ? (
+            <div style={{ padding: "2rem" }}>
+              <div className={`${styles.flex_wrapper} ${styles.margin_bottom}`}>
+                <div className={styles.activity_logo}>
+                  <img src={activity.logo} title={`${activity.title}'s logo`} />
+                </div>
+                <div className={`${styles.inner_wrapper} `}>
+                  <div className={styles.flex_wrapper}>
+                    <LabelText
+                      label={"# TITLE"}
+                      text={activity.title}
+                    ></LabelText>
+                    <LabelText
+                      label={"# MEMBER LIMIT"}
+                      text={activity.member_limit}
+                    ></LabelText>
+                    <LabelText
+                      label={"# JOINING PRICE"}
+                      text={`$${activity.join_price}`}
+                    ></LabelText>
+                  </div>
+                  <div className={styles.flex_wrapper}>
+                    <LabelText
+                      label={"# DIFFICULTY LEVEL"}
+                      text={activity.difficulty_level}
+                    ></LabelText>
+                    <LabelText
+                      label={"# DATE CREATED"}
+                      text={getOrderedDate(activity.date_created)}
+                    ></LabelText>
+                    <LabelText
+                      label={"# DURATION PERIOD"}
+                      text={activity.durationPeriod + " months"}
+                    ></LabelText>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`${styles.inner_wrapper} ${styles.margin_bottom}`}
+              >
                 <LabelText
-                  label={"# MEMBER LIMIT"}
-                  text={activity.member_limit}
-                ></LabelText>
-                <LabelText
-                  label={"# JOINING PRICE"}
-                  text={`$${activity.join_price}`}
+                  label={"# DESCRIPTION"}
+                  text={activity.description}
                 ></LabelText>
               </div>
-              <div className={styles.flex_wrapper}>
-                <LabelText
-                  label={"# DIFFICULTY LEVEL"}
-                  text={activity.difficulty_level}
-                ></LabelText>
-                <LabelText
-                  label={"# DATE CREATED"}
-                  text={getOrderedDate(activity.date_created)}
-                ></LabelText>
-                <LabelText
-                  label={"# DURATION PERIOD"}
-                  text={activity.durationPeriod + " months"}
-                ></LabelText>
+              <div
+                className={`${styles.inner_wrapper} ${styles.margin_bottom}`}
+              >
+                <CategoryTag categories={activity.categories}></CategoryTag>
+              </div>
+              <div
+                className={`${styles.inner_wrapper} ${styles.margin_bottom}`}
+              >
+                <div className="space-between">
+                  <Link href={`/create-activity/${activityId}/draft`}>
+                    <SubmitButton
+                      label={"Edit Activity"}
+                      isTransparent={true}
+                      submitHandler={editActivity}
+                    ></SubmitButton>
+                    {/* <button>Edit</button> */}
+                  </Link>
+                  <SubmitButton
+                    isDisabled={button}
+                    label={"Deploy Activity"}
+                    submitHandler={handleSubmit}
+                  ></SubmitButton>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
-            <LabelText
-              label={"# DESCRIPTION"}
-              text={activity.description}
-            ></LabelText>
-          </div>
-          <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
-            <CategoryTag categories={activity.categories}></CategoryTag>
-          </div>
-          <div className={`${styles.inner_wrapper} ${styles.margin_bottom}`}>
-            <div className="space-between">
-              <SubmitButton
-                label={"Edit Activity"}
-                isTransparent={true}
-                submitHandler={editActivity}
-              ></SubmitButton>
-              <SubmitButton
-                isDisabled={button}
-                label={"Deploy Activity"}
-                submitHandler={handleSubmit}
-              ></SubmitButton>
+          ) : (
+            <div className="centralised">
+              <div className={styles.error_loader}>
+                <Loading></Loading>
+              </div>
+              {errorMessage ? <FormError errorMessage={errorMessage} /> : null}
             </div>
-          </div>
+          )}
         </div>
       ) : (
-        <div className="centralised">
-          <div className={styles.error_loader}>
-            <Loading></Loading>
-          </div>
-          {errorMessage ? <FormError errorMessage={errorMessage} /> : null}
-        </div>
+        <Error
+          title={errorType.response.data.msg}
+          statusCode={errorType.response.status}
+        ></Error>
       )}
-    </div>
+    </section>
   );
 };
 

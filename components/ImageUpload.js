@@ -20,7 +20,7 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
   };
   return (
     <>
-      <label htmlFor="pic-inp" style={{ borderRadius: "50%" }}>
+      <label htmlFor="pic-inp" style={{ borderRadius: "0%" }}>
         <div className="acc-user-profile">
           <label
             htmlFor="pic-inp"
@@ -33,7 +33,7 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
             {preImage ? (
               <img
                 style={{
-                  width: "189px",
+                  width: "100%",
                   height: "auto",
                   margin: "auto",
                 }}
@@ -49,7 +49,9 @@ const ImageUpload = ({ setFileName, setImageFile, preImage }) => {
                   margin: "auto",
                 }}
                 src={
-                  uploadedImage ? uploadedImage : "/assets/default_profile.svg"
+                  uploadedImage
+                    ? uploadedImage
+                    : "/assets/default_upload_icon.jpg"
                 }
                 crossOrigin="anonymous"
                 className="unselectable"

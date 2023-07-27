@@ -7,7 +7,7 @@ import SubmitButton from "../../../components/form/SubmitButton";
 import axios from "axios";
 import ENV from "../../../static_files/hostURL";
 import { useNotification } from "web3uikit";
-import { UserContext } from "../../../components/Layout/FullLayout";
+import { UserContext } from "../../../pages/_app";
 
 const Security = () => {
   const { user } = useContext(UserContext);

@@ -1,32 +1,65 @@
-.wrapper {
-  width: 60%;
-  margin: auto;
-  background: var(--palette-dark-grey);
-  padding: 1rem;
+.outer_wrapper {
+  width: 100%;
+  position: relative;
 }
-.wrapper .wrapper_title {
+.outer_wrapper .glow {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 102px;
+  height: 105px;
+  border-radius: 50%;
+  background: #e87308;
+  filter: blur(80.5px);
+  z-index: 0;
+}
+
+.wrapper {
+  margin: auto;
+  background-color: #0d0d0d;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px 10px rgba(88, 254, 255, 0.07);
+  position: relative;
+  z-index: 9;
+  padding-bottom: 1rem;
+}
+.wrapper .heading_container {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 4px 4px 0px 0px;
+  border: 1px solid #1f1f1f;
+  background: #1a1a1a;
+  height: 50px;
+  align-content: center;
+}
+.wrapper .heading_container h4 {
   font-family: var(--fs-poppins-400);
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 63px;
-  background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+  font-size: 1rem;
+  margin: 0 2rem;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(90deg, var(--palette-primary-blue) 0%, #fffbfc 52.22%, var(--palette-secondary-blue) 74.33%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  letter-spacing: 1.4px;
 }
 .wrapper .form_container {
   max-height: 50vh;
   overflow-y: scroll;
-  border-bottom: 1px solid var(--palette-light-grey);
   padding-bottom: 2rem;
+  padding: 1rem 2rem;
 }
 .wrapper .form_container .flex_between {
   display: flex;
   justify-content: space-between;
+}
+.wrapper .form_container .flex {
+  display: flex;
+  margin: 1rem 0;
 }
 
 .delete_button {
@@ -35,10 +68,10 @@
   color: white;
   font-family: var(--fs-poppins-200);
   width: fit-content;
-  padding: 0.5rem 1.5rem;
-  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 10px;
   transition: 0.3s ease-out;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 .delete_button:hover {
@@ -48,11 +81,10 @@
 
 .add_field {
   width: fit-content;
-  margin-left: 1rem;
   background: transparent;
   border: 1px solid transparent;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
 }
 .add_field span {
   margin-left: 0.75rem;

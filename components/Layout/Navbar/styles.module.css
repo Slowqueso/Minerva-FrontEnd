@@ -4,7 +4,7 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-image: linear-gradient(134deg, hsla(191, 100%, 57%, 0.199), rgba(0, 0, 0, 0) 30%);
+  background-image: linear-gradient(134deg, hsla(191, 100%, 57%, 0.199), #0d0d0d 30%);
 }
 
 .nav_links {

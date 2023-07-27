@@ -1,7 +1,6 @@
 @import url("../global.css");
 .textOnInput {
   position: relative;
-  margin: 1rem 0;
   width: 100%;
 }
 .textOnInput input {
@@ -10,8 +9,8 @@
   padding: 0.6rem 7px;
   border-radius: 5px;
   box-shadow: none;
-  background-color: #1A1A1A;
-  color: #E6E6E6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
   font-size: 0.7em;
 }
@@ -21,20 +20,19 @@
   padding: 0.75rem 7px;
   border-radius: 5px;
   box-shadow: none;
-  background-color: #1A1A1A;
-  color: #E6E6E6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
 }
 
 .textOnInput2 {
   position: relative;
-  margin: 1rem 1rem;
   width: 100%;
 }
 .textOnInput2 input {
   width: 100%;
   padding: 0.75rem 7px;
-  border: #3C3C3C 1.5px solid;
+  border: #3c3c3c 1.5px solid;
   border-radius: 5px;
   box-shadow: none;
   background-color: black;
@@ -45,7 +43,7 @@
   border: 1px solid transparent;
   width: 100%;
   padding: 0.75rem 7px;
-  border: #3C3C3C 1.5px solid;
+  border: #3c3c3c 1.5px solid;
   border-radius: 5px;
   box-shadow: none;
   background-color: black;
@@ -54,12 +52,13 @@
 }
 
 .textOnInputProfile {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  margin: 1rem 0;
   width: 100%;
 }
 .textOnInputProfile label {
-  color: #E6E6E6;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
   font-size: 0.8em;
   margin: 0 0 0.4em 0.2em;
@@ -69,8 +68,8 @@
   padding: 0.6rem 7px;
   border-radius: 5px;
   box-shadow: none;
-  background-color: #1A1A1A;
-  color: #E6E6E6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
   font-size: 0.7em;
 }
@@ -80,8 +79,8 @@
   padding: 0.75rem 7px;
   border-radius: 5px;
   box-shadow: none;
-  background-color: #1A1A1A;
-  color: #E6E6E6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
 }
 
@@ -94,7 +93,7 @@ section.form-only {
   position: relative;
   top: 0;
   left: 0;
-  color: #E6E6E6;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
   font-size: 0.8em;
   margin: 0 0 0.4em 0.2em;
@@ -141,7 +140,7 @@ section.form-only {
   font-weight: 600;
   font-size: 52px;
   line-height: 63px;
-  background: linear-gradient(90deg, #D47AFF 0%, #FF78BD 21.66%, #FFFBFC 52.22%, #FF79E2 74.33%);
+  background: linear-gradient(90deg, #d47aff 0%, #ff78bd 21.66%, #fffbfc 52.22%, #ff79e2 74.33%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -155,29 +154,35 @@ section.form-only {
 .submit-button {
   padding: 0.5rem 2.5rem;
   transition: 200ms ease;
-  background: linear-gradient(90deg, #FF5858 -14.67%, #EC7AFF 16.86%, #F0CFFF 46.5%, rgba(243, 141, 233, 0.88) 82.45%, #FF7878 105.16%);
   outline: none;
-  border: none;
-  font-size: 0.8em;
-  font-family: var(--fs-poppins-200);
-  border-radius: 3px;
-  margin: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 20px 4px rgba(255, 155, 239, 0.26);
+  border: 1px solid var(--palette-secondary-blue);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: black;
+  box-shadow: 0 0 3px 2px rgba(35, 215, 255, 0.3764705882);
+}
+.submit-button h3 {
+  font-family: var(--fs-inter-400);
+  font-size: 0.75em !important;
+  color: white;
+  font-weight: 400;
+  margin: 0 !important;
+}
+.submit-button:hover {
+  background: var(--palette-primary-blue);
+}
+.submit-button:hover h3 {
+  color: black;
+}
+.submit-button span {
+  z-index: 10;
 }
 .submit-button h3 {
   margin: 0px;
   font-size: 1em;
   font-family: var(--fs-poppins-200);
   border-radius: 3px;
-}
-
-.submit-button:hover {
-  background: linear-gradient(90deg, #C93232 -14.67%, #C34BD7 16.86%, #C898DF 46.5%, #D763CB 82.45%, #D25151 105.16%);
-  cursor: pointer;
 }
 
 .error-box {
@@ -192,13 +197,14 @@ section.form-only {
 .inactive {
   outline: none;
   background-color: #292929 !important;
-  color: #5E5E5E !important;
+  color: #5e5e5e !important;
   padding-left: 1rem !important;
 }
 
 .acc-user-profile {
+  position: relative;
   display: flex;
-  border-radius: 50%;
+  border-radius: 0%;
   height: 5cm;
   width: 5cm;
   overflow: hidden;
@@ -214,13 +220,14 @@ section.form-only {
 }
 
 .acc-user-profile .acc-user-profile-lens {
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   z-index: 3;
   position: absolute;
   height: 5cm;
   width: 5cm;
-  border-radius: 50%;
 }
 
 .acc-user-profile .acc-user-profile-lens .lens-text:hover {
@@ -234,6 +241,7 @@ section.form-only {
 
 .acc-user-profile:hover .acc-user-profile-lens .lens-text {
   color: white;
+  font-weight: 400;
   display: block;
 }
 
@@ -248,16 +256,15 @@ section.form-only {
   padding: 0.5rem 7px;
   border-radius: 5px;
   box-shadow: none;
-  background-color: #1A1A1A;
-  color: #E6E6E6;
+  background-color: #1a1a1a;
+  color: #e6e6e6;
   font-family: var(--fs-poppins-200);
 }
 
 .activity-assets {
   position: relative;
-  border-image: linear-gradient(90deg, #AD26EC, #B660DE, #FFD3F5, #E01FFF) 30;
   border-width: 2px;
-  border-style: dotted;
+  box-shadow: 5px 3px 10px 2px rgba(0, 0, 0, 0.555);
 }
 .activity-assets .acc-user-profile-lens {
   display: none;

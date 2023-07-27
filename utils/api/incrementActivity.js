@@ -1,7 +1,7 @@
 import axios from "axios";
 import ENV from "../../static_files/hostURL";
 
-const incrementStatus = (id, setProgress, progressValue, errorMessage) => {
+const incrementStatus = (id) => {
   axios
     .put(ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/activity/increment-status", {
       id: id,
@@ -12,9 +12,6 @@ const incrementStatus = (id, setProgress, progressValue, errorMessage) => {
       }
     })
     .catch((err) => {
-      if (errorMessage) {
-        errorMessage(err.response.data.msg);
-      }
       console.log(err);
     });
 };

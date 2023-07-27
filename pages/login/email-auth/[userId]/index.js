@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../../../forgot-password/styles.module.css";
 import Navbar from "../../../../components/Layout/Navbar/Navbar";
 import TextBox from "../../../../components/form/textBox";
@@ -10,12 +10,14 @@ import TextWithHyperlink from "../../../../components/form/TextWithHyperlink";
 import axios from "axios";
 import ENV from "../../../../static_files/hostURL";
 import { Loading } from "web3uikit";
+import { UserContext } from "../../../_app";
 
 const OtpAuth = () => {
   const [otp, setOtp] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { setUpdateUser } = useContext(UserContext);
   const { userId } = router.query;
   const flag = isUserLogged();
   const resendOtp = () => {};
@@ -28,6 +30,7 @@ const OtpAuth = () => {
       .then((res) => {
         if (res.data.authenticated) {
           localStorage.setItem("_USID", res.data.user);
+          setUpdateUser(true);
           router.push(`/explore`);
         } else {
           setErrorMessage(res.data.msg);

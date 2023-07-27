@@ -1,0 +1,45 @@
+.account_navbar {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: #0d0d0d;
+  padding: 2rem 1rem;
+  border-radius: 15px 0 0 15px;
+  border-right: 1px solid #171717;
+  gap: 1.5rem;
+}
+.account_navbar h3 {
+  font-size: 12px;
+  color: #bfbfbf;
+  margin: 0;
+  padding: 0.25rem 1rem;
+  transition: 200ms ease;
+  border-radius: 5px;
+  min-width: 100%;
+  width: max-content;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}
+.account_navbar h3:hover {
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(90deg, #429394 0%, #000 100%);
+  box-shadow: 0px 0px 4px 0px #58feff;
+}
+.account_navbar h3 svg {
+  margin-left: 0.5rem;
+}
+.account_navbar .active {
+  color: white;
+  background: linear-gradient(90deg, #429394 0%, #000 100%);
+  box-shadow: 0px 0px 4px 0px #58feff;
+}
+.account_navbar .disabled {
+  opacity: 0.5;
+}
+.account_navbar .disabled:hover {
+  color: #bfbfbf;
+  cursor: default;
+  background: none;
+  box-shadow: none;
+}/*# sourceMappingURL=styles.module.css.map */

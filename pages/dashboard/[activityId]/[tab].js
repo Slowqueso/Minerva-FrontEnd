@@ -108,73 +108,81 @@ export const DashboardTabs = ({ children }) => {
     }
     const token = localStorage.getItem("_USID");
     if (token) {
-      axios.post(ENV.PROTOCOL + ENV.HOST + ENV.PORT +"/user/get-role", {
-        activityId: activityId,
-      },{
-        headers: {
-          "x-access-token": token,
+      axios
+        .post(
+          ENV.PROTOCOL + ENV.HOST + ENV.PORT + "/user/get-role",
+          {
+            activityId: activityId,
           },
-          })
-          .then((response) => {
-            if (response) {
-              setRole(response.data.role);
-            }
+          {
+            headers: {
+              "x-access-token": token,
+            },
           }
-          )
-          .catch((err) => {
-            console.log(err);
-          });
+        )
+        .then((response) => {
+          if (response) {
+            setRole(response.data.role);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [activityId]);
   useEffect(() => {
     const token = localStorage.getItem("_USID");
     if (activity && token) {
       const members = activity.members;
-      axios.get(ENV.PROTOCOL + ENV.HOST + ENV.PORT +`/user/info/_id`, {
-        headers: {
-          "x-access-token": token,
+      axios
+        .get(ENV.PROTOCOL + ENV.HOST + ENV.PORT + `/user/info/_id`, {
+          headers: {
+            "x-access-token": token,
           },
-          })
-          .then((response) => {
-            if (response) {
-              console.log(response.data)
-              if(!members.some((member) => member.id == response.data._id)){
-               router.replace("/explore")
-              }
-              else{
-
-                setIsMember(members.some((member) => member.id == response.data._id));
-              }
+        })
+        .then((response) => {
+          if (response) {
+            console.log(response.data);
+            if (!members.some((member) => member.id == response.data._id)) {
+              router.replace("/explore");
+            } else {
+              setIsMember(
+                members.some((member) => member.id == response.data._id)
+              );
             }
           }
-          )
-          .catch((err) => {
-            console.log(err);
-          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [activity]);
 
   return (
     <>
       <Navbar></Navbar>
-      {isMember?(<section className={styles.section}>
-        {currentTab ? (
-          <h1 className={styles.nav_map}>{currentTab.labelText}</h1>
-        ) : null}
-        <div className="flex">
-          <DashboardNav NavList={role == 1 ? NavList : NavList2}></DashboardNav>
-          {activity && currentTab ? (
-            <ActivityProvider activity={activity}>
-              {!children ? <ViewTabs role={role} /> : null}
-              {children}
-            </ActivityProvider>
-          ) : (
-            <div className={styles.center_loader}>
-              <Loading></Loading>
-            </div>
-          )}
-        </div>
-      </section>):null}
+      {isMember ? (
+        <section className={styles.section}>
+          {currentTab ? (
+            <h1 className={styles.nav_map}>{currentTab.labelText}</h1>
+          ) : null}
+          <div className="flex">
+            <DashboardNav
+              NavList={role == 1 ? NavList : NavList2}
+            ></DashboardNav>
+            {activity && currentTab ? (
+              <ActivityProvider activity={activity}>
+                {!children ? <ViewTabs role={role} /> : null}
+                {children}
+              </ActivityProvider>
+            ) : (
+              <div className={styles.center_loader}>
+                <Loading></Loading>
+              </div>
+            )}
+          </div>
+        </section>
+      ) : null}
     </>
   );
 };
