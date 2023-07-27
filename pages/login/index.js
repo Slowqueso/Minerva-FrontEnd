@@ -144,15 +144,14 @@ const Login = () => {
                 href={"/forgot-password"}
                 hyperlink={"Reset Password"}
               ></TextWithHyperlink>
-          <ConnectButton/>
 
             </div>
             <SubmitButton
               label={"Login"}
               submitHandler={handleSubmit}
-            ></SubmitButton>
-
+              ></SubmitButton>
           </form>
+          <ConnectButton/> 
         </div>
       </section>
     </>
